@@ -81,6 +81,23 @@ Route::middleware('auth')->controller(CategoryController::class)->prefix("catego
 });
 
 
+Route::middleware('auth')->controller(JobsController::class)->prefix("jobs")->group(function (){
+
+    Route::get('/', 'index')->name('jobs');
+    
+    Route::get('/create', 'create')->name('jobs/create');
+    
+    Route::post('/store', 'store')->name('jobs/store');
+    
+    Route::get('/edit/{id}', 'edit')->name('jobs/edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('jobs/update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{id}', 'destroy')->name('jobs/destroy')->where('id','[0-9]+');
+    
+});
+
+
 
 Auth::routes();
 
