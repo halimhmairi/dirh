@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\JobController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +82,7 @@ Route::middleware('auth')->controller(CategoryController::class)->prefix("catego
 });
 
 
-Route::middleware('auth')->controller(JobsController::class)->prefix("jobs")->group(function (){
+Route::middleware('auth')->controller(JobController::class)->prefix("jobs")->group(function (){
 
     Route::get('/', 'index')->name('jobs');
     

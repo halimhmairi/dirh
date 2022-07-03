@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string("title");
+            $table->string("jobsummary");
             $table->text("description");
+            $table->string("tags");
+            $table->string("status");
+            $table->date("publish_at");
             $table->timestamps();
         });
     }

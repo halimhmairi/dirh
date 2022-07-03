@@ -24,7 +24,12 @@ class StoreJobRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required",
+            "jobsummary" => "required",
+            "description" => "required",
+            "tags" => "required",
+            "status" => "required",
+            "publish_at" => "required"
         ];
     }
 }

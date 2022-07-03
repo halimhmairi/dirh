@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
+use App\Http\Requests\recruitment\job\StoreJobRequest;
+use App\Http\Requests\recruitment\job\UpdateJobRequest;
+use App\Repositories\recruitment\job\JobRepository;
 
 class JobController extends Controller
 {
+    public $jobRepository;  
+
+    public function __construct(JobRepository $jobRepository)
+    {
+        $this->jobRepository =  $jobRepository; 
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $jobs = $this->jobRepository->paginate(5,['*'],'page');
+        return view('dashboard.jobs.index',compact('jobs'));
     }
 
     /**
@@ -25,7 +34,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.jobs.create');
     }
 
     /**
@@ -36,7 +45,9 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        $this->jobRepository->create($request->all());
+        toast('Your Job as been submited!','success');
+        return redirect()->back();
     }
 
     /**

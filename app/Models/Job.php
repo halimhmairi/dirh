@@ -14,5 +14,5 @@ class Job extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','description'];
+    protected $fillable = ['title','jobsummary','description','tags','status','publish_at'];
 }
