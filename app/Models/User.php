@@ -51,4 +51,13 @@ class User extends Authenticatable
     {
        return $this->belongsTo(Role::class);
     }
+
+    /**
+     * Get the condidates that owns the user.
+     *
+     */
+    public function candidates()
+    {
+       return $this->hasMany(Candidate::class);
+    }
 }

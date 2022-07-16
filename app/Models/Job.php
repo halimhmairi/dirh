@@ -15,4 +15,13 @@ class Job extends Model
      * @var array
      */
     protected $fillable = ['title','jobsummary','description','tags','status','publish_at'];
+
+     /**
+     * Get the condidates that owns the user.
+     *
+     */
+    public function candidates()
+    {
+       return $this->hasMany(Candidate::class);
+    }
 }

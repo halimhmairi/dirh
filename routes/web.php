@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\CandidateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +96,23 @@ Route::middleware('auth')->controller(JobController::class)->prefix("jobs")->gro
     Route::post('/update', 'update')->name('jobs/update')->where('id','[0-9]+');
     
     Route::get('/destroy/{job}', 'destroy')->name('jobs/destroy')->where('id','[0-9]+');
+    
+});
+
+
+Route::middleware('auth')->controller(CandidateController::class)->prefix("candidates")->group(function (){
+
+    Route::get('/', 'index')->name('candidates');
+    
+    Route::get('/create', 'create')->name('candidates/create');
+    
+    Route::post('/store', 'store')->name('candidates/store');
+    
+    Route::get('/edit/{candidate}', 'edit')->name('candidates/edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('candidates/update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{candidate}', 'destroy')->name('candidates/destroy')->where('id','[0-9]+');
     
 });
 
