@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Http\Requests\recruitment\job\StoreJobRequest;
 use App\Http\Requests\recruitment\job\UpdateJobRequest;
 use App\Repositories\recruitment\job\JobRepository;
+use Illuminate\Support\Str;
 
 class JobController extends Controller
 {

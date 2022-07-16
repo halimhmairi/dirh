@@ -15,8 +15,7 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Job title</th>
-                      <th scope="col">Job summary</th>
-                      <th scope="col">Description</th>
+                      <th scope="col">Job summary</th> 
                       <th scope="col">tags</th>
                       <th scope="col">publish date</th>
                       <th scope="col">Action</th>
@@ -26,9 +25,8 @@
                   @foreach($jobs as $job)
                     <tr>
                       <th scope="row">{{ $job->id }}</th>
-                      <td>{{ $job->title }}</td>
-                      <td>{{ $job->jobsummary }}</td>
-                      <td>{{ $job->description }}</td>
+                      <td>{{ Str::words($job->title , 4 , ' ...') }}</td>
+                      <td>{{ Str::words( $job->jobsummary , 4, ' ...') }}</td> 
                       <td>{{ $job->tags }}</td>
                       <td>{{ $job->publish_at }}</td>
                       <td>
