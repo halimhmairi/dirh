@@ -24,7 +24,13 @@ class UpdateJobRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "id" => "required",
+            "title" => "required",
+            "jobsummary" => "required",
+            "description" => "required",
+            "tags" => "required",
+            "status" => "required",
+            "publish_at" => "required"
         ];
     }
 }

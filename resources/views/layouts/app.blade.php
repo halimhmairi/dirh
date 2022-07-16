@@ -158,14 +158,15 @@
                           </div>
                         </aside>
 
-                        @if (!Request::is('profile/edit'))
-                             @include('layouts/topbar');
-                        @endif
+                     
 
                    @include('sweetalert::alert')
                                    
                                     @endguest 
                     <main class="main-content">
+                      @if (!Request::is('profile/edit'))
+                      @include('layouts/topbar');
+                 @endif
                         @yield('content')
                     </main>
                 </div> 

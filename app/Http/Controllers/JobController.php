@@ -56,9 +56,9 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $job)
+    public function show($id)
     {
-        //
+        $job = $this->jobRepository->getById($id); 
     }
 
     /**
@@ -67,21 +67,23 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function edit(Job $job)
+    public function edit($id)
     {
-        //
+        $job = $this->jobRepository->getById($id);
+        return view('dashboard.jobs.edit',compact('job'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateJobRequest  $request
-     * @param  \App\Models\Job  $job
+     * @param  \App\Http\Requests\UpdateJobRequest  $request 
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(UpdateJobRequest $request)
     {
-        //
+        $this->jobRepository->updateById($request->id,$request->except('id'));
+        toast('Your job as been updatedt!','success');
+        return redirect('/jobs');
     }
 
     /**
@@ -92,6 +94,7 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $this->jobRepository->deleteById($job->id);
+        return redirect()->back()->with('success','test dev');
     }
 }

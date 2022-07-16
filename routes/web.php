@@ -94,7 +94,7 @@ Route::middleware('auth')->controller(JobController::class)->prefix("jobs")->gro
     
     Route::post('/update', 'update')->name('jobs/update')->where('id','[0-9]+');
     
-    Route::get('/destroy/{id}', 'destroy')->name('jobs/destroy')->where('id','[0-9]+');
+    Route::get('/destroy/{job}', 'destroy')->name('jobs/destroy')->where('id','[0-9]+');
     
 });
 
