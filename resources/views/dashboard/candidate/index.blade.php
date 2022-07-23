@@ -30,8 +30,8 @@
                       <td>{{ $candidate->resume }}</td>
                       <td>{{ $candidate->note }}</td>
                       <td>
-                      <a href="{{ Route('role/edit',$candidate) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                      <a href="{{ Route('role/destroy',$candidate) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ Route('candidates/show',$candidate) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                      <a href="{{ Route('candidates/destroy',$candidate) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                 @endforeach
@@ -44,7 +44,5 @@
             </div>
         </div>
     </div>
-</div>
- 
-
+</div> 
 @endsection

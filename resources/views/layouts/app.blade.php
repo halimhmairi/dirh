@@ -73,6 +73,7 @@
             </div>
           </div> 
                         @else
+                        <x-InfoModal type="danger" :data="34" />
 
                         @if(Request::is('profile/edit'))
                         <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
@@ -159,7 +160,6 @@
                         </aside>
 
                      
-
                    @include('sweetalert::alert')
                                    
                                     @endguest 

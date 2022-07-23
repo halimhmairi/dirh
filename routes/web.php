@@ -105,6 +105,8 @@ Route::middleware('auth')->controller(CandidateController::class)->prefix("candi
     Route::get('/', 'index')->name('candidates');
     
     Route::get('/create', 'create')->name('candidates/create');
+
+    Route::get('/show/{candidate}', 'show')->name('candidates/show');
     
     Route::post('/store', 'store')->name('candidates/store');
     
