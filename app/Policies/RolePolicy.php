@@ -18,7 +18,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role->name === "admin";
     }
 
     /**
@@ -30,7 +30,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        //
+        return $user->role->name === $role->name;
     }
 
     /**
@@ -41,7 +41,7 @@ class RolePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role->name === "admin";
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        //
+        return $user->role->name === $role->name;
     }
 
     /**
@@ -65,7 +65,8 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-        //
+                return $user->role->name === $role->name;
+
     }
 
     /**

@@ -34,7 +34,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -56,7 +56,12 @@ class CandidateController extends Controller
      */
     public function show(Candidate $candidate)
     {
-        //
+   
+        $candidateData = $this->candidateRepository->getById($candidate->id);
+        return response()->json([
+            "data" => $candidateData
+        ]);
+       
     }
 
     /**
