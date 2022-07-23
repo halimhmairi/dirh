@@ -19,9 +19,9 @@ mix.combine([
 ],"public/css/app.css")
 
 mix.combine([
+    "public/js/jquery.min.js",
     "public/js/core/popper.min.js",
     "public/js/core/bootstrap.min.js",
     "public/js/plugins/perfect-scrollbar.min.js",
-    "public/js/plugins/smooth-scrollbar.min.js",
-    "public/js/plugins/chartjs.min.js", 
+    "public/js/plugins/smooth-scrollbar.min.js"
 ],"public/js/app.js"); 
