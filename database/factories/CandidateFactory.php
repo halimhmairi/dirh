@@ -25,7 +25,7 @@ class CandidateFactory extends Factory
             'resume' => $this->faker->randomElement($resumes),
             'note' => $this->faker->paragraph(1),
             'status' => $this->faker->randomElement($status),
-            'job_id' => $this->faker->randomElement($jobs),
+            'dirh_job_id' => $this->faker->randomElement($jobs),
             'user_id' => $this->faker->randomElement($users),
         ];
     }

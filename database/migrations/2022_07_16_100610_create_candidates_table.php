@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('resume');
             $table->string('note');
             $table->enum('status',['waiting','rejected','accepted']);
-            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('dirh_job_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('dirh_job_id')->references('id')->on('dirh_jobs');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();

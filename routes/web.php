@@ -19,6 +19,10 @@ use App\Http\Controllers\CandidateController;
 */
 
 Route::get('/', function () {
+    $details['email'] = 'testdev@gmail.com';
+
+    dispatch(new App\Jobs\SendEmailJob($details));
+ 
     return redirect('/login');
 });
 

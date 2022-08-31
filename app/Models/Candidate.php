@@ -20,7 +20,7 @@ class Candidate extends Model
     protected $fillable = [
         'resume',
         'note',
-        'job_id',
+        'dirh_job_id',
         'user_id'
     ];
 

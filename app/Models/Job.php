@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
-
+    protected $table = "dirh_jobs";
      /**
      * The attributes that are mass assignable.
      *
