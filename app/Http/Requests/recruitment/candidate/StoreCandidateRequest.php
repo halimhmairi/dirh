@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\recruitment\condidate;
+namespace App\Http\Requests\recruitment\candidate;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,6 +26,7 @@ class StoreCandidateRequest extends FormRequest
         return [
             'resume',
             'note',
+            'status',
             'job_id',
             'user_id'
         ];

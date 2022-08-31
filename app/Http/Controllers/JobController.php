@@ -14,6 +14,8 @@ class JobController extends Controller
 
     public function __construct(JobRepository $jobRepository)
     {
+        //check permission
+        
         $this->jobRepository =  $jobRepository; 
     }
 
@@ -24,7 +26,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = $this->jobRepository->paginate(5,['*'],'page');
+        $jobs = $this->jobRepository->orderBy('created_at','DESC')->paginate(5,['*'],'page');
+     
         return view('dashboard.jobs.index',compact('jobs'));
     }
 

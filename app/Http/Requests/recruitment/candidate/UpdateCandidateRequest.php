@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\recruitment\condidate;
+namespace App\Http\Requests\recruitment\candidate;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,6 +27,7 @@ class UpdateCandidateRequest extends FormRequest
             'id',
             'resume',
             'note',
+            'status',
             'job_id',
             'user_id'
         ];

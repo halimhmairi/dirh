@@ -22,10 +22,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach($jobs as $job)
+                  @foreach($jobs as $job) 
                     <tr>
                       <th scope="row">{{ $job->id }}</th>
-                      <td>{{ Str::words($job->title , 4 , ' ...') }}</td>
+                      <td>{{ $job->title  }}</td>
                       <td>{{ Str::words( $job->jobsummary , 4, ' ...') }}</td> 
                       <td>{{ $job->tags }}</td>
                       <td>{{ $job->publish_at }}</td>

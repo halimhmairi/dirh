@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
-use App\Http\Requests\StoreCandidateRequest;
-use App\Http\Requests\UpdateCandidateRequest;
+use App\Http\Requests\recruitment\candidate\StoreCandidateRequest;
+use App\Http\Requests\recruitment\candidate\UpdateCandidateRequest;
+ 
+
 use App\Repositories\recruitment\candidate\CandidateRepository;
 
 class CandidateController extends Controller
@@ -84,7 +86,7 @@ class CandidateController extends Controller
      */
     public function update(UpdateCandidateRequest $request, Candidate $candidate)
     {
-        //
+        $this->candidateRepository->updateById($candidate->id,$request->all());
     }
 
     /**

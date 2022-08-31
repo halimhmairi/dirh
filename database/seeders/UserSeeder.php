@@ -16,6 +16,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(3)->create();
+
+        /*
         User::create([
             "name" => "admin",
             "email" => "admin@gmail.com",
@@ -28,6 +31,6 @@ class UserSeeder extends Seeder
             "email" => "user@gmail.com",
             "role_id" => 2,
             "password" => Hash::make("12345678"),
-        ]);
+        ]);*/
     }
 }
