@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Calendar;
 
 class User extends Authenticatable
 {
@@ -59,5 +60,14 @@ class User extends Authenticatable
     public function candidates()
     {
        return $this->hasMany(Candidate::class);
+    }
+
+    /**
+     * Get the event that owns the user.
+     *
+     */
+    public function calendar()
+    {
+       return $this->hasMany(Calendar::class);
     }
 }
