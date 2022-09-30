@@ -29,7 +29,7 @@
                       <td>{{ $candidate->user->name }}</td>
                       <td>{{ $candidate->job->title }}</td>
                       <td>{{ $candidate->resume }}</td>
-                      <td>{{ Str::words( $candidate->note , 6,'...' ) }}</td>
+                      <td>{{ Str::words( $candidate->note , 4,'...' ) }}</td>
                       <td>{{ $candidate->status  }}</td>
                       <td>
                       <a class="btn btn-info candidateInfo"><i class="fa fa-eye"></i></a>

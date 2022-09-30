@@ -108,7 +108,7 @@
                                <li class="nav-item">
                                  <a class="nav-link {{ Request::is('role') ? 'active' : '' }}" href="{{ route('role') }}">
                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                                     <i class="ni ni-support-16 text-danger text-sm opacity-10"></i>
                                    </div>
                                    <span class="nav-link-text ms-1">{{ __('Role Management') }}</span>
                                  </a>
@@ -116,7 +116,7 @@
                                <li class="nav-item">
                                  <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('user') }}">
                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                                     <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
                                    </div>
                                    <span class="nav-link-text ms-1">{{ __('User Management') }}</span>
                                  </a>
@@ -126,15 +126,15 @@
                               <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Recruitment</h6>
                             </li> 
                             <li class="nav-item">
-                              <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('jobs') }}">
+                              <a class="nav-link {{ Request::is('jobs') ? 'active' : '' }}" href="{{ route('jobs') }}">
                                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                  <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                                  <i class="ni ni-key-25 text-danger text-sm opacity-10"></i>
                                 </div>
                                 <span class="nav-link-text ms-1">{{ __('Jobs') }}</span>
                               </a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('candidates') }}">
+                              <a class="nav-link {{ Request::is('candidates') ? 'active' : '' }}" href="{{ route('candidates') }}">
                                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                   <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
                                 </div>
