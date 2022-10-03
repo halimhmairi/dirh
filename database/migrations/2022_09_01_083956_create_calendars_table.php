@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->enum('event_type',['event 1','event 2','event 3']);
+            $table->string('reason')->nullable();
+            $table->enum('event_type',['compensate','paid leave','maternity leave','paternity leave','special leave','Sick leave','Non paid leave']);
+            $table->enum('status',['Cancelled','Rejected','Accepted','Planned'])->default('Planned');
             $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

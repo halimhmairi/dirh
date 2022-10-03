@@ -24,10 +24,12 @@ class StoreCalendarRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date',
-            'end_date',
-            'event_type',
-            'user_id',
+            'start_date'=>['required'],
+            'end_date'=>['required'], 
+            'reason',
+            'status',
+            'event_type'=>['required'],
+            'user_id'=>['required'],
         ];
     }
 }

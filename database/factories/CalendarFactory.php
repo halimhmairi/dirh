@@ -18,11 +18,14 @@ class CalendarFactory extends Factory
     public function definition()
     {
         $users = User::pluck('id');
-        $events = ['event 1','event 2','event 3'];
+        $events = ['compensate','paid leave','maternity leave','paternity leave','special leave','Sick leave','Non paid leave']; 
+        $status = ['Cancelled','Rejected','Accepted','Planned'];
+
         return [
           'start_date' => Carbon::now(),
           'end_date' => Carbon::now()->addDays(rand(2,12)),
           'event_type' => $this->faker->randomElement($events),
+          'status' => $this->faker->randomElement($status),
           'user_id' => $this->faker->randomElement($users),
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\calendar\StoreCalendarRequest;
 use App\Http\Requests\calendar\UpdateCalendarRequest;
 use App\Models\Calendar;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -22,7 +23,13 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        //
+        //GET all event (admin)
+        $events = Calendar::all();
+
+        //GET event of my session
+        //$events = Calendar::where('user_id',Auth::user()->id)->get();
+
+        return response()->json(['events'=>$events]);
     }
 
     /**
@@ -38,12 +45,13 @@ class CalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCalendarRequest  $request
+     * @param  \App\Http\Requests\calendar\StoreCalendarRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCalendarRequest $request)
     {
-        //
+        $event = Calendar::create($request->all());
+        return response()->json(['status'=>'success','event'=>$event]);
     }
 
     /**

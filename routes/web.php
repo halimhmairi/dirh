@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\CalendarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -122,7 +123,23 @@ Route::middleware('auth')->controller(CandidateController::class)->prefix("candi
     
 });
 
+Route::controller(CalendarController::class)->prefix("calendar")->group(function (){
 
+    Route::get('/', 'index')->name('calendars');
+    
+    Route::get('/create', 'create')->name('calendars/create');
+
+    Route::get('/show/{candidate}', 'show')->name('calendars/show');
+    
+    Route::post('/store', 'store')->name('calendars/store');
+    
+    Route::get('/edit/{candidate}', 'edit')->name('calendars/edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('calendars/update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{candidate}', 'destroy')->name('calendars/destroy')->where('id','[0-9]+');
+    
+});
 
 Auth::routes();
 
