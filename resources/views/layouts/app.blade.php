@@ -140,6 +140,14 @@
                                 </div>
                                 <span class="nav-link-text ms-1">{{ __('Candidates') }}</span>
                               </a>
+                            </li> 
+                            <li class="nav-item">
+                              <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('leaves/counters') }}">
+                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                  <i class="ni ni-book-bookmark text-success text-sm opacity-10"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">{{ __('Leave summary') }}</span>
+                              </a>
                             </li>  
                             </ul>
                           </div>

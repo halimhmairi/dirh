@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dirh_jobs', function (Blueprint $table) {
+        Schema::create('leave_counters', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("jobsummary");
-            $table->text("description");
-            $table->string("tags");
-            $table->string("status");
-            $table->date("publish_at");
+            $table->enum('type',['paid leave','Sick leave']);
+            $table->float('total');
+            $table->float('taken');  
+            $table->foreignId('user_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dirh_jobs');
+        Schema::dropIfExists('leave_counters');
     }
 };

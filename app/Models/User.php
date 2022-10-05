@@ -70,4 +70,13 @@ class User extends Authenticatable
     {
        return $this->hasMany(Calendar::class);
     }
+
+     /**
+     * Get the Leave Counter that owns the user.
+     *
+     */
+    public function leaveCounter()
+    {
+       return $this->hasMany(LeaveCounter::class);
+    }
 }

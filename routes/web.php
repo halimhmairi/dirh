@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\LeaveCounterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -138,6 +139,24 @@ Route::controller(CalendarController::class)->prefix("calendar")->group(function
     Route::post('/update', 'update')->name('calendars/update')->where('id','[0-9]+');
     
     Route::get('/destroy/{candidate}', 'destroy')->name('calendars/destroy')->where('id','[0-9]+');
+    
+});
+
+Route::controller(LeaveCounterController::class)->prefix("leaves/counters")->group(function (){
+
+    Route::get('/', 'index')->name('leaves/counters');
+    
+    Route::get('/create', 'create')->name('leaves/counters/create');
+
+    Route::get('/show/{candidate}', 'show')->name('leaves/counters/show');
+    
+    Route::post('/store', 'store')->name('leaves/counters/store');
+    
+    Route::get('/edit/{candidate}', 'edit')->name('leaves/counters/edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('leaves/counters/update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{candidate}', 'destroy')->name('leaves/counters/destroy')->where('id','[0-9]+');
     
 });
 
