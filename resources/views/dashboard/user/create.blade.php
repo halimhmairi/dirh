@@ -41,6 +41,51 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required>
+
+                                @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="phone-number" class="col-md-4 col-form-label text-md-end">{{ __('Phone number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required>
+
+                                @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="status" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
+
+                            <div class="col-md-6">
+                            <select name="status"  id="status" class="form-control @error('status') is-invalid @enderror">
+                                    <option value="active">Active</option>
+                                    <option value="blocked">Blocked</option>
+                                    <option value="waiting">Waiting</option>
+                                </select>
+                                @error('status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="role_id" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6"> 

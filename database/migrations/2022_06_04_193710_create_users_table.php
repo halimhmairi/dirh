@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone_number');
+            $table->enum('status',['active','blocked','waiting']);
+            $table->string('avatar');
             $table->string('password');
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
