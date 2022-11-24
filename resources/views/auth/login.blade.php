@@ -9,6 +9,12 @@
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
               <div class="card card-plain">
+
+                @if(session('message'))
+                <div class="alert alert-danger text-white">
+                <strong>{{session('message')}}</strong> 
+                </div>
+                @endif
                 <div class="card-header pb-0 text-start">
                     <h4 class="font-weight-bolder">Sign In</h4>
                     <p class="mb-0">Enter your email and password to sign in</p>

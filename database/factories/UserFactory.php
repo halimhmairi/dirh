@@ -19,9 +19,13 @@ class UserFactory extends Factory
     public function definition()
     {
         $roles = Role::pluck('id')->toArray();
+        $status = ['active','blocked','waiting']; 
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'phone_number' => $this->faker->PhoneNumber(),
+            'status' => $this->faker->randomElement($status),
+            'avatar' => $this->faker->imageUrl(640, 480, 'animals', true),
             'email_verified_at' => now(),
             "role_id" => $this->faker->randomElement($roles),
             'password' => Hash::make('12345678'),

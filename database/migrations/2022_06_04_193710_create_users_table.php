@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,7 +36,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {
+    { 
         Schema::dropIfExists('users');
     }
 };
