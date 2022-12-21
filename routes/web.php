@@ -9,6 +9,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\LeaveCounterController; 
+use App\Http\Controllers\LeaveTypeController; 
 use App\Http\Controllers\DepartmentController;
 /*
 |--------------------------------------------------------------------------
@@ -143,23 +144,50 @@ Route::controller(CalendarController::class)->prefix("calendar")->group(function
     
 });
 
-Route::controller(LeaveCounterController::class)->prefix("leaves/counters")->group(function (){
+Route::prefix('leaves')->group(function ()
+{
+    
+   Route::controller(LeaveCounterController::class)->prefix("counters")->group(function (){
 
-    Route::get('/', 'index')->name('leaves/counters');
+    Route::get('/', 'index')->name('counters');
     
-    Route::get('/create', 'create')->name('leaves/counters/create');
+    Route::get('/create', 'create')->name('counters/create');
 
-    Route::get('/show/{candidate}', 'show')->name('leaves/counters/show');
+    Route::get('/show/{candidate}', 'show')->name('counters/show');
     
-    Route::post('/store', 'store')->name('leaves/counters/store');
+    Route::post('/store', 'store')->name('counters/store');
     
-    Route::get('/edit/{candidate}', 'edit')->name('leaves/counters/edit')->where('id','[0-9]+');
+    Route::get('/edit/{candidate}', 'edit')->name('counters/edit')->where('id','[0-9]+');
     
-    Route::post('/update', 'update')->name('leaves/counters/update')->where('id','[0-9]+');
+    Route::post('/update', 'update')->name('counters/update')->where('id','[0-9]+');
     
-    Route::get('/destroy/{candidate}', 'destroy')->name('leaves/counters/destroy')->where('id','[0-9]+');
+    Route::get('/destroy/{candidate}', 'destroy')->name('counters/destroy')->where('id','[0-9]+');
     
+   });
+
+   Route::controller(LeaveTypeController::class)->prefix("types")->group(function (){
+
+    Route::get('/', 'index')->name('types');
+    
+    Route::get('/create', 'create')->name('types/create');
+
+    Route::get('/show/{candidate}', 'show')->name('types/show');
+    
+    Route::post('/store', 'store')->name('types/store');
+    
+    Route::get('/edit/{candidate}', 'edit')->name('types/edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('types/update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{candidate}', 'destroy')->name('types/destroy')->where('id','[0-9]+');
+    
+  });
+
 });
+
+
+
+
 
 Route::controller(DepartmentController::class)->prefix("department")->group(function (){
 
