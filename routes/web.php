@@ -147,39 +147,39 @@ Route::controller(CalendarController::class)->prefix("calendar")->group(function
 Route::prefix('leaves')->group(function ()
 {
     
-   Route::controller(LeaveCounterController::class)->prefix("counters")->group(function (){
+   Route::controller(LeaveCounterController::class)->name('counters.')->prefix("counters")->group(function (){
 
-    Route::get('/', 'index')->name('counters');
+    Route::get('/', 'index')->name('index');
     
-    Route::get('/create', 'create')->name('counters/create');
+    Route::get('/create', 'create')->name('create');
 
-    Route::get('/show/{candidate}', 'show')->name('counters/show');
+    Route::get('/show/{candidate}', 'show')->name('show');
     
-    Route::post('/store', 'store')->name('counters/store');
+    Route::post('/store', 'store')->name('store');
     
-    Route::get('/edit/{candidate}', 'edit')->name('counters/edit')->where('id','[0-9]+');
+    Route::get('/edit/{candidate}', 'edit')->name('edit')->where('id','[0-9]+');
     
-    Route::post('/update', 'update')->name('counters/update')->where('id','[0-9]+');
+    Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
     
-    Route::get('/destroy/{candidate}', 'destroy')->name('counters/destroy')->where('id','[0-9]+');
+    Route::get('/destroy/{candidate}', 'destroy')->name('destroy')->where('id','[0-9]+');
     
    });
 
-   Route::controller(LeaveTypeController::class)->prefix("types")->group(function (){
+   Route::controller(LeaveTypeController::class)->name('types.')->prefix("types")->group(function (){
 
-    Route::get('/', 'index')->name('types');
+    Route::get('/', 'index')->name('index');
     
-    Route::get('/create', 'create')->name('types/create');
+    Route::get('/create', 'create')->name('create');
 
-    Route::get('/show/{candidate}', 'show')->name('types/show');
+    Route::get('/show/{candidate}', 'show')->name('show');
     
-    Route::post('/store', 'store')->name('types/store');
+    Route::post('/store', 'store')->name('store');
     
-    Route::get('/edit/{candidate}', 'edit')->name('types/edit')->where('id','[0-9]+');
+    Route::get('/edit/{candidate}', 'edit')->name('edit')->where('id','[0-9]+');
     
-    Route::post('/update', 'update')->name('types/update')->where('id','[0-9]+');
+    Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
     
-    Route::get('/destroy/{candidate}', 'destroy')->name('types/destroy')->where('id','[0-9]+');
+    Route::get('/destroy/{candidate}', 'destroy')->name('destroy')->where('id','[0-9]+');
     
   });
 
