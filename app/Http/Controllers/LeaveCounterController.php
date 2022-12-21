@@ -15,7 +15,8 @@ class LeaveCounterController extends Controller
      */
     public function index()
     {
-       return view('dashboard.leaveCounter.index');
+       $leaveCounters = LeaveCounter::all();
+       return view('dashboard.leaveCounter.index',compact('leaveCounters'));
     }
 
     /**
