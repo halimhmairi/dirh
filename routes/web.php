@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\LeaveCounterController;
+use App\Http\Controllers\LeaveCounterController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +21,9 @@ use App\Http\Controllers\LeaveCounterController;
 */
 
 Route::get('/', function () {
-    $details['email'] = 'testdev@gmail.com';
+    //$details['email'] = 'testdev@gmail.com';
 
-    dispatch(new App\Jobs\SendEmailJob($details));
+    //dispatch(new App\Jobs\SendEmailJob($details));
  
     return redirect('/login');
 });
