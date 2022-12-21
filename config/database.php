@@ -51,10 +51,18 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'unix_socket' => env('DB_RDS', false) ? null : env('UNIX_SOCKET','/Applications/MAMP/tmp/mysql/mysql.sock'),
+            'dump' => [
+                'dump_binary_path' => '/usr/bin/', // only the path, so without `mysqldump` or `pg_dump`
+                'sock' => '/var/run/mysqld/mysqld.sock'
+            ],
+            'dump_local' => [
+                'dump_binary_path' => '/Applications/MAMP/Library/bin/', // only the path, so without `mysqldump` or `pg_dump`
+                'sock' => '/Applications/MAMP/tmp/mysql/mysql.sock'
+            ],
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
+            'prefix' => env('DB_TABLE_PREFIX','dirh_'),
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
