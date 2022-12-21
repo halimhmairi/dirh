@@ -7,20 +7,30 @@
 <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add role') }}</div>
+                <div class="card-header">{{ __('Add department') }}</div>
 
                 <div class="card-body"> 
 
-                  <form method="POST" action="{{ Route('role/store') }}">
+                  <form method="POST" action="{{ Route('department/store') }}">
                       @csrf
                       <div class="form-group">
-                        <label for="name">Role name</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}" placeholder="Role name">
+                        <label for="name">department name</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}" placeholder="department name">
+                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                       </div>
 
                       <div class="form-group">
-                          <label for="description">Role description</label>
-                          <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3">{{ old('description') }}</textarea>
+                          <label for="location">department location</label>
+                          <textarea class="form-control @error('location') is-invalid @enderror" name="location" id="location" rows="3">{{ old('location') }}</textarea>
+                          @error('location')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
 
                       <button type="submit" class="btn btn-primary">Submit</button>
