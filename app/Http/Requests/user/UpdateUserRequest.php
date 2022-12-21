@@ -33,6 +33,7 @@ class UpdateUserRequest extends FormRequest
             'status' => ['required'],
             'avatar' => ['required'],
             'role_id' => ['required'], 
+            'department_id' => ['required']
         ];
     }
 }

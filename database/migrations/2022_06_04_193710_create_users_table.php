@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
+
+            $table->bigInteger('department_id')->unsigned();
+            $table->foreign('department_id')->references('id')->on('departments');
+
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

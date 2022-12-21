@@ -99,6 +99,6 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         $this->jobRepository->deleteById($job->id);
-        return redirect()->back()->with('success','test dev');
+        return redirect()->back()->with('success','deleted with successfully');
     }
 }

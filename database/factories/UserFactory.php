@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
+use App\Models\Department;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -19,6 +20,7 @@ class UserFactory extends Factory
     public function definition()
     {
         $roles = Role::pluck('id')->toArray();
+        $department = Department::pluck('id')->toArray();
         $status = ['active','blocked','waiting']; 
         return [
             'name' => $this->faker->name(),
@@ -28,6 +30,7 @@ class UserFactory extends Factory
             'avatar' => $this->faker->imageUrl(640, 480, 'animals', true),
             'email_verified_at' => now(),
             "role_id" => $this->faker->randomElement($roles),
+            "department_id" => $this->faker->randomElement($department),
             'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ];

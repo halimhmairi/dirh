@@ -27,6 +27,7 @@ class User extends Authenticatable
         'avatar',
         'password',
         'role_id',
+        'department_id'
     ];
 
     /**
@@ -55,6 +56,14 @@ class User extends Authenticatable
     public function role()
     {
        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     *  Get the department that owns the user.
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     /**

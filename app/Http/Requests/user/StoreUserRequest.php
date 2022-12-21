@@ -30,6 +30,7 @@ class StoreUserRequest extends FormRequest
             'status' => ['required'],
             'avatar' => ['required'],
             'role_id' => ['required'],
+            'department_id' => ['required'],
             'password' => ['required', 'string', 'min:8'],
         ];
     }
