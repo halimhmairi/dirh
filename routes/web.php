@@ -126,21 +126,21 @@ Route::middleware('auth')->controller(CandidateController::class)->prefix("candi
     
 });
 
-Route::controller(CalendarController::class)->prefix("calendar")->group(function (){
+Route::controller(CalendarController::class)->name('calendar.')->prefix("calendar")->group(function (){
 
-    Route::get('/', 'index')->name('calendars');
+    Route::get('/', 'index')->name('index');
     
-    Route::get('/create', 'create')->name('calendars/create');
+    Route::get('/create', 'create')->name('create');
 
-    Route::get('/show/{candidate}', 'show')->name('calendars/show');
+    Route::get('/show/{candidate}', 'show')->name('show');
     
-    Route::post('/store', 'store')->name('calendars/store');
+    Route::post('/store', 'store')->name('store');
     
-    Route::get('/edit/{candidate}', 'edit')->name('calendars/edit')->where('id','[0-9]+');
+    Route::get('/edit/{candidate}', 'edit')->name('edit')->where('id','[0-9]+');
     
-    Route::post('/update', 'update')->name('calendars/update')->where('id','[0-9]+');
+    Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
     
-    Route::get('/destroy/{candidate}', 'destroy')->name('calendars/destroy')->where('id','[0-9]+');
+    Route::get('/destroy/{candidate}', 'destroy')->name('destroy')->where('id','[0-9]+');
     
 });
 

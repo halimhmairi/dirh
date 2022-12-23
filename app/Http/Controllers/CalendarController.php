@@ -29,7 +29,9 @@ class CalendarController extends Controller
         //GET event of my session
         //$events = Calendar::where('user_id',Auth::user()->id)->get();
 
-        return response()->json(['events'=>$events]);
+        //return response()->json(['events'=>$events]);
+
+        return view("dashboard.calendar.index");
     }
 
     /**
