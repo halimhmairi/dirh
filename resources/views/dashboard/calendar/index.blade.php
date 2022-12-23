@@ -1,8 +1,17 @@
  @extends('layouts.app')
  @section('content')
-    <div class="container mt-5" style="max-width: 700px">
-        <h2 class="h2 text-center mb-5 border-bottom pb-3">Laravel FullCalender CRUD Events Example</h2>
-        <div id='full_calendar_events'></div>
+    <div class="container mt-5" style="max-width: 700px"> 
+    <div id='full_calendar_events'></div>
+    <div class="filter">
+    <h3>Filter</h3> 
+    @foreach($leaveTypes as $leaveType)
+    <div class="event_filter_wrapper">
+      <input id="{{$leaveType->name}}" class="event_filter" name="event_filter_sel" type="checkbox" value="{{$leaveType->name}}" data-type="{{$leaveType->name}}" checked="true" />
+      <label for="{{$leaveType->name}}">{{$leaveType->name}}</label>
+    </div>
+    @endforeach 
+  </div>
+       
     </div>
    
     <script>
@@ -16,18 +25,21 @@
             var calendar = $('#full_calendar_events').fullCalendar({
                 editable: true,
                 editable: true,
-                events: SITEURL + "/calendar-event",
+                events: SITEURL + "/calendar",
                 displayEventTime: true,
                 eventRender: function (event, element, view) {
+                   
                     if (event.allDay === 'true') {
                         event.allDay = true;
                     } else {
                         event.allDay = false;
                     }
+
+
                 },
                 selectable: true,
                 selectHelper: true,
-                select: function (event_start, event_end, allDay) {
+                select: function (event_start, event_end, allDay) { 
                     var event_name = prompt('Event Name:');
                     if (event_name) {
                         var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
@@ -90,6 +102,10 @@
                         });
                     }
                 }
+            });
+
+            $('input[class=event_filter]').change(function() {
+                calendar.render();
             });
         });
         function displayMessage(message) {

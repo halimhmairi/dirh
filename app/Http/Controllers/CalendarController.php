@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\calendar\StoreCalendarRequest;
 use App\Http\Requests\calendar\UpdateCalendarRequest;
 use App\Models\Calendar;
+use App\Models\LeaveType;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 class CalendarController extends Controller
 {
 
@@ -21,8 +22,9 @@ class CalendarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      
         //GET all event (admin)
         $events = Calendar::all();
 
@@ -31,7 +33,26 @@ class CalendarController extends Controller
 
         //return response()->json(['events'=>$events]);
 
-        return view("dashboard.calendar.index");
+       
+
+        if($request->ajax()) {  
+            
+            $data = Calendar::whereDate('start_date', '>=', $request->start)
+            ->whereDate('end_date',   '<=', $request->end)
+            ->get(['id', 'event_type', 'start_date', 'end_date'])->map(function($item){
+                return ['id'=>$item['id'],'title'=>$item['event_type'],
+                'start'=>$item['start_date'],'end'=>$item['end_date'] ,
+                 'color' => 'orange' , 'textColor' => 'black','kind'=>'festival'];
+            });
+    
+           
+               
+            return response()->json($data);
+        }
+
+        $leaveTypes = LeaveType::all();
+
+        return view("dashboard.calendar.index",compact('leaveTypes'));
     }
 
     /**
