@@ -46,7 +46,7 @@
                             <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
 
                             <div class="col-md-6">
-                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required>
+                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}">
 
                                 @error('avatar')
                                     <span class="invalid-feedback" role="alert">
@@ -103,6 +103,23 @@
                                 @enderror
                             </div>
                         </div> 
+
+                        <div class="row mb-3">
+                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('department') }}</label>
+
+                            <div class="col-md-6"> 
+                                <select name="department_id"  id="department_id" class="form-control @error('department_id') is-invalid @enderror">
+                                    @foreach($departments as $department)
+                                    <option value="{{ $department->id }}" @selected($user->department_id == $department->id)>{{ $department->name }} </option>
+                                    @endforeach
+                                </select>
+                                @error('department_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

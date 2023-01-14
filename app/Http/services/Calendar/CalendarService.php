@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Http\services\Calendar;
+namespace App\Http\services\calendar;
 
 class CalendarService {
     

@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Create user') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user/store') }}">
+                    <form method="POST" action="{{ route('user/store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -95,6 +95,23 @@
                                     @endforeach
                                 </select>
                                 @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('department') }}</label>
+
+                            <div class="col-md-6"> 
+                                <select name="department_id"  id="department_id" class="form-control @error('department_id') is-invalid @enderror">
+                                    @foreach($departments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }} </option>
+                                    @endforeach
+                                </select>
+                                @error('department_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

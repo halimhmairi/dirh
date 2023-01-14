@@ -7,6 +7,8 @@ use App\Http\Requests\user\StoreUserRequest;
 use App\Http\Requests\user\UpdateUserRequest;
 use App\Repositories\Role\RoleRepository;
 use Illuminate\Support\Facades\Auth; 
+use App\Models\Department;
+use Intervention\Image\Facades\Image as Image;
 
 class UserController extends Controller
 {
@@ -38,7 +40,7 @@ class UserController extends Controller
     public function index()
     {
         
-        $users = $this->userRepository->paginate(5,['*'],'page');;
+        $users = $this->userRepository->paginate(5,['*'],'page');
         return view('dashboard.user.index', compact('users'));
     }
 
@@ -50,7 +52,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = $this->roleRepository->all();
-        return view('dashboard.user.create',compact('roles'));
+        $departments = Department::all();
+        return view('dashboard.user.create',compact('roles','departments'));
     }
 
     
@@ -62,7 +65,20 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     { 
-        $this->userRepository->create($request->all());
+        $data = $request->all();
+        
+    
+        $originalImage = $request->file('avatar');
+        $thumbnailImage = Image::make($originalImage); 
+        $originalPath = public_path()."/avatar/";
+        $newNameImage = "avatar_".time().$originalImage->getClientOriginalName();
+        $thumbnailImage->save($originalPath."avatar_".$newNameImage);
+        $thumbnailImage->resize(150,150);
+
+        $data['avatar'] = $newNameImage; 
+  
+
+        $this->userRepository->create($data);
         toast('Your User as been submited!','success');
         return redirect('/user');
     } 
@@ -76,8 +92,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $roles = $this->roleRepository->all();
+        $departments = Department::all();
         $user = $this->userRepository->getById($id);
-        return view('dashboard.user.edit',compact('user','roles'));
+        return view('dashboard.user.edit',compact('user','roles','departments'));
     }
 
     /**
@@ -87,6 +104,12 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
+        //to do change avatar
+        if($request->avatar)
+        {
+
+        }
+
         $this->userRepository->updateById($request->id,$request->except('id'));
         toast('Your Role as been updatedt!','success');
         return redirect('/user');
