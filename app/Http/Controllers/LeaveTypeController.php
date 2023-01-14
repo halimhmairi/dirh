@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLeaveCounterRequest;
-use App\Http\Requests\UpdateLeaveCounterRequest;
-use App\Models\LeaveCounter;
+use App\Http\Requests\StoreLeaveTypeRequest;
+use App\Http\Requests\UpdateLeaveTypeRequest;
+use App\Models\LeaveType;
 
-class LeaveCounterController extends Controller
+class LeaveTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class LeaveCounterController extends Controller
      */
     public function index()
     {
-       $leaveCounters = LeaveCounter::all();
-       return view('dashboard.leaveCounter.index',compact('leaveCounters'));
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class LeaveCounterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLeaveCounterRequest  $request
+     * @param  \App\Http\Requests\StoreLeaveTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLeaveCounterRequest $request)
+    public function store(StoreLeaveTypeRequest $request)
     {
         //
     }
@@ -43,10 +42,10 @@ class LeaveCounterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LeaveCounter  $leaveCounter
+     * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function show(LeaveCounter $leaveCounter)
+    public function show(LeaveType $leaveType)
     {
         //
     }
@@ -54,10 +53,10 @@ class LeaveCounterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LeaveCounter  $leaveCounter
+     * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function edit(LeaveCounter $leaveCounter)
+    public function edit(LeaveType $leaveType)
     {
         //
     }
@@ -65,11 +64,11 @@ class LeaveCounterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLeaveCounterRequest  $request
-     * @param  \App\Models\LeaveCounter  $leaveCounter
+     * @param  \App\Http\Requests\UpdateLeaveTypeRequest  $request
+     * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLeaveCounterRequest $request, LeaveCounter $leaveCounter)
+    public function update(UpdateLeaveTypeRequest $request, LeaveType $leaveType)
     {
         //
     }
@@ -77,10 +76,10 @@ class LeaveCounterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LeaveCounter  $leaveCounter
+     * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LeaveCounter $leaveCounter)
+    public function destroy(LeaveType $leaveType)
     {
         //
     }
