@@ -14,6 +14,21 @@
 
                   <form method="POST" action="{{ Route('request.store') }}">
                       @csrf
+
+                      <div class="form-group">
+                        <label for="user_id">{{ __('Users') }}</label>
+                        <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                            @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                            </select>
+                        @error('user_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                      </div>
+                      
                       <div class="form-group">
                         <label for="leave_type_id">{{ __('Leave type') }}</label>
                         <select name="leave_type_id" class="form-control @error('leave_type_id') is-invalid @enderror">
@@ -27,6 +42,7 @@
                                     </span>
                                 @enderror
                       </div>
+
                       <input type="hidden" name="user_id" value="1">
 
                       <div class="form-group">
@@ -36,8 +52,8 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                        </div>
+                          @enderror
+                      </div>
 
                         <div class="form-group">
                           <label for="end_date">{{ __('End Date') }}</label>

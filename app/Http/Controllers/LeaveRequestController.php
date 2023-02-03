@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Leave;
 use App\Models\LeaveType;
+use App\Models\User;
 
 use App\Http\Requests\LeaveRequest\StoreLeaveRequest; 
 
@@ -18,7 +19,8 @@ class LeaveRequestController extends Controller
   public function create()
   {
     $leaveTypes = LeaveType::all();
-    return view('dashboard.leaveRequest.create',compact('leaveTypes'));
+    $users = User::all();
+    return view('dashboard.leaveRequest.create',compact('leaveTypes','users'));
   }
 
   public function store(StoreLeaveRequest $request)

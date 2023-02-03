@@ -36,6 +36,9 @@
                 @endforeach
                   </tbody>
                 </table> 
+                <div class="d-flex justify-content-center"> 
+                    {{ $leaveRequests->links('pagination.custom') }}
+                </div>
                 </div>
             </div>
         </div>

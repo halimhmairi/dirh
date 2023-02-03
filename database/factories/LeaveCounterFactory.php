@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use App\Models\LeaveType;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LeaveCounter>
  */
@@ -17,7 +19,7 @@ class LeaveCounterFactory extends Factory
     public function definition()
     {
         //Not Correct factory 
-        $type =['paid leave','Sick leave'];
+        $type = LeaveType::pluck('id');
         $users = User::all()->pluck('id');
 
         return [

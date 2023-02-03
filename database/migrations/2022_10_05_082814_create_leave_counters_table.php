@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('leave_counters', function (Blueprint $table) {
-            $table->id();
-            $table->enum('type',['paid leave','Sick leave']);
+            $table->id(); 
             $table->float('total');
             $table->float('taken');  
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('leave_type_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });
