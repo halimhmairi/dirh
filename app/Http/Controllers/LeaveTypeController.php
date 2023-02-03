@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLeaveTypeRequest;
-use App\Http\Requests\UpdateLeaveTypeRequest;
+use App\Http\Requests\leaveType\StoreLeaveTypeRequest;
+use App\Http\Requests\leaveType\UpdateLeaveTypeRequest;
 use App\Models\LeaveType;
 
 class LeaveTypeController extends Controller
@@ -15,7 +15,8 @@ class LeaveTypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = LeaveType::orderBy("created_at")->paginate(5);
+        return view('dashboard.leaveType.index', compact('types'));
     }
 
     /**
@@ -25,7 +26,7 @@ class LeaveTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.leaveType.create');
     }
 
     /**
@@ -36,7 +37,9 @@ class LeaveTypeController extends Controller
      */
     public function store(StoreLeaveTypeRequest $request)
     {
-        //
+        LeaveType::create($request->all());
+        toast('Your Leave type as been submited!','success');
+        return redirect()->back();
     }
 
     /**
@@ -53,12 +56,12 @@ class LeaveTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function edit(LeaveType $leaveType)
+    public function edit($leaveType)
     {
-        //
+        $type = LeaveType::find($leaveType);
+        return view('dashboard.leaveType.edit',compact('type'));
     }
 
     /**
@@ -68,9 +71,11 @@ class LeaveTypeController extends Controller
      * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLeaveTypeRequest $request, LeaveType $leaveType)
+    public function update(UpdateLeaveTypeRequest $request)
     {
-        //
+        leaveType::find($request->id)->update($request->except('id'));
+        toast('Your leave type as been updatedt!','success');
+        return redirect('/leaves/types');
     }
 
     /**
@@ -79,8 +84,11 @@ class LeaveTypeController extends Controller
      * @param  \App\Models\LeaveType  $leaveType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LeaveType $leaveType)
+    public function destroy($leaveType)
     {
-        //
+        LeaveType::destroy($leaveType);
+        toast('deleted with successfully','success'); 
+        return redirect()->back();
+
     }
 }

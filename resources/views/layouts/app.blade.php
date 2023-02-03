@@ -140,7 +140,7 @@
                                  </a>
                                </li> 
                                <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('department') ? 'active' : '' }}" href="{{ route('department') }}">
+                                 <a class="nav-link {{ Request::is('leaves/types') ? 'active' : '' }}" href="{{ route('types.index') }}">
                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                      <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
                                    </div>
