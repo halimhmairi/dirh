@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        'Intervention\Image\ImageServiceProvider',
+       // 'Intervention\Image\ImageServiceProvider',
         /*
          * Application Service Providers...
          */

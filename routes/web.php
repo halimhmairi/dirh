@@ -10,6 +10,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\LeaveCounterController; 
 use App\Http\Controllers\LeaveTypeController; 
+use App\Http\Controllers\LeaveRequestController; 
 use App\Http\Controllers\DepartmentController;
 /*
 |--------------------------------------------------------------------------
@@ -181,6 +182,18 @@ Route::prefix('leaves')->group(function ()
     
     Route::get('/destroy/{candidate}', 'destroy')->name('destroy')->where('id','[0-9]+');
     
+  });
+
+  Route::controller(LeaveRequestController::class)->name('request.')->prefix("request")->group(function ()
+  {
+
+    Route::get('/', 'index')->name('index');
+
+    Route::get('/create', 'create')->name('create');
+
+    Route::post('/store', 'store')->name('store');
+
+
   });
 
 });
