@@ -15,6 +15,7 @@
                       <th scope="col">#</th>
                       <th scope="col">{{ __('Start date') }}</th>
                       <th scope="col">{{ __('End date') }}</th>  
+                      <th scope="col">{{ __('Type') }}</th>  
                       <th scope="col">{{ __('Status') }}</th>  
                       <th scope="col">Action</th>
                     </tr>
@@ -25,6 +26,7 @@
                 <td>{{ $leaveRequest->id }}</td>
                 <td>{{ $leaveRequest->start_date }}</td>
                 <td>{{ $leaveRequest->end_date }}</td>
+                <td>{{ $leaveRequest->leaveType->name }}</td>
                 <td>{{ $leaveRequest->status }}</td>
                 <td>
                 <a href="{{ Route('types.edit',$leaveRequest->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>

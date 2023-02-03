@@ -22,8 +22,9 @@ class LeaveRequestController extends Controller
   }
 
   public function store(StoreLeaveRequest $request)
-  {
-    Leave::create($request->all());
+  { 
+    Leave::create($request->all()); 
+
     toast('Your Request as been sabmited!','success');
     return redirect()->back();
   }

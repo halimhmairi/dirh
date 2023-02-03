@@ -3,8 +3,8 @@
 namespace App\Http\Requests\LeaveRequest;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-class UpdateLeaveRequest extends FormRequest
+use Illuminate\Validation\Rule;
+class StoreLeaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateLeaveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class UpdateLeaveRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            //
+            'start_date'=>['required'],
+            'end_date'=>['required'],   
+            'leave_type_id'=>['required'],
+            'user_id'=>['required'],
         ];
     }
 }
