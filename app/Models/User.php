@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Calendar;
+use App\Models\Leave;
 
 class User extends Authenticatable
 {
@@ -79,9 +79,9 @@ class User extends Authenticatable
      * Get the event that owns the user.
      *
      */
-    public function calendar()
+    public function Leave()
     {
-       return $this->hasMany(Calendar::class);
+       return $this->hasMany(Leave::class);
     }
 
      /**

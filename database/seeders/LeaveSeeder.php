@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Calendar;
+use App\Models\Leave;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CalendarSeeder extends Seeder
+class LeaveSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CalendarSeeder extends Seeder
      */
     public function run()
     {
-        Calendar::factory(10)->create();
+        Leave::factory(10)->create();
     }
 }

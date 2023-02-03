@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('calendars', function (Blueprint $table) {
+        Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('reason')->nullable();
-            $table->enum('event_type',['compensate','paid leave','maternity leave','paternity leave','special leave','Sick leave','Non paid leave']);
+            $table->unsignedBigInteger('leave_type_id'); //['compensate','paid leave','maternity leave','paternity leave','special leave','Sick leave','Non paid leave']
             $table->enum('status',['Cancelled','Rejected','Accepted','Planned'])->default('Planned');
             $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('leave_type_id')->references('id')->on('leave_types');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendars');
+        Schema::dropIfExists('leaves');
     }
 };

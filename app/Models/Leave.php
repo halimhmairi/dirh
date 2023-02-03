@@ -6,20 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
-class Calendar extends Model
+use App\Models\LeaveType;
+class Leave extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-        'start_date',
-        'end_date',
-        'event_type',
-        'user_id',
-    ];
+    protected $guarded = [];
 
     public function user()
     {
        return $this->belongsTo(User::class);
     }
+
+    public function leaveType()
+    {
+        return $this->belongsTo(LeaveType::class);
+    }
+
+
 }

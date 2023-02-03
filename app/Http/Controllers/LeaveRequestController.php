@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Calendar;
+use App\Models\Leave;
 use App\Models\LeaveType;
 
 use App\Http\Requests\LeaveRequest\StoreLeaveRequest; 
@@ -10,7 +10,7 @@ class LeaveRequestController extends Controller
 {
   public function index()
   {
-    $leaveRequests = Calendar::orderBy('created_at')->paginate(5);
+    $leaveRequests = Leave::orderBy('created_at')->paginate(5);
     return view('dashboard.leaveRequest.index',compact('leaveRequests'));
   }
 
@@ -23,7 +23,7 @@ class LeaveRequestController extends Controller
 
   public function store(StoreLeaveRequest $request)
   {
-    Calendar::create($request->all());
+    Leave::create($request->all());
     toast('Your Request as been sabmited!','success');
     return redirect()->back();
   }
