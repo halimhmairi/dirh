@@ -47,7 +47,7 @@
 
                       <div class="form-group">
                           <label for="start_date">{{ __('Start Date') }}</label>
-                          <input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" id="start_date" rows="3" value="{{ old('start_date') }}">
+                          <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" name="start_date" id="start_date" rows="3" value="{{ old('start_date') }}">
                           @error('start_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
 
                         <div class="form-group">
                           <label for="end_date">{{ __('End Date') }}</label>
-                          <input type="date" class="form-control @error('end_date') is-invalid @enderror" name="end_date" id="end_date" rows="3" value="{{ old('end_date') }}">
+                          <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" name="end_date" id="end_date" rows="3" value="{{ old('end_date') }}">
                           @error('end_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
