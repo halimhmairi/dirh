@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Http\services\leave\request\LeaveRequestService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+    //    $this->app->bind(LeaveRequestService::class,function ($app)
+    //    {
+    //     return new LeaveRequestService
+    //    });
     }
 }

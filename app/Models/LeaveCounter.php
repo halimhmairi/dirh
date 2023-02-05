@@ -16,4 +16,10 @@ class LeaveCounter extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function getLeaveTypeByUserAndLeaveType($user,$leaveType)
+    {
+     return  User::find($user->id)->leaveCounter()->where(['leave_type_id'=>$leaveType['leave_type_id']])->first();
+    }
+    
 }

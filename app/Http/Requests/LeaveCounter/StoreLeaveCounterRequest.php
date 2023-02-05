@@ -24,12 +24,11 @@ class StoreLeaveCounterRequest extends FormRequest
     public function rules()
     {
         return [
-            "type"=>"required |".Rule::unique('leave_counters')
+            "leave_type_id"=>"required |".Rule::unique('leave_counters')
                                 ->where('user_id',request()->user_id)
-                                ->where('type',request()->type)
+                                ->where('leave_type_id',request()->leave_type_id)
                                 ->whereNull('deleted_at'),
-            "total"=>["required"],
-            "taken"=>["required"],
+            "total"=>["required"], 
             "user_id"=>["required"],
         ];
     }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLeaveCounterRequest;
-use App\Http\Requests\UpdateLeaveCounterRequest;
+use App\Http\Requests\LeaveCounter\StoreLeaveCounterRequest;
+use App\Http\Requests\LeaveCounter\UpdateLeaveCounterRequest;
 use App\Models\LeaveCounter;
+use App\Models\User;
+use App\Models\LeaveType;
 
 class LeaveCounterController extends Controller
 {
@@ -26,7 +28,9 @@ class LeaveCounterController extends Controller
      */
     public function create()
     {
-        //
+     $users = User::all();
+     $leaveTypes = LeaveType::all();
+     return view('dashboard.leaveCounter.create',compact('users','leaveTypes'));
     }
 
     /**
@@ -37,7 +41,9 @@ class LeaveCounterController extends Controller
      */
     public function store(StoreLeaveCounterRequest $request)
     {
-        //
+        LeaveCounter::create($request->all());
+        toast('Your Leave Counter as been sabmited!','success');
+        return redirect()->back();
     }
 
     /**

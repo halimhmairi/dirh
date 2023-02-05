@@ -18,12 +18,11 @@ class LeaveCounterFactory extends Factory
      */
     public function definition()
     {
-        //Not Correct factory 
         $type = LeaveType::pluck('id');
         $users = User::all()->pluck('id');
 
         return [
-            'type'=>$this->faker->randomElement($type),
+            'leave_type_id'=>$this->faker->randomElement($type),
             'total'=>rand(6,22),
             'taken'=>rand(6,22),
             'user_id'=>$this->faker->randomElement($users),

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Calendar;
+use App\Models\Leave;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CalendarPolicy
+class LeavePolicy
 {
     use HandlesAuthorization;
 
@@ -41,7 +41,7 @@ class CalendarPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -51,7 +51,7 @@ class CalendarPolicy
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Calendar $calendar)
+    public function update(User $user, Leave $leave)
     {
         //
     }

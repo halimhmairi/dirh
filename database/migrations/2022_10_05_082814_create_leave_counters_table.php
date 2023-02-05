@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('leave_counters', function (Blueprint $table) {
             $table->id(); 
             $table->float('total');
-            $table->float('taken');  
+            $table->float('taken')->default(0.00);  
+            $table->float('remaining')->default(0.00);  
             $table->foreignId('user_id')->constrained();
             $table->foreignId('leave_type_id')->constrained();
             $table->softDeletes();

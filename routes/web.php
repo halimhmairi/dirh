@@ -192,7 +192,12 @@ Route::prefix('leaves')->group(function ()
     Route::get('/create', 'create')->name('create');
 
     Route::post('/store', 'store')->name('store');
+    
+    Route::get('/edit/{leaveRequest}' , 'edit')->name('edit');
 
+    Route::post('/update','update')->name('update');
+
+    Route::get('/destroy/{leaveRequest}','destroy')->name('destroy');
 
   });
 
