@@ -47,10 +47,7 @@ class LeaveRequestController extends Controller
      
     toast('Your Request as been sabmited!','success');
 
-    }
-    
-    
-
+    } 
     
     return redirect()->back();
   }
@@ -66,7 +63,8 @@ class LeaveRequestController extends Controller
   
   public function update(UpdateLeaveRequest $leaveRequests)
   {
-    leave::find($leaveRequests->id)->update($leaveRequests->except('id'));
+    $user = User::find($leaveRequests->user_id);
+    $this->leaveRequestService->updateLeaveRequest($leaveRequests,$user); 
     toast('Your Leave Request as been Updated!','success');
     return redirect('leaves/request');
   }

@@ -8,6 +8,8 @@ use App\Http\Requests\user\UpdateUserRequest;
 use App\Repositories\Role\RoleRepository;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\Department;
+use App\Models\User;
+
 use Intervention\Image\Facades\Image as Image;
 
 class UserController extends Controller
@@ -67,7 +69,7 @@ class UserController extends Controller
     { 
         $data = $request->all();
         
-    
+    /*
         $originalImage = $request->file('avatar');
         $thumbnailImage = Image::make($originalImage); 
         $originalPath = public_path()."/avatar/";
@@ -76,9 +78,10 @@ class UserController extends Controller
         $thumbnailImage->resize(150,150);
 
         $data['avatar'] = $newNameImage; 
-  
+  */ 
 
-        $this->userRepository->create($data);
+        User::create($data); 
+
         toast('Your User as been submited!','success');
         return redirect('/user');
     } 
@@ -104,13 +107,25 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
+        $user = User::find($request->id);  
+
         //to do change avatar
         if($request->avatar)
         {
 
         }
 
-        $this->userRepository->updateById($request->id,$request->except('id'));
+        if($user->status !== $request->status)
+        {
+            $user->update($request->except('id'));
+
+        } else{ 
+               
+          $user->updateQuietly($request->except('id')); 
+
+        }
+
+
         toast('Your Role as been updatedt!','success');
         return redirect('/user');
     }
