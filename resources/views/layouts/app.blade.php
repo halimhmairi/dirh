@@ -9,30 +9,48 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title> 
 
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
- 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 </head>
-<body class="g-sidenav-show   bg-gray-100">
+<body class="hold-transition sidebar-mini layout-fixed">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <div id="app">
+    <div  class="wrapper" id="app">
+
+      <!-- Preloader -->
+      <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+      </div>
+
         @guest
-        <div class="container position-sticky z-index-sticky top-0">
+        <div class="main-header navbar navbar-expand navbar-white navbar-light">
+       
+          
             <div class="row">
               <div class="col-12">
                 <!-- Navbar -->
@@ -81,7 +99,7 @@
             </div>
           </div> 
                         @else
-                        <x-InfoModal type="danger" :data="34" />
+                        <x-InfoModal type="danger" :data="34" /> 
 
                         @if(Request::is('profile/edit'))
                         <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
@@ -97,24 +115,25 @@
                               <img src="{{ asset('img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
                               <span class="ms-1 font-weight-bold">  {{ config('app.name', 'Laravel') }}</span>
                             </a>
-                          </div>
+                          </div> 
+                          
                           <hr class="horizontal dark mt-0">
                           <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
                             <ul class="navbar-nav">
-                            @can('is_user')
-                              <li class="nav-item">
-                                <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
-                                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                                  </div>
-                                  <span class="nav-link-text ms-1">{{ __('Category Management') }}</span>
-                                </a>
+                              @can('is_user')
+                                <li class="nav-item">
+                                  <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
+                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                      <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">{{ __('Category Management') }}</span>
+                                  </a>
+                                </li> 
+                              @endif
+                             @can('is_admin')
+                              <li class="nav-item mt-3">
+                                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account manager</h6>
                               </li> 
-                          @endif
-                          @can('is_admin')
-                          <li class="nav-item mt-3">
-                              <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account manager</h6>
-                            </li> 
                                <li class="nav-item">
                                  <a class="nav-link {{ Request::is('role') ? 'active' : '' }}" href="{{ route('role') }}">
                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -214,16 +233,39 @@
                     </main>
                 </div> 
 
-                <script>
-                  var win = navigator.platform.indexOf('Win') > -1;
-                  if (win && document.querySelector('#sidenav-scrollbar')) {
-                    var options = {
-                      damping: '0.5'
-                    }
-                    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-                  }
-                </script>
-                <!-- Github buttons -->
-                <script async defer src="https://buttons.github.io/buttons.js"></script>
+          <!-- jQuery -->
+          <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+          <!-- jQuery UI 1.11.4 -->
+          <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+          <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+          <script>
+            $.widget.bridge('uibutton', $.ui.button)
+          </script>
+          <!-- Bootstrap 4 -->
+          <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+          <!-- ChartJS -->
+          <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+          <!-- Sparkline -->
+          <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+          <!-- JQVMap -->
+          <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+          <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+          <!-- jQuery Knob Chart -->
+          <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+          <!-- daterangepicker -->
+          <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+          <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+          <!-- Tempusdominus Bootstrap 4 -->
+          <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+          <!-- Summernote -->
+          <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+          <!-- overlayScrollbars -->
+          <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+          <!-- AdminLTE App -->
+          <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+          <!-- AdminLTE for demo purposes 
+          <script src="{{ asset('dist/js/demo.js') }}"></script> -->
+          <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+          <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 </body>
 </html>
