@@ -5,7 +5,7 @@ use App\Models\Leave;
 use App\Models\LeaveType;
 use App\Models\User;
 use App\Models\LeaveCounter;
-use App\Http\services\leave\request\LeaveRequestService;
+use App\Services\leave\request\LeaveRequestService;
 
 use App\Http\Requests\LeaveRequest\StoreLeaveRequest; 
 use App\http\Requests\LeaveRequest\UpdateLeaveRequest;

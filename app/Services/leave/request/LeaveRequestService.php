@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\services\leave\request; 
+namespace App\Services\leave\request; 
 use App\Models\LeaveCounter;
 use Carbon\Carbon;
 use App\Models\User; 
