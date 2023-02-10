@@ -18,7 +18,7 @@
         
     @endif
 
-    <form method="POST" action="{{ Route('role/update') }}">
+    <form method="POST" action="{{ Route('role.update') }}">
         @csrf
 
         <input type="hidden" name="id" value="{{ $role->id }}">

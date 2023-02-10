@@ -83,7 +83,7 @@ class UserController extends Controller
         User::create($data); 
 
         toast('Your User as been submited!','success');
-        return redirect('/user');
+        return redirect('accounts/user');
     } 
 
     /**
@@ -127,7 +127,7 @@ class UserController extends Controller
 
 
         toast('Your Role as been updatedt!','success');
-        return redirect('/user');
+        return redirect('accounts/user');
     }
 
     /**

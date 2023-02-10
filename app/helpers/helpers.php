@@ -11,3 +11,13 @@ if(!function_exists('diff_date')){
 
 }
 
+if(!function_exists('status_color')){
+ 
+    function status_color($status)
+    {
+      $statusColor = ['active'=>'success','blocked'=>'danger','waiting'=>'secondary'];
+      return $statusColor[$status]; 
+    }
+
+}
+

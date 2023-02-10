@@ -2,6 +2,9 @@
 
 @section('content')   
             <div class="login-box" style="margin:10% auto;">
+              <div class="login-logo">
+              <a href="#"><b> {{ config('app.name', 'Laravel') }}</b></a>
+              </div>
               <div class="card"> 
                 @if(session('message'))
                 <div class="alert alert-danger text-white">
