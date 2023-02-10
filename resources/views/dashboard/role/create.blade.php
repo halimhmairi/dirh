@@ -6,7 +6,7 @@
   
 <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card card-secondary">
                 <div class="card-header">{{ __('Add role') }}</div>
 
                 <div class="card-body"> 

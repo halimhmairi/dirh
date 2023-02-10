@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('department') }} <a href="{{ Route('department/create') }}" class="btn btn-primary" style="float: right;"><i class="fa fa-plus"></i></a></div>
+                <div class="card-header">{{ __('department') }} <a href="{{ Route('department.create') }}" class="btn btn-primary" style="float: right;"><i class="fa fa-plus"></i></a></div>
 
                 <div class="card-body">
                 <table class="table">
@@ -26,8 +26,8 @@
                       <td>{{ $department->name }}</td>
                       <td>{{ $department->location }}</td>
                       <td>
-                      <a href="{{ Route('department/edit',$department->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                      <a href="{{ Route('department/destroy',$department->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{ Route('department.edit',$department->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                      <a href="{{ Route('department.destroy',$department->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                 @endforeach

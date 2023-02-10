@@ -12,7 +12,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -48,163 +48,165 @@
       </div>
 
         @guest
-        <div class="main-header navbar navbar-expand navbar-white navbar-light">
-       
-          
-            <div class="row">
-              <div class="col-12">
-                <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
-                  <div class="container-fluid"> 
-                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon mt-2">
-                        <span class="navbar-toggler-bar bar1"></span>
-                        <span class="navbar-toggler-bar bar2"></span>
-                        <span class="navbar-toggler-bar bar3"></span>
-                      </span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navigation">
-                      <ul class="navbar-nav mx-auto">  
-                        <!-- Authentication Links -->
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                          <a class="nav-link me-2" href="{{ Route('register') }}">
-                            <i class="fa fa-user-circle opacity-6 text-dark me-1"></i>
-                            Sign Up
-                          </a>
-                        </li>
-                        @endif
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                          <a class="nav-link me-2" href="{{ Route('login') }}">
-                            <i class="fa fa-key opacity-6 text-dark me-1"></i>
-                            Sign In
-                          </a>
-                        </li>
-                        @endif
-                      </ul>
-                      <ul class="navbar-nav d-lg-block d-none">
-                        <li class="nav-item">
-                          <a href="https://github.com/halimhmairi/argon-2-dashboard-laravel-9" class="btn btn-sm mb-0 me-1 btn-primary">Free Download</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </nav>
-                <!-- End Navbar -->
-              </div>
-            </div>
-          </div> 
-                        @else
-                        <x-InfoModal type="danger" :data="34" /> 
+      
+         @else
+            <x-InfoModal type="danger" :data="34" />  
+             @include('sweetalert::alert')
 
-                        @if(Request::is('profile/edit'))
-                        <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-                          <span class="mask bg-primary opacity-6"></span>
-                        </div>
-                        @else
-                        <div class="min-height-300 bg-primary position-absolute w-100"></div>
-                        @endif
-                        <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ps" id="sidenav-main">
-                          <div class="sidenav-header">
-                            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                            <a class="navbar-brand m-0"  href="{{ url('/home') }}" target="_blank">
-                              <img src="{{ asset('img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-                              <span class="ms-1 font-weight-bold">  {{ config('app.name', 'Laravel') }}</span>
-                            </a>
-                          </div> 
-                          
-                          <hr class="horizontal dark mt-0">
-                          <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-                            <ul class="navbar-nav">
-                              @can('is_user')
-                                <li class="nav-item">
-                                  <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
-                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                      <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                                    </div>
-                                    <span class="nav-link-text ms-1">{{ __('Category Management') }}</span>
-                                  </a>
-                                </li> 
-                              @endif
-                             @can('is_admin')
-                              <li class="nav-item mt-3">
-                                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account manager</h6>
-                              </li> 
-                               <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('role') ? 'active' : '' }}" href="{{ route('role') }}">
-                                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-support-16 text-danger text-sm opacity-10"></i>
-                                   </div>
-                                   <span class="nav-link-text ms-1">{{ __('Role Management') }}</span>
-                                 </a>
-                               </li> 
-                               <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('user') }}">
-                                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
-                                   </div>
-                                   <span class="nav-link-text ms-1">{{ __('User Management') }}</span>
-                                 </a>
-                               </li> 
-                               <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('department') ? 'active' : '' }}" href="{{ route('department') }}">
-                                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
-                                   </div>
-                                   <span class="nav-link-text ms-1">{{ __('Department Management') }}</span>
-                                 </a>
-                               </li> 
-                               <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('leaves/types') ? 'active' : '' }}" href="{{ route('types.index') }}">
-                                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
-                                   </div>
-                                   <span class="nav-link-text ms-1">{{ __('Leave Type Management') }}</span>
-                                 </a>
-                               </li> 
-                               <li class="nav-item">
-                                 <a class="nav-link {{ Request::is('leaves/request') ? 'active' : '' }}" href="{{ route('request.index') }}">
-                                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                     <i class="ni ni-user-run text-danger text-sm opacity-10"></i>
-                                   </div>
-                                   <span class="nav-link-text ms-1">{{ __('Leave Request Management') }}</span>
-                                 </a>
-                               </li> 
-                            @endcan  
-                            <li class="nav-item mt-3">
-                              <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Recruitment</h6>
-                            </li> 
-                            <li class="nav-item">
-                              <a class="nav-link {{ Request::is('jobs') ? 'active' : '' }}" href="{{ route('jobs') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                  <i class="ni ni-key-25 text-danger text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">{{ __('Jobs') }}</span>
-                              </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link {{ Request::is('candidates') ? 'active' : '' }}" href="{{ route('candidates') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                  <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">{{ __('Candidates') }}</span>
-                              </a>
-                            </li> 
-                            <li class="nav-item">
-                              <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                  <i class="ni ni-book-bookmark text-success text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">{{ __('Leave summary') }}</span>
-                              </a>
-                            </li>  
-                            </ul>
-                          </div>
-                          <div class="sidenav-footer mx-3 "> 
+           <!-- Main Sidebar Container -->
+   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light"> {{ config('app.name', 'Laravel') }}</span>
+      </a> 
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="/" class="d-block">{{ Auth::user()->name }}</a>
+        </div>
+      </div>  
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          @can('is_user')  
+          <li class="nav-item">
+          <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+              {{ __('Category Management') }}
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li> 
+          @endif
+          @can('is_admin')
+          <li class="nav-item {{ Request::is('accounts/*') ? 'menu-is-opening menu-open' : '' }}">
+           <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              {{__('Account manager')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+          <li class="nav-item">
+           <a class="nav-link {{ Request::is('accounts/role') ? 'active' : '' }}" href="{{ route('role.index') }}">
+           <i class="nav-icon fa-solid fa-user-lock"></i> 
+              <p>
+                {{ __('Role') }}
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('accounts/user') ? 'active' : '' }}" href="{{ route('user.index') }}">
+
+              <i class="nav-icon fa-solid fa-user-alt"></i> 
+              <p>
+              {{ __('User') }}
+              </p>
+            </a>
+          </li>
+          </ul>
+
+          <li class="nav-item  {{ Request::is('company/*') ? 'menu-is-opening menu-open' : '' }}">
+          <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-building"></i>
+              <p>
+              {{__('Company Management')}}
+                <i class="right fas fa-angle-left"></i>
+
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+          <li class="nav-item">
+          <a class="nav-link {{ Request::is('company/department') ? 'active' : '' }}" href="{{ route('department.index') }}">
+              <i class="nav-icon fa-solid fa-building-user"></i>
+              <p>
+              {{ __('Department') }}  
+              </p>
+            </a> 
+          </li>
+        </ul>
+
+          <li class="nav-item">
+           <a href="#" class="nav-link {{ Request::is('leaves/types') ? 'active' : '' }}">
+              <i class="right fas fa-angle-left"></i>
+              <i class="nav-icon fa-solid fa-building-user"></i>
+
+              <p>
+              {{__('Leave manager')}}
+                
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('leaves/types') ? 'active' : '' }}" href="{{ route('types.index') }}">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+              {{ __('Leave Type') }} 
+              </p>
+            </a> 
+          </li>
+          <li class="nav-item">
+           <a class="nav-link {{ Request::is('leaves/request') ? 'active' : '' }}" href="{{ route('request.index') }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+              {{ __('Leave Request') }} 
+              </p>
+            </a>  
+          </li>
+         </ul>
+          @endif   
+
+          <li class="nav-item">
+           <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              {{__('Recruitment')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+             <li class="nav-item">
+              <a class="nav-link {{ Request::is('jobs') ? 'active' : '' }}" href="{{ route('jobs') }}">
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                  {{ __('Jobs') }}
+                    <span class="badge badge-info right">2</span>
+                  </p>
+                </a>
+              </li> 
+
+             <li class="nav-item">
+              <a class="nav-link {{ Request::is('candidates') ? 'active' : '' }}" href="{{ route('candidates') }}">
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                  {{ __('Candidates') }}
+                    <span class="badge badge-info right">2</span>
+                  </p>
+                </a>
+            </li> 
+           </ul>
+            <li class="nav-item">
+            <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                  {{ __('Leave summary') }}
+                    <span class="badge badge-info right">2</span>
+                  </p>
+                </a>
+            </li> 
+             
+        </ul>
+
+        <div class="sidenav-footer mx-3 "> 
                             <a class="btn btn-primary btn-sm mb-0 w-100  mb-3" href="{{ Route('profile/edit') }}"
                             type="button">Settings
                            </a>
@@ -219,12 +221,15 @@
 
                                    
                           </div>
-                        </aside>
-
-                     
-                   @include('sweetalert::alert')
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
                                    
-                                    @endguest 
+       @endguest 
+
+
                     <main class="main-content">
                       @if (!Request::is('profile/edit'))
                       @include('layouts/topbar');

@@ -6,8 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CandidateController; 
 use App\Http\Controllers\LeaveCounterController; 
 use App\Http\Controllers\LeaveTypeController; 
 use App\Http\Controllers\LeaveRequestController; 
@@ -31,23 +30,6 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::middleware('auth')->controller(UserController::class)->prefix('user')->group(function ()
-{
-    Route::get('/','index')->name('user');
-    
-    Route::get('/create','create')->name('user/create');
-
-    Route::post('/store', 'store')->name('user/store');
-
-    Route::get('/edit/{id}', 'edit')->name('user/edit')->where('id','[0-9]+');
-
-    Route::post('/update', 'update')->name('user/update')->where('id','[0-9]+');
-
-    Route::get('/destroy/{id}', 'destroy')->name('user/destroy')->where('id','[0-9]+');
-
-
-});
-
 Route::middleware('auth')->controller(ProfileController::class)->prefix("profile")->group(function (){
    
     Route::get('/edit','edit')->name('profile/edit');
@@ -58,21 +40,7 @@ Route::middleware('auth')->controller(ProfileController::class)->prefix("profile
 
 });
 
-Route::middleware('auth')->controller(RoleController::class)->prefix("role")->group(function (){
 
-Route::get('/', 'index')->name('role');
-
-Route::get('/create', 'create')->name('role/create');
-
-Route::post('/store', 'store')->name('role/store');
-
-Route::get('/edit/{id}', 'edit')->name('role/edit')->where('id','[0-9]+');
-
-Route::post('/update', 'update')->name('role/update')->where('id','[0-9]+');
-
-Route::get('/destroy/{id}', 'destroy')->name('role/destroy')->where('id','[0-9]+');
-
-});
 
 
 Route::middleware('auth')->controller(CategoryController::class)->prefix("category")->group(function (){
@@ -127,22 +95,42 @@ Route::middleware('auth')->controller(CandidateController::class)->prefix("candi
     
 });
 
-Route::controller(CalendarController::class)->name('calendar.')->prefix("calendar")->group(function (){
+Route::middleware('auth')->prefix("accounts")->group(function (){
 
-    Route::get('/', 'index')->name('index');
-    
-    Route::get('/create', 'create')->name('create');
 
-    Route::get('/show/{candidate}', 'show')->name('show');
-    
-    Route::post('/store', 'store')->name('store');
-    
-    Route::get('/edit/{candidate}', 'edit')->name('edit')->where('id','[0-9]+');
-    
-    Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
-    
-    Route::get('/destroy/{candidate}', 'destroy')->name('destroy')->where('id','[0-9]+');
-    
+    Route::controller(RoleController::class)->name("role.")->prefix("role")->group(function (){
+
+        Route::get('/', 'index')->name('index');
+        
+        Route::get('/create', 'create')->name('create');
+        
+        Route::post('/store', 'store')->name('store');
+        
+        Route::get('/edit/{id}', 'edit')->name('edit')->where('id','[0-9]+');
+        
+        Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
+        
+        Route::get('/destroy/{id}', 'destroy')->name('destroy')->where('id','[0-9]+');
+        
+    });
+
+    Route::controller(UserController::class)->name("user.")->prefix('user')->group(function ()
+    {
+
+        Route::get('/','index')->name('index');
+        
+        Route::get('/create','create')->name('create');
+
+        Route::post('/store', 'store')->name('store');
+
+        Route::get('/edit/{id}', 'edit')->name('edit')->where('id','[0-9]+');
+
+        Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
+
+        Route::get('/destroy/{id}', 'destroy')->name('destroy')->where('id','[0-9]+');
+
+    });
+
 });
 
 Route::prefix('leaves')->group(function ()
@@ -205,24 +193,26 @@ Route::prefix('leaves')->group(function ()
 
 
 
+Route::middleware("auth")->prefix("company")->group(function (){
 
+    Route::controller(DepartmentController::class)->name("department.")->prefix("department")->group(function (){
 
-Route::controller(DepartmentController::class)->prefix("department")->group(function (){
+        Route::get('/', 'index')->name('index');
+        
+        Route::get('/create', 'create')->name('create');
+    
+        Route::get('/show/{department}', 'show')->name('show');
+        
+        Route::post('/store', 'store')->name('store');
+        
+        Route::get('/edit/{department}', 'edit')->name('edit')->where('id','[0-9]+');
+        
+        Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
+        
+        Route::get('/destroy/{department}', 'destroy')->name('destroy')->where('id','[0-9]+');
+        
+    });
 
-    Route::get('/', 'index')->name('department');
-    
-    Route::get('/create', 'create')->name('department/create');
-
-    Route::get('/show/{department}', 'show')->name('department/show');
-    
-    Route::post('/store', 'store')->name('department/store');
-    
-    Route::get('/edit/{department}', 'edit')->name('department/edit')->where('id','[0-9]+');
-    
-    Route::post('/update', 'update')->name('department/update')->where('id','[0-9]+');
-    
-    Route::get('/destroy/{department}', 'destroy')->name('department/destroy')->where('id','[0-9]+');
-    
 });
 
 Auth::routes();
