@@ -227,13 +227,8 @@
     <!-- /.sidebar -->
   </aside>
                                    
-       @endguest 
-
-
-                    <main class="main-content">
-                      @if (!Request::is('profile/edit'))
-                      @include('layouts/topbar');
-                 @endif
+       @endguest  
+                    <main class="main-content"> 
                         @yield('content')
                     </main>
                 </div> 
