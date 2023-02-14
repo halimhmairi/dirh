@@ -5,16 +5,16 @@ use Carbon\Carbon;
 use App\Models\User; 
 use App\Models\Leave; 
 
-class LeaveRequestService 
+class LeaveRequestService implements LeaveRequestInterface
 {
    public $leaveCounter ;
 
-    public function __construct(LeaveCounter $leaveCounter)
+    public function __construct()
     {
         $this->leaveCounter = new LeaveCounter();
     }
 
-    public function haveLeaveBalance($user,$leaveRequestInfomation)
+    public function haveLeaveBalance($user,$leaveRequestInfomation): bool
     {
        
          $leaveCounterRequested =  diff_date($leaveRequestInfomation['start_date'],$leaveRequestInfomation['end_date']);
