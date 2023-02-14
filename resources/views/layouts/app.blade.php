@@ -38,12 +38,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <div  class="wrapper">
-
-      <!-- Preloader -->
-      <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-      </div>
+    <div  class="wrapper"> 
 
         @guest
       
@@ -283,7 +278,7 @@
          </ul>
           @endif   
 
-          <li class="nav-item">
+          <li class="nav-item  {{ Request::is('recruitments/*') ? 'menu-is-opening menu-open' : '' }}">
            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -293,7 +288,7 @@
             </a>
             <ul class="nav nav-treeview">
              <li class="nav-item">
-              <a class="nav-link {{ Request::is('jobs') ? 'active' : '' }}" href="{{ route('jobs') }}">
+              <a class="nav-link {{ Request::is('recruitments/jobs') ? 'active' : '' }}" href="{{ route('jobs.index') }}">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                   {{ __('Jobs') }}
@@ -303,7 +298,7 @@
               </li> 
 
              <li class="nav-item">
-              <a class="nav-link {{ Request::is('candidates') ? 'active' : '' }}" href="{{ route('candidates') }}">
+              <a class="nav-link {{ Request::is('recruitments/candidates') ? 'active' : '' }}" href="{{ route('candidates.index') }}">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                   {{ __('Candidates') }}
@@ -346,7 +341,7 @@
   </aside>
                                    
        @endguest  
-                    <main class="main-content"> 
+                    <main class="main-content" style="margin-top: 5%;"> 
                         @yield('content')
                     </main>
                 </div> 

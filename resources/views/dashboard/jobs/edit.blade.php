@@ -11,7 +11,7 @@
 
                 <div class="card-body"> 
 
-                  <form method="POST" action="{{ Route('jobs/update') }}">
+                  <form method="POST" action="{{ Route('jobs.update') }}">
                       @csrf
                       <input type="hidden" name="id" value="{{ $job->id }}">
 

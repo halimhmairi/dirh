@@ -14,6 +14,7 @@
                 <div class="card-body">
                 <p class="text-uppercase text-sm">{{ __('Edit ') }} {{ $user->name }}</p>
                 <div class="row">
+                <div class="col-md-12">
                     <form method="POST" action="{{ route('profile/update') }}">
                         @csrf 
                  
@@ -36,21 +37,23 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                   
+                    
+                
+                    </div>
 
-            
-                    </div> 
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
                             </button>
                         </div>
-                    </div>
-                    </form>
+
+                  </form>
                 </div>
                 <hr class="horizontal dark">
                 <p class="text-uppercase text-sm">{{ __('Edit password') }}</p>
-                <div class="row">
+             
                     <form method="POST" action="{{ route('profile/updatePassword') }}">
                         @csrf
                     <div class="col-md-12">

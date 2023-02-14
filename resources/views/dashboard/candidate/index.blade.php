@@ -34,7 +34,7 @@
                       <td>
                       <a class="btn btn-info candidateInfo"><i class="fa fa-eye"></i></a>
                       <a class="btn btn-primary candidateInfo"><i class="fa fa-pencil"></i></a>
-                      <a href="{{ Route('candidates/destroy',$candidate) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{ Route('candidates.destroy',$candidate) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                 @endforeach

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Jobs') }} <a href="{{ Route('jobs/create') }}" class="btn btn-primary" style="float: right;"><i class="fa fa-plus"></i></a></div>
+                <div class="card-header">{{ __('Jobs') }} <a href="{{ Route('jobs.create') }}" class="btn btn-primary" style="float: right;"><i class="fa fa-plus"></i></a></div>
 
                 <div class="card-body">
                 <table class="table">
@@ -30,8 +30,8 @@
                       <td>{{ $job->tags }}</td>
                       <td>{{ $job->publish_at }}</td>
                       <td>
-                      <a href="{{ Route('jobs/edit',$job->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                      <a href="{{ Route('jobs/destroy',$job) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{ Route('jobs.edit',$job->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                      <a href="{{ Route('jobs.destroy',$job) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                 @endforeach

@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('department') }} <a href="{{ Route('department.create') }}" class="btn btn-primary" style="float: right;"><i class="fa fa-plus"></i></a></div>
 
