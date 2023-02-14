@@ -25,7 +25,7 @@
                     @foreach($users as $user)
                       <tr>
                         <th scope="row">{{ $user->id }} </th> 
-                        <td><img src="{{ asset('dist/img/default-150x150.png') }}" alt="Product 1" class="img-circle img-size-32 mr-2">{{ $user->name }}</td>
+                        <td><img onerror="this.onerror=null;this.src='https://via.placeholder.com/150';" src="{{ asset('avatar/'.$user->avatar) }}" class="img-circle img-size-32 mr-2">{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role->name }}</td>
                         <td><x-user-status :type="status_color($user->status)" :message="$user->status"/></td>

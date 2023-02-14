@@ -27,7 +27,7 @@
                 <td>{{ $leaveRequest->start_date }}</td>
                 <td>{{ $leaveRequest->end_date }}</td>
                 <td>{{ $leaveRequest->leaveType->name }}</td>
-                <td>{{ $leaveRequest->status }}</td>
+                <td><x-user-status :type="status_color($leaveRequest->status)" :message="$leaveRequest->status"/></td>
                 <td>
                 <a href="{{ Route('request.edit',$leaveRequest->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                       <a href="{{ Route('request.destroy',$leaveRequest->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>

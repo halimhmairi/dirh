@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Leave;
-
+use Illuminate\Database\Eloquent\Builder;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable , SoftDeletes;
@@ -91,5 +91,17 @@ class User extends Authenticatable
     public function leaveCounter()
     {
        return $this->hasMany(LeaveCounter::class);
+    }
+
+   /**
+     * Scope a query to only include users of a given status.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $status
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfStatus($query , $status)
+    {
+        return $query->where('status',$status);
     }
 }

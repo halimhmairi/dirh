@@ -41,8 +41,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        
-        $users = $this->userRepository->paginate(5,['*'],'page');
+        $users = User::paginate(5);
         return view('dashboard.user.index', compact('users'));
     }
 
@@ -69,16 +68,18 @@ class UserController extends Controller
     { 
         $data = $request->all();
         
-    /*
-        $originalImage = $request->file('avatar');
-        $thumbnailImage = Image::make($originalImage); 
-        $originalPath = public_path()."/avatar/";
-        $newNameImage = "avatar_".time().$originalImage->getClientOriginalName();
-        $thumbnailImage->save($originalPath."avatar_".$newNameImage);
-        $thumbnailImage->resize(150,150);
+        if($request->hasFile("avatar"))
+        {
 
-        $data['avatar'] = $newNameImage; 
-  */ 
+            $originalImage = $request->file('avatar'); 
+            $originalPath = public_path()."/avatar/";
+            $newNameImage = "avatar_".time().$originalImage->getClientOriginalName();
+    
+            $request->avatar->move($originalPath,$newNameImage); 
+
+            $data['avatar'] = $newNameImage; 
+
+        } 
 
         User::create($data); 
 
@@ -109,19 +110,29 @@ class UserController extends Controller
     {
         $user = User::find($request->id);  
 
-        //to do change avatar
-        if($request->avatar)
-        {
+        $data = $request->except('id');
 
+        //to do change avatar
+        if($request->hasFile('avatar'))
+        {
+            $originalImage = $request->file('avatar'); 
+            $originalPath = public_path()."/avatar/";
+            $newNameImage = "avatar_".time().$originalImage->getClientOriginalName();
+    
+            $request->avatar->move($originalPath,$newNameImage); 
+
+            $data['avatar'] = $newNameImage; 
         }
+
+
 
         if($user->status !== $request->status)
         {
-            $user->update($request->except('id'));
+            $user->update($data);
 
         } else{ 
                
-          $user->updateQuietly($request->except('id')); 
+          $user->updateQuietly($data); 
 
         }
 

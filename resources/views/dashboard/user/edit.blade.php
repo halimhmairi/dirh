@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Edit ') }} {{ $user->name }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update') }}">
+                    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">

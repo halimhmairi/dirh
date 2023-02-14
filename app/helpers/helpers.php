@@ -15,7 +15,13 @@ if(!function_exists('status_color')){
  
     function status_color($status)
     {
-      $statusColor = ['active'=>'success','blocked'=>'danger','waiting'=>'secondary'];
+      $statusColor = 
+      [
+        'active'=>'success','blocked'=>'danger',
+        'waiting'=>'secondary',
+        'Cancelled'=>'danger','Planned'=>'secondary',
+        'Rejected'=>'danger','Accepted'=>'success'
+      ];
       return $statusColor[$status]; 
     }
 
