@@ -12,7 +12,7 @@
                 <div class="card-body">
                      
 
-    <form method="POST" action="{{ Route('department/update') }}">
+    <form method="POST" action="{{ Route('department.update') }}">
         @csrf
 
         <input type="hidden" name="id" value="{{ $department->id }}">

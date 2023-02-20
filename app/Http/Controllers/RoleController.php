@@ -3,27 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use App\Repositories\Role\RoleRepository; 
+use App\Http\Requests\UpdateRoleRequest;  
+use App\Models\Role; 
+use App\Models\User; 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
-{
-    public $roleRepository;
-    private $user;
-
-    public function __construct(RoleRepository $roleRepository)
-    {
-        $this->roleRepository = $roleRepository;
-
-        $this->middleware(function ($request, $next) {
-
-            $this->user = Auth::user();
-            $this->authorize('is_admin',$this->user);
-
-            return $next($request);
-        });
-    }
+{ 
 
     /**
      * Display a listing of the resource.
@@ -31,9 +18,16 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $roles = $this->roleRepository->paginate(5,['*'],'page');
-        return view('dashboard.role.index',compact('roles'));
+    { 
+
+       // if (Auth::user()->can('viewAny',Role::class)) 
+       // {
+           $roles = Role::paginate(5);
+           return view('dashboard.role.index',compact('roles'));
+       // }
+
+       // abort(403);
+    
     }
 
     /**

@@ -11,7 +11,7 @@
 
                 <div class="card-body"> 
 
-                  <form method="POST" action="{{ Route('department/store') }}">
+                  <form method="POST" action="{{ Route('department.store') }}">
                       @csrf
                       <div class="form-group">
                         <label for="name">department name</label>

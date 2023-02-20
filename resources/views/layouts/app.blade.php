@@ -189,7 +189,8 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          @can('is_user')  
+        
+        @can('is_admin')  
           <li class="nav-item">
           <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
               <i class="nav-icon far fa-calendar-alt"></i>
@@ -199,8 +200,7 @@
               </p>
             </a>
           </li> 
-          @endif
-          @can('is_admin')
+          
           <li class="nav-item {{ Request::is('accounts/*') ? 'menu-is-opening menu-open' : '' }}">
            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -276,7 +276,7 @@
             </a>  
           </li>
          </ul>
-          @endif   
+      
 
           <li class="nav-item  {{ Request::is('recruitments/*') ? 'menu-is-opening menu-open' : '' }}">
            <a href="#" class="nav-link">
@@ -307,6 +307,7 @@
                 </a>
             </li> 
            </ul>
+           @endif  
             <li class="nav-item">
             <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
                   <i class="nav-icon far fa-calendar-alt"></i>
@@ -317,10 +318,10 @@
                 </a>
             </li> 
              
-        </ul>
+        </ul><br><br>
 
         <div class="sidenav-footer mx-3 "> 
-                            <a class="btn btn-primary btn-sm mb-0 w-100  mb-3" href="{{ Route('profile/edit') }}"
+                            <a class="btn btn-secondary btn-sm mb-0 w-100 text-white mb-3" href="{{ Route('profile/edit') }}"
                             type="button">Settings
                            </a>
                             <a href="{{ route('logout') }}"

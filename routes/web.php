@@ -11,6 +11,9 @@ use App\Http\Controllers\LeaveCounterController;
 use App\Http\Controllers\LeaveTypeController; 
 use App\Http\Controllers\LeaveRequestController; 
 use App\Http\Controllers\DepartmentController;
+
+use App\Models\Role;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,7 +77,7 @@ Route::middleware('auth')->prefix("recruitments")->group(function(){
         
     });
 
-    Route::middleware('auth')->controller(CandidateController::class)->name("candidates.")->prefix("candidates")->group(function (){
+    Route::controller(CandidateController::class)->name("candidates.")->prefix("candidates")->group(function (){
 
         Route::get('/', 'index')->name('index');
         
@@ -94,13 +97,12 @@ Route::middleware('auth')->prefix("recruitments")->group(function(){
 
 });
 
-
+ 
 Route::middleware('auth')->prefix("accounts")->group(function (){
-
 
     Route::controller(RoleController::class)->name("role.")->prefix("role")->group(function (){
 
-        Route::get('/', 'index')->name('index');
+        Route::get('/', 'index')->middleware('can:viewAny',Role::class)->name('index');
         
         Route::get('/create', 'create')->name('create');
         

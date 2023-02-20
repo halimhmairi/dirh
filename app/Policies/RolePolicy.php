@@ -17,8 +17,8 @@ class RolePolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
-    {
-        return $user->role->name === "admin";
+    { 
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        return $user->role->name === $role->name;
+        return $user->role->name === "admin";
     }
 
     /**
@@ -65,7 +65,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-                return $user->role->name === $role->name;
+        return $user->role->name === "admin";
 
     }
 
@@ -78,7 +78,7 @@ class RolePolicy
      */
     public function restore(User $user, Role $role)
     {
-        //
+        return $user->role->name === "admin";
     }
 
     /**
@@ -91,5 +91,16 @@ class RolePolicy
     public function forceDelete(User $user, Role $role)
     {
         //
+    }
+
+
+    public function is_admin($user)
+    {
+        return true;
+    }
+
+    public function is_user($user)
+    {
+        return true;
     }
 }
