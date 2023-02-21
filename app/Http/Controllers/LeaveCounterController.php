@@ -7,6 +7,7 @@ use App\Http\Requests\LeaveCounter\UpdateLeaveCounterRequest;
 use App\Models\LeaveCounter;
 use App\Models\User;
 use App\Models\LeaveType;
+use Illuminate\Support\Facades\Auth;
 
 class LeaveCounterController extends Controller
 {
@@ -17,7 +18,9 @@ class LeaveCounterController extends Controller
      */
     public function index()
     {
-       $leaveCounters = LeaveCounter::all();
+       $user = Auth::user(); 
+       $leaveCounters = LeaveCounter::where('user_id',$user->id)->get();
+   
        return view('dashboard.leaveCounter.index',compact('leaveCounters'));
     }
 

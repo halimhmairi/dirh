@@ -9,6 +9,7 @@ use App\Services\leave\request\LeaveRequestService;
 
 use App\Http\Requests\LeaveRequest\StoreLeaveRequest; 
 use App\http\Requests\LeaveRequest\UpdateLeaveRequest;
+use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
 
@@ -31,8 +32,19 @@ class LeaveRequestController extends Controller
   
   public function create()
   {
-    $leaveTypes = LeaveType::all();
-    $users = User::all();
+
+    if(Auth::user()->can('is_user')){
+
+      $users = User::where('id',Auth::user()->id)->get();
+      $leaveTypes = LeaveType::LeaveTypesAndCounterByUser(Auth::user()->id); 
+
+    }else {
+
+      $users = User::all();
+      $leaveTypes = LeaveType::all(); 
+
+    } 
+    
     return view('dashboard.leaveRequest.create',compact('leaveTypes','users'));
   }
 
