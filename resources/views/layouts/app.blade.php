@@ -30,6 +30,8 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
  
+  @stack('styles')
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="background-color: #f0f1f3;">
 

@@ -50,7 +50,14 @@ class LeaveRequestController extends Controller
 
   public function store(StoreLeaveRequest $request)
   { 
-    $user = User::find($request->user_id);
+    
+
+    if(Auth::user()->can('is_user'))
+      {
+        $request->user_id = Auth::user()->id;
+      }else{
+        $user = User::find($request->user_id);
+      } 
 
    if($this->leaveRequestService->haveLeaveBalance($user,$request))
    {

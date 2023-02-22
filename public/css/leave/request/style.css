@@ -1,0 +1,79 @@
+:root {
+  --form-control-color: #007bff;
+} 
+
+.dirh-input-custom{
+    float: left;
+    width: 90%;
+}
+.dirh-input-custom-box{
+    cursor: pointer;
+    padding: 4%;
+    position: relative;
+    border:1px solid silver;
+    border-radius: 5px;
+}
+.dirh-input-custom-box:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.dirh-input-custom-radio-active{
+    border:2px solid #007bff;
+    background-color: rgba(0, 123, 255,0.2);
+}
+.dirh-input-custom-radio {
+    position: absolute;
+    top:45%;
+}
+
+.dirh-input-custom-description {
+    padding:5% 24px; 
+    margin-left: 5%;
+}
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: #007bff;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid #007bff;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+ 

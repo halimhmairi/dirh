@@ -28,7 +28,7 @@ class StoreLeaveRequest extends FormRequest
             'start_date'=>['required'],
             'end_date'=>['required'],   
             'leave_type_id'=>['required'],
-            'user_id'=>['required'],
+            //'user_id'=>['required'],
         ];
     }
 }
