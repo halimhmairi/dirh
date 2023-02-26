@@ -5,6 +5,7 @@
 /storage 
 /public/dist 
 /public/plugins 
+/public/build 
 /public/img 
 /vendor
 .env

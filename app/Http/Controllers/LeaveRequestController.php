@@ -6,6 +6,7 @@ use App\Models\LeaveType;
 use App\Models\User;
 use App\Models\LeaveCounter;
 use App\Services\leave\request\LeaveRequestService;
+use App\Services\leave\type\LeaveTypeService;
 
 use App\Http\Requests\LeaveRequest\StoreLeaveRequest; 
 use App\http\Requests\LeaveRequest\UpdateLeaveRequest;
@@ -17,9 +18,11 @@ class LeaveRequestController extends Controller
 {
   public $leaveRequestService;
 
-  public function __construct(LeaveRequestService $leaveRequestService){
+  public function __construct(LeaveRequestService $leaveRequestService,LeaveTypeService $leaveTypeService){
 
     $this->leaveRequestService = $leaveRequestService;
+    
+    $this->leaveTypeService = $leaveTypeService;
 
   }
 
@@ -31,26 +34,38 @@ class LeaveRequestController extends Controller
 
   
   public function create()
-  {
+  { 
 
+    $users = User::where('id',Auth::user()->id)->get();
+    $leaveTypes = LeaveType::LeaveTypesAndCounterByUser(Auth::user()->id); 
+
+ 
+ 
     if(Auth::user()->can('is_user')){
 
-      $users = User::where('id',Auth::user()->id)->get();
-      $leaveTypes = LeaveType::LeaveTypesAndCounterByUser(Auth::user()->id); 
+    
 
     }else {
 
       $users = User::all();
-      $leaveTypes = LeaveType::all(); 
 
+      $avalableLeaveTypesIds =  $this->leaveTypeService->availableLeaveTypes(Auth::user());
+
+      $leaveTypes = LeaveType::all()->map(function ($item) use($avalableLeaveTypesIds){
+     
+        $item->active = in_array($item->id , $avalableLeaveTypesIds)?  false  :  true  ;
+
+        return $item;
+      }); 
+      
+      
     } 
     
-    return view('dashboard.leaveRequest.create',compact('leaveTypes','users'));
+    return view('dashboard.leaveRequest.create',compact('leaveTypes','users','avalableLeaveTypesIds'));
   }
 
   public function store(StoreLeaveRequest $request)
   { 
-    
 
     if(Auth::user()->can('is_user'))
       {

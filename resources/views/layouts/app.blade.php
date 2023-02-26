@@ -344,7 +344,7 @@
   </aside>
                                    
        @endguest  
-                    <main class="main-content" style="margin-top: 5%;"> 
+                    <main class="main-content" style="margin-top: 5%;padding-left: 10%;"> 
                         @yield('content')
                     </main>
                 </div> 

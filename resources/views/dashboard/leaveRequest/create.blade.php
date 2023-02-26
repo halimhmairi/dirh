@@ -8,7 +8,7 @@
 
 <div class="container"> 
   
-<div class="row justify-content-center">
+<div class="row justify-content-right">
 
     <div class="col-md-3">
             <div class="card"> 
@@ -25,34 +25,16 @@
 
                 <div class="card-body">  
 
+                 
+
                   <form method="POST" action="{{ Route('request.store') }}">
                       @csrf
 
-                    <div class="form-group">
-                    <label for="leave_type_id">{{ __('Leave type') }}</label>
-
-                        <div class="row"> 
-                        @foreach($leaveTypes as $leaveType)
-                    <div class="col-6">
-
-                    <div class="dirh-input-custom-box" id="dirh-input-custom-box-{{ $leaveType->id }}">
-
-                    <input class="dirh-input-custom dirh-input-custom-radio" id="dirh-input-custom-radio-{{ $leaveType->id }}" type="radio"  name="leave_type_id" />
- 
-                    
-                       <div class="dirh-input-custom dirh-input-custom-description"> {{ $leaveType->name }}<br> Radio - checked Radio - checked Radio - checked </div>
-                    </div>
-
-                    @endforeach
-                    </div>
-
-                    </div>
-                    </div>
-                    <hr>
-
-                    @can('is_admin')
+                      @can('is_admin')
                       <div class="form-group">
-                        <label for="user_id">{{ __('Users') }}</label>
+                        <label for="user_id">{{ __('Users') }}   @php 
+                            var_dump(in_array(1,$avalableLeaveTypesIds));
+                        @endphp</label>
                         <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
                             @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -64,7 +46,34 @@
                                     </span>
                                 @enderror
                       </div>
-                      @endcan  
+                      @endcan
+
+                    <div class="form-group">
+                    <label for="leave_type_id">{{ __('Leave type') }}</label>
+
+                    <div class="row"> 
+                    @foreach($leaveTypes as $leaveType)
+
+                    <div class="col-6 mt-3"> 
+                    <div @class([
+                                'dirh-input-custom-box',
+                                'dirh-input-custom-box-disabled' => $leaveType->active
+                          ]) id="dirh-input-custom-box-{{ $leaveType->id }}">
+
+                    <input @class(["dirh-input-custom",
+                             "dirh-input-custom-radio",
+                             "dirh-input-custom-radio-disabled" => $leaveType->active ,
+                     ]) id="dirh-input-custom-radio-{{ $leaveType->id }}" type="radio" value="{{ $leaveType->id }}"  name="leave_type_id" />
+                       <div class="dirh-input-custom dirh-input-custom-description"> <span style="font-weight: bold">{{ $leaveType->name }} (0)</span><br>{{ $leaveType->description }}</div>
+                    </div>
+                    </div>
+
+                    @endforeach
+                    
+
+                    </div>
+                    </div>
+                    <hr> 
 
                       <div class="form-group">
                           <label for="start_date">{{ __('Start Date') }}</label>
@@ -109,7 +118,8 @@
         <script>
 
             $(".dirh-input-custom-box").click(function(){
-                
+               var avalableLeaveTypesIds = {!! json_encode($avalableLeaveTypesIds) !!} 
+               var leaveTypesids = {!! json_encode($leaveTypes->pluck("id")) !!}  
 
                 $radioInput = this.closest('.dirh-input-custom-radio') 
                 $thisElement = this
@@ -117,14 +127,22 @@
                 id =  $thisElement.getAttribute('id')
                 className =  $thisElement.getAttribute('class') 
 
+                idRadioInput = $("#"+id).children(".dirh-input-custom-radio").attr('id')
+
+                valueRadioInput = Number($("#"+id).children(".dirh-input-custom-radio").attr('value'))
+
+                if(avalableLeaveTypesIds.indexOf(valueRadioInput) === -1) 
+                { 
+                    return ;
+                }
+
+
+                $(".dirh-input-custom-radio").removeAttr("checked") 
+                $("#"+idRadioInput).attr("checked","checked")  
+
                $(".dirh-input-custom-box").removeClass("dirh-input-custom-radio-active")  
 
                $("#"+id).addClass("dirh-input-custom-radio-active")  
- 
-               idRadioInput = $("#"+id).children(".dirh-input-custom-radio").attr('id')
-
-               $(".dirh-input-custom-radio").removeAttr("checked") 
-               $("#"+idRadioInput).attr("checked","checked")
                
 
             });

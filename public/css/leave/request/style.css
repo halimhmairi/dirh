@@ -13,6 +13,12 @@
     border:1px solid silver;
     border-radius: 5px;
 }
+
+.dirh-input-custom-box-disabled{
+  background: #dadada;
+  cursor:not-allowed;
+}
+
 .dirh-input-custom-box:after {
     content: "";
     display: table;
@@ -75,5 +81,11 @@ input[type="radio"]:checked::before {
 input[type="radio"]:focus {
   outline: max(2px, 0.15em) solid currentColor;
   outline-offset: max(2px, 0.15em);
+}
+
+.dirh-input-custom-radio-disabled{
+  color: #dadada !important;
+  border: 0.15em solid #cdc9c9 !important;
+
 }
  

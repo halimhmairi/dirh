@@ -33,6 +33,6 @@ class LeaveType extends Model
     {
         return $query->whereHas('leave_counters', function ($query) use ($userId){
             return $query->where('user_id', $userId);
-          })->get(); 
+          })->with('leave_counters')->get(); 
     }
 }
