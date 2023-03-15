@@ -23,6 +23,10 @@
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
@@ -363,9 +367,7 @@
           <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
           <!-- Sparkline -->
           <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-          <!-- JQVMap -->
-          <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-          <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+  
           <!-- jQuery Knob Chart -->
           <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
           <!-- daterangepicker -->
@@ -381,7 +383,26 @@
           <script src="{{ asset('dist/js/adminlte.js') }}"></script>
           <!-- AdminLTE for demo purposes 
           <script src="{{ asset('dist/js/demo.js') }}"></script> -->
+
+          <!-- SweetAlert2 -->
+          <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+  
+
           <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
           <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
+        <!-- Toastr -->
+        <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>  
+
+          <script>
+          $(function() {
+            var Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+          });
+</script>
 </body>
 </html>

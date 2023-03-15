@@ -51,16 +51,17 @@ class LeaveRequestController extends Controller
 
       $avalableLeaveTypesIds =  $this->leaveTypeService->availableLeaveTypes(Auth::user());
 
-      $leaveTypes = LeaveType::all()->map(function ($item) use($avalableLeaveTypesIds){
+    /**/  $leaveTypes = LeaveType::all()->map(function ($item) use($avalableLeaveTypesIds){
      
-        $item->active = in_array($item->id , $avalableLeaveTypesIds)?  false  :  true  ;
+        $item->active = in_array($item->id , $avalableLeaveTypesIds)?  true  :  true  ;
 
         return $item;
       }); 
+ 
       
       
     } 
-    
+   
     return view('dashboard.leaveRequest.create',compact('leaveTypes','users','avalableLeaveTypesIds'));
   }
 
@@ -102,6 +103,16 @@ class LeaveRequestController extends Controller
     toast('Your Leave Request as been Updated!','success');
     return redirect('leaves/request');
   }
+
+
+  public function avalableLeaveTypesByUser($userId)
+  {
+    $avalableLeaveTypesIds =  $this->leaveTypeService->availableLeaveTypesByUser(User::find($userId));
+    return response()->json([
+      "leaveTypes"=>$avalableLeaveTypesIds
+    ]);
+  }
+
 
   public function destroy($leaveRequests)
   {

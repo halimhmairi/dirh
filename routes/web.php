@@ -187,6 +187,9 @@ Route::prefix('leaves')->group(function ()
 
     Route::post('/update','update')->name('update');
 
+
+    Route::get('/avalableLeaveTypesByUser/{userId}','avalableLeaveTypesByUser')->name('avalableLeaveTypesByUser');
+
     Route::get('/destroy/{leaveRequest}','destroy')->name('destroy');
 
   });

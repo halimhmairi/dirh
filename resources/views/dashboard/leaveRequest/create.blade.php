@@ -35,7 +35,7 @@
                         <label for="user_id">{{ __('Users') }}   @php 
                             var_dump(in_array(1,$avalableLeaveTypesIds));
                         @endphp</label>
-                        <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                        <select name="user_id" class="form-control @error('user_id') is-invalid @enderror user_id">
                             @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
@@ -64,7 +64,7 @@
                              "dirh-input-custom-radio",
                              "dirh-input-custom-radio-disabled" => $leaveType->active ,
                      ]) id="dirh-input-custom-radio-{{ $leaveType->id }}" type="radio" value="{{ $leaveType->id }}"  name="leave_type_id" />
-                       <div class="dirh-input-custom dirh-input-custom-description"> <span style="font-weight: bold">{{ $leaveType->name }} (0)</span><br>{{ $leaveType->description }}</div>
+                       <div class="dirh-input-custom dirh-input-custom-description"> <span style="font-weight: bold" id="dirh-input-custom-title-{{ $leaveType->id }}">{{ $leaveType->name }} <span class="dirh-input-custom-title-counter" id="dirh-input-custom-title-counter-{{ $leaveType->id }}">(0/0)</span></span><br>{{ $leaveType->description }}</div>
                     </div>
                     </div>
 
@@ -113,9 +113,46 @@
                     </div>
         </div>
         </div>
-        </div>
+        </div> 
 
         <script>
+
+            $(".user_id").change(function(){
+
+                user_id = this.value;
+
+                $boxtypeLeave = $(".dirh-input-custom-box") 
+                
+                $boxtypeLeave.addClass("dirh-input-custom-box-disabled")
+                
+                $(".dirh-input-custom-title-counter").text("(0/0)")
+
+                $.ajax({
+                    url : "avalableLeaveTypesByUser/"+user_id,
+                }).done(function(data){ 
+                    
+                    if(data.leaveTypes.length > 0){ 
+
+                        data.leaveTypes.map(function(item , index){ 
+
+                            $("#dirh-input-custom-box-"+item.id).removeClass("dirh-input-custom-box-disabled")
+
+                            $("#dirh-input-custom-title-counter-"+item.id).text("("+item.total+"/"+item.remaining+")")
+                        });
+
+                    }else{
+
+                    toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.') 
+
+                    } 
+                   
+                }).fail(function(){
+                    toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.') 
+                });
+
+
+                console.log(this.value);
+            });
 
             $(".dirh-input-custom-box").click(function(){
                var avalableLeaveTypesIds = {!! json_encode($avalableLeaveTypesIds) !!} 
