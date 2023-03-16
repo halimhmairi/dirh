@@ -2,10 +2,17 @@
 
 @section('content')
 
+@once
+
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/leave/request/style.css') }}">
 @endpush
 
+@push('scripts')
+<script refr src='{{ asset("js/leave/request/index.js") }}'></script>
+@endpush
+
+@endonce
 <div class="container"> 
   
 <div class="row justify-content-right">
@@ -23,18 +30,14 @@
             <div class="card">
                 <div class="card-header">{{ __('Submit a leave request ') }}</div>
 
-                <div class="card-body">  
-
-                 
+                <div class="card-body">   
 
                   <form method="POST" action="{{ Route('request.store') }}">
                       @csrf
 
                       @can('is_admin')
                       <div class="form-group">
-                        <label for="user_id">{{ __('Users') }}   @php 
-                            var_dump(in_array(1,$avalableLeaveTypesIds));
-                        @endphp</label>
+                        <label for="user_id">{{ __('Users') }}</label>
                         <select name="user_id" class="form-control @error('user_id') is-invalid @enderror user_id">
                             @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -51,27 +54,14 @@
                     <div class="form-group">
                     <label for="leave_type_id">{{ __('Leave type') }}</label>
 
-                    <div class="row"> 
-                    @foreach($leaveTypes as $leaveType)
+                    <div class="row" id="dirh-box-leaveType">  
 
-                    <div class="col-6 mt-3"> 
-                    <div @class([
-                                'dirh-input-custom-box',
-                                'dirh-input-custom-box-disabled' => $leaveType->active
-                          ]) id="dirh-input-custom-box-{{ $leaveType->id }}">
-
-                    <input @class(["dirh-input-custom",
-                             "dirh-input-custom-radio",
-                             "dirh-input-custom-radio-disabled" => $leaveType->active ,
-                     ]) id="dirh-input-custom-radio-{{ $leaveType->id }}" type="radio" value="{{ $leaveType->id }}"  name="leave_type_id" />
-                       <div class="dirh-input-custom dirh-input-custom-description"> <span style="font-weight: bold" id="dirh-input-custom-title-{{ $leaveType->id }}">{{ $leaveType->name }} <span class="dirh-input-custom-title-counter" id="dirh-input-custom-title-counter-{{ $leaveType->id }}">(0/0)</span></span><br>{{ $leaveType->description }}</div>
-                    </div>
+                        <div class="spinner-border m-auto" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        
                     </div>
 
-                    @endforeach
-                    
-
-                    </div>
                     </div>
                     <hr> 
 
@@ -113,77 +103,6 @@
                     </div>
         </div>
         </div>
-        </div> 
-
-        <script>
-
-            $(".user_id").change(function(){
-
-                user_id = this.value;
-
-                $boxtypeLeave = $(".dirh-input-custom-box") 
-                
-                $boxtypeLeave.addClass("dirh-input-custom-box-disabled")
-                
-                $(".dirh-input-custom-title-counter").text("(0/0)")
-
-                $.ajax({
-                    url : "avalableLeaveTypesByUser/"+user_id,
-                }).done(function(data){ 
-                    
-                    if(data.leaveTypes.length > 0){ 
-
-                        data.leaveTypes.map(function(item , index){ 
-
-                            $("#dirh-input-custom-box-"+item.id).removeClass("dirh-input-custom-box-disabled")
-
-                            $("#dirh-input-custom-title-counter-"+item.id).text("("+item.total+"/"+item.remaining+")")
-                        });
-
-                    }else{
-
-                    toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.') 
-
-                    } 
-                   
-                }).fail(function(){
-                    toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.') 
-                });
-
-
-                console.log(this.value);
-            });
-
-            $(".dirh-input-custom-box").click(function(){
-               var avalableLeaveTypesIds = {!! json_encode($avalableLeaveTypesIds) !!} 
-               var leaveTypesids = {!! json_encode($leaveTypes->pluck("id")) !!}  
-
-                $radioInput = this.closest('.dirh-input-custom-radio') 
-                $thisElement = this
-
-                id =  $thisElement.getAttribute('id')
-                className =  $thisElement.getAttribute('class') 
-
-                idRadioInput = $("#"+id).children(".dirh-input-custom-radio").attr('id')
-
-                valueRadioInput = Number($("#"+id).children(".dirh-input-custom-radio").attr('value'))
-
-                if(avalableLeaveTypesIds.indexOf(valueRadioInput) === -1) 
-                { 
-                    return ;
-                }
-
-
-                $(".dirh-input-custom-radio").removeAttr("checked") 
-                $("#"+idRadioInput).attr("checked","checked")  
-
-               $(".dirh-input-custom-box").removeClass("dirh-input-custom-radio-active")  
-
-               $("#"+id).addClass("dirh-input-custom-radio-active")  
-               
-
-            });
-
-        </script>
+        </div>  
 
 @endsection

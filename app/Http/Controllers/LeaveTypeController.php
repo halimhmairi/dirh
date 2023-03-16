@@ -91,4 +91,13 @@ class LeaveTypeController extends Controller
         return redirect()->back();
 
     }
+
+    public function indexApi(){
+
+        $leaveType = LeaveType::all();
+
+        return response()->json([
+            "leaveTypes" => $leaveType
+        ],200);
+    }
 }
