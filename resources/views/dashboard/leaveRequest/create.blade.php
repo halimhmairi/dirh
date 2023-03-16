@@ -56,9 +56,7 @@
 
                     <div class="row" id="dirh-box-leaveType">  
 
-                        <div class="spinner-border m-auto" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
+                      <x-Spinner/>
                         
                     </div>
 
@@ -83,9 +81,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                        </div>
-
-                        duration
+                        </div> 
 
                         <div class="form-group">
                           <label for="reason">{{ __('Reason') }}</label>

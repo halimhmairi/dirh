@@ -7,7 +7,7 @@ $.ajax({
 
     $spinner.remove();
 
-    data.leaveTypes.map(function(item,index){ 
+    data.leaveTypes.map(function(item){ 
 
         $boxtypeLeave.append('<div class="col-6 mt-3"><div class="dirh-input-custom-box dirh-input-custom-box-disabled" id="dirh-input-custom-box-1">'+
         '<input class="dirh-input-custom dirh-input-custom-radio dirh-input-custom-radio-disabled" id="dirh-input-custom-radio-1" type="radio" value="'+item.id+'" name="leave_type_id">'+
@@ -41,6 +41,7 @@ $(".user_id").change(function(){
                 $("#dirh-input-custom-box-"+item.id).removeClass("dirh-input-custom-box-disabled")
 
                 $("#dirh-input-custom-title-counter-"+item.id).text("("+item.total+"/"+item.remaining+")")
+
             });
 
         }else{
