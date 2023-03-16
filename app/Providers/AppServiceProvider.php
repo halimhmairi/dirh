@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Http\services\leave\request\LeaveRequestService;
+use Illuminate\Support\ServiceProvider; 
+use App\Models\Leave;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,10 +22,12 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-    //    $this->app->bind(LeaveRequestService::class,function ($app)
-    //    {
-    //     return new LeaveRequestService
-    //    });
+    { 
+
+    view()->composer('*',function($view){
+        $leavePlanned = Leave::Planned()->get()->count();
+        $view->with('global',['leavePlanned'=>$leavePlanned]);
+    });
+
     }
 }

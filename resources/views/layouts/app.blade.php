@@ -202,7 +202,6 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
               {{ __('Category Management') }}
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li> 
@@ -220,8 +219,7 @@
            <a class="nav-link {{ Request::is('accounts/role') ? 'active' : '' }}" href="{{ route('role.index') }}">
            <i class="nav-icon fa-solid fa-user-lock"></i> 
               <p>
-                {{ __('Role') }}
-                <span class="badge badge-info right">2</span>
+                {{ __('Role') }} 
               </p>
             </a>
           </li> 
@@ -278,6 +276,7 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
               {{ __('Leave Request') }} 
+              <span class="badge badge-danger right">{{ $global['leavePlanned'] }}</span>
               </p>
             </a>  
           </li>
@@ -402,8 +401,12 @@
               showConfirmButton: false,
               timer: 3000
             });
-          });
-</script>
+
+           $('#description').summernote()
+
+          }); 
+
+         </script>
 
   @stack('scripts')
 

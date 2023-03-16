@@ -24,5 +24,8 @@ class Leave extends Model
         return $this->belongsTo(LeaveType::class);
     }
 
-
+    public function scopePlanned($query)
+    {
+        return $query->where('status','Planned');
+    }
 }
