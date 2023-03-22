@@ -25,12 +25,10 @@ use App\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    //$details['email'] = 'testdev@gmail.com';
-
-    //dispatch(new App\Jobs\SendEmailJob($details));
+Route::get('/', function () { 
  
     return redirect('/login');
+
 });
 
 Route::middleware('auth')->controller(ProfileController::class)->prefix("profile")->group(function (){
@@ -214,6 +212,18 @@ Route::middleware("auth")->prefix("company")->group(function (){
         
         Route::get('/destroy/{department}', 'destroy')->name('destroy')->where('id','[0-9]+');
         
+    });
+
+});
+
+Route::prefix(config("app.name"))->group(function (){
+
+    Route::controller(JobController::class)->prefix("jobs")->name(config("app.name").".jobs.")->group(function (){
+
+        Route::get("/","jobs")->name("jobs");
+
+        Route::get("/{id}","jobsShow")->name("show");
+
     });
 
 });

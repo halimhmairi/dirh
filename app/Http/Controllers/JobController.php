@@ -101,4 +101,18 @@ class JobController extends Controller
         $this->jobRepository->deleteById($job->id);
         return redirect()->back()->with('success','deleted with successfully');
     }
+
+    public function jobs()
+    {
+      $jobs =  Job::paginate(6); 
+      return view("job.index",compact("jobs"));
+    }
+
+    public function jobsShow($id)
+    {
+        $job =  Job::find($id); 
+        return view("job.show",compact("job"));
+    }
+
+
 }
