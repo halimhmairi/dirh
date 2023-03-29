@@ -32,7 +32,6 @@ class LeaveRequestService implements LeaveRequestInterface
 
     public function storeLeaveRequest($request,$user)
     {
-
       Leave::create($request->all());  
 
       $leaveBalanceRequested =  diff_date($request->start_date,$request->end_date);

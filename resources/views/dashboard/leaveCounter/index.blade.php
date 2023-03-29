@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('My leave requests') }} <a href="{{ Route('request.index') }}" class="btn btn-primary float-right">My leaves requests</a> <a href="{{ Route('request.create') }}" class="btn btn-primary float-right" style="margin-right: 10px;">Requests</a></div>
+                <div class="card-header">{{ __('My leave requests') }} <a href="{{ Route('request.index') }}" class="btn btn-primary float-right">My leaves requests</a> <a href="{{ Route('request.user.create') }}" class="btn btn-primary float-right" style="margin-right: 10px;">Requests</a></div>
 
                 <div class="card-body">
                 <table class="table table-bordered table-hover">

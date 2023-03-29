@@ -30,37 +30,24 @@ class LeaveRequestController extends Controller
   {
     $leaveRequests = Leave::orderBy('created_at')->paginate(5);
     return view('dashboard.leaveRequest.index',compact('leaveRequests'));
-  }
+  } 
 
-  
   public function create()
   { 
 
     $users = User::where('id',Auth::user()->id)->get();
-    $leaveTypes = LeaveType::LeaveTypesAndCounterByUser(Auth::user()->id); 
-
- 
- 
-    if(Auth::user()->can('is_user')){
-
-    
-
-    }else {
+    $leaveTypes = LeaveType::LeaveTypesAndCounterByUser(Auth::user()->id);  
 
       $users = User::all();
 
       $avalableLeaveTypesIds =  $this->leaveTypeService->availableLeaveTypes(Auth::user());
 
-    /**/  $leaveTypes = LeaveType::all()->map(function ($item) use($avalableLeaveTypesIds){
+       $leaveTypes = LeaveType::all()->map(function ($item) use($avalableLeaveTypesIds){
      
         $item->active = in_array($item->id , $avalableLeaveTypesIds)?  true  :  true  ;
 
         return $item;
-      }); 
- 
-      
-      
-    } 
+      });  
    
     return view('dashboard.leaveRequest.create',compact('leaveTypes','users','avalableLeaveTypesIds'));
   }
@@ -68,12 +55,7 @@ class LeaveRequestController extends Controller
   public function store(StoreLeaveRequest $request)
   { 
 
-    if(Auth::user()->can('is_user'))
-      {
-        $request->user_id = Auth::user()->id;
-      }else{
-        $user = User::find($request->user_id);
-      } 
+    $user = User::find($request->user_id);
 
    if($this->leaveRequestService->haveLeaveBalance($user,$request))
    {
