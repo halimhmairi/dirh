@@ -19,6 +19,7 @@ class JobFactory extends Factory
     {
         return [
             'title' => $this->faker->name,
+            'slug' => Str::slug($this->faker->name,'-'),
             'jobsummary' => $this->faker->paragraph(1),
             'description' => $this->faker->paragraph(50),
             'tags' => $this->faker->randomElement([

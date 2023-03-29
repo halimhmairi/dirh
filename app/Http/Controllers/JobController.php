@@ -26,7 +26,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = $this->jobRepository->orderBy('created_at','DESC')->paginate(5,['*'],'page');
+        $jobs = Job::orderBy('created_at','DESC')->paginate(5);
      
         return view('dashboard.jobs.index',compact('jobs'));
     }
@@ -50,6 +50,8 @@ class JobController extends Controller
     public function store(StoreJobRequest $request)
     {
         $this->jobRepository->create($request->all());
+
+        $job = Job::create($request->all()); 
         toast('Your Job as been submited!','success');
         return redirect()->back();
     }
@@ -73,7 +75,7 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $job = $this->jobRepository->getById($id);
+        $job = Job::find($id);
         return view('dashboard.jobs.edit',compact('job'));
     }
 
@@ -85,7 +87,7 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request)
     {
-        $this->jobRepository->updateById($request->id,$request->except('id'));
+        Job::find($request->id)->update($request->except('id')); 
         toast('Your job as been updatedt!','success');
         return redirect('/jobs');
     }
@@ -98,7 +100,7 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        $this->jobRepository->deleteById($job->id);
+        Job::destroy($job->id);
         return redirect()->back()->with('success','deleted with successfully');
     }
 
@@ -108,9 +110,9 @@ class JobController extends Controller
       return view("job.index",compact("jobs"));
     }
 
-    public function jobsShow($id)
+    public function jobsShow($job)
     {
-        $job =  Job::find($id); 
+        $job =  Job::find($job); 
         return view("job.show",compact("job"));
     }
 

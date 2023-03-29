@@ -231,7 +231,7 @@ Route::prefix(config("app.name"))->group(function (){
 
         Route::get("/","jobs")->name("jobs");
 
-        Route::get("/{id}","jobsShow")->name("show");
+        Route::get("/{job}","jobsShow")->name("show");
 
     });
 

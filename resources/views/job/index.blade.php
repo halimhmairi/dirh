@@ -17,7 +17,7 @@
 
   
       
-      <a href="{{ Route(config('app.name').'.jobs.show',$job->id) }}" class="btn btn-primary float-right">Go somewhere</a>
+      <a href="{{ Route(config('app.name').'.jobs.show',$job) }}" class="btn btn-primary float-right">Go somewhere</a>
     </div>
         </div>
     </div>

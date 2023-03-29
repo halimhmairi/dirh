@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('dirh_jobs', function (Blueprint $table) {
             $table->id();
             $table->string("title");
+            $table->string('slug'); // Field name same as your `saveSlugsTo`
             $table->string("jobsummary");
             $table->text("description");
             $table->string("tags");
