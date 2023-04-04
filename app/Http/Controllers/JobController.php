@@ -112,7 +112,8 @@ class JobController extends Controller
 
     public function jobsShow($job)
     {
-        $job =  Job::find($job); 
+        $job =  Job::find($job)->first(); 
+
         return view("job.show",compact("job"));
     }
 

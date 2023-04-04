@@ -106,12 +106,9 @@
         <div class="card-body">
             <h1 class="card-title">{{$job->title}}</h1>
             <p class="card-text">{{$job->jobsummary}}</p> 
-            <p class="card-text">{{$job->description}}</p> 
-            <span class="badge badge-primary">Primary</span>
-            <span class="badge badge-secondary">Secondary</span>
-            <span class="badge badge-success">Success</span>
-            <span class="badge badge-danger">Danger</span>
-            <span class="badge badge-warning">Warning</span> 
+            <p class="card-text">{{$job->description}}</p>  
+			<x-badge :badges="$job->tags" /> 
+
         </div>
         <div class="card-footer">
       <small class="text-muted">Publish {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</small>
