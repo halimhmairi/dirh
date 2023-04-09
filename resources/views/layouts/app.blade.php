@@ -47,7 +47,14 @@
     <div  class="wrapper"> 
 
         @guest
-      
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ Route(config('app.name').'.jobs.jobs') }}">{{ __('Jobs') }}</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ Route('login') }}">{{ __('Login') }}</a>
+          </li> 
+        </ul>
          @else
             <x-InfoModal type="danger" :data="34" />  
              @include('sweetalert::alert')
