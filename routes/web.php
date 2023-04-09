@@ -85,7 +85,7 @@ Route::middleware('auth')->prefix("recruitments")->group(function(){
     
         Route::get('/show/{candidate}', 'show')->name('show');
         
-        Route::post('/store', 'store')->name('store');
+        //Route::post('/store', 'store')->name('store');
         
         Route::get('/edit/{candidate}', 'edit')->name('edit')->where('id','[0-9]+');
         
@@ -232,6 +232,12 @@ Route::prefix(config("app.name"))->group(function (){
         Route::get("/","jobs")->name("jobs");
 
         Route::get("/{job}","jobsShow")->name("show");
+
+    });
+
+    Route::controller(CandidateController::class)->prefix("candidates")->name(config("app.name").".candidates.")->group(function (){
+
+        Route::post("/store","store")->name("store");
 
     });
 

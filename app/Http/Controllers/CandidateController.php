@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
+use App\Models\User;
 use App\Http\Requests\recruitment\candidate\StoreCandidateRequest;
 use App\Http\Requests\recruitment\candidate\UpdateCandidateRequest;
- 
+use App\Services\user\candidate\CandidateService;
 
 use App\Repositories\recruitment\candidate\CandidateRepository;
 
 class CandidateController extends Controller
-{
-    public $candidateRepository;
+{ 
 
-   public function __construct(CandidateRepository $candidateRepository)
+   public function __construct(
+        public CandidateRepository $candidateRepository,
+        public CandidateService $candidateService
+    )
    {
         $this->candidateRepository = $candidateRepository;
+
+        $this->candidateService = $candidateService;
    }
     /**
      * Display a listing of the resource.
@@ -47,7 +52,13 @@ class CandidateController extends Controller
      */
     public function store(StoreCandidateRequest $request)
     {
-        //
+
+       $candidate = $this->candidateService->store($request->all()); 
+      
+       dd(
+          $candidate
+       );
+
     }
 
     /**

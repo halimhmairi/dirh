@@ -3,101 +3,107 @@
 @section('content')
 
 <style>
-    .upload-files-container { 
-	width: 420px; 
-	border-radius: 10px; 
-}
-.drag-file-area {
-	border: 1px dashed;
-	border-radius: 10px;
-	margin: 10px 0 15px;
-	padding: 15px 15px;
-	width: 350px;
-	text-align: center;
-}
-.drag-file-area .upload-icon {
-    font-size: 1.3em;
-}
-.drag-file-area h3 {
-    font-size: 1.3em;
-	margin: 15px 0;
-}
-.drag-file-area label {
-    font-size: 1.3em;
-}
+
+	/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+	.modal.right .modal-dialog { 
+		margin: auto;
+		width: 510px;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
+				position: fixed;
+    right: 0;
+	}
+
+	.modal.left .modal-content,
+	.modal.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+	
+	.modal.left .modal-body,
+	.modal.right .modal-body {
+		padding: 15px 15px 80px;
+	}
+
+/*Left*/
+	.modal.left.fade .modal-dialog{
+		left: -320px;
+		-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+		        transition: opacity 0.3s linear, left 0.3s ease-out;
+	}
+	
+	.modal.left.fade.in .modal-dialog{
+		left: 0;
+	}
 .drag-file-area label .browse-files-text {
 	color: #007bff;
 	font-weight: bolder;
 	cursor: pointer;
 }
-.browse-files span {
-	position: relative;
-	top: -25px;
+	
+	.modal.right.fade.in .modal-dialog {
+		right: 0;
+	}
+
+/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+	}
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+	background-color: #78909C;
 }
-.default-file-input {
-	opacity: 0;
+
+.demo {
+	padding-top: 60px;
+	padding-bottom: 110px;
 }
-.cannot-upload-message {
-	background-color: #ffc6c4;
-	font-size: 17px;
-	display: flex;
-	align-items: center;
-	margin: 5px 0;
-	padding: 5px 10px 5px 30px;
-	border-radius: 5px;
-	color: #BB0000;
-	display: none;
+
+.btn-demo {
+	margin: 15px;
+	padding: 10px 15px;
+	border-radius: 0;
+	font-size: 16px;
+	background-color: #FFFFFF;
 }
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+
+.btn-demo:focus {
+	outline: 0;
 }
-.cannot-upload-message span, .upload-button-icon {
-	padding-right: 10px;
-}
-.cannot-upload-message span:last-child {
-	padding-left: 20px;
-	cursor: pointer;
-}
-.file-block {
-	color: #007bff;
-	background-color: #007bff;
-  	transition: all 1s;
-	width: 390px;
-	position: relative;
-	display: none;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	margin: 10px 0 15px;
-	padding: 10px 20px;
-	border-radius: 25px;
-	cursor: pointer;
-}
-.file-info {
-	display: flex;
-	align-items: center;
-	font-size: 15px;
-}
-.file-icon {
-	margin-right: 10px;
-}
-.file-name, .file-size {
-	padding: 0 3px;
-}
-.remove-file-icon {
-	cursor: pointer;
-}
-.progress-bar {
-	display: flex;
-	position: absolute;
+
+.demo-footer {
+	position: fixed;
 	bottom: 0;
-	left: 4.5%;
-	width: 0;
-	height: 5px;
-	border-radius: 25px;
-	background-color: #4BB543;
-} 
+	width: 100%;
+	padding: 15px;
+	background-color: #212121;
+	text-align: center;
+}
+
+.demo-footer > a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+
 </style>
 <div class="container">
     <div class="row justify-content-center pb-5"> 
@@ -113,175 +119,69 @@
         <div class="card-footer">
       <small class="text-muted">Publish {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</small>
       
-      <a href="#" class="btn btn-primary float-right">Apply</a>
-      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button" spellcheck="false">
-<i class="fas fa-th-large"></i>
-</a>
+      <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal2">Apply</a>
+ 
     </div>
         </div>
     </div>
   
 </div> 
-</div>
+</div> 
 
-<aside class="control-sidebar control-sidebar-light" 
-style="display: none;width:800px;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
- rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-">
-<div class="p-3 control-sidebar-content" style="">
-    <h5>Applay</h5><hr class="mb-2"> 
-    <div class="mb-1">
-    <form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">{{ __("Name") }}</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter name">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">{{ __("Email address") }}</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">{{ __("Password") }}</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div> 
+<div class="container demo">  
+	
+	<!-- Modal -->
+	<div class="modal right fade modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
 
-    <div class="form-group"> 
-    <label class="material-icons-outlined upload-icon">{{ __("Upload CV") }} </label>
-    <div class="upload-files-container">
-		<div class="drag-file-area"> 
-            <div class="dynamic-message"></div>
-			<label class="label" style="width: -webkit-fill-available;
-             padding-top: 24px;"> Drag & drop or <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">browse file</span> <span>from device</span> </span> </label>
-		</div>
-		<span class="cannot-upload-message"> <span class="material-icons-outlined">error</span> Please select a file first <span class="material-icons-outlined cancel-alert-button">cancel</span> </span>
-		<div class="file-block">
-			<div class="file-info"> <span class="material-icons-outlined file-icon">description</span> <span class="file-name"> </span> | <span class="file-size">  </span> </div>
-			<span class="material-icons remove-file-icon">delete</span>
-			<div class="progress-bar"> </div>
-		</div>  
-	</div>
-</div>
+				<div class="modal-header d-block">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel2">Applay</h4>
+				</div>
 
-    <div class="form-group">
-        <label for="">{{ __("Message") }}</label>
-        <textarea class="form-control"></textarea> 
-    </div> 
+				<div class="modal-body">
+					<form method="POST" action="{{ Route(config('app.name').'.candidates.store') }}" enctype="multipart/form-data">
+						@csrf
+						<input name="dirh_job_id" type="hidden" value="{{ $job->id }}">
+						<div class="form-group">
+							<label for="exampleInputEmail1">{{ __("Name") }}</label>
+							<input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">{{ __("Email address") }}</label>
+							<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">{{ __("Password") }}</label>
+							<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div> 
+					
+						<div class="form-group"> 
+						<label class="material-icons-outlined upload-icon">{{ __("Upload CV") }} </label>
+						<div class="upload-files-container">
+							<div class="drag-file-area"> 
+								 <input type="file" name="resume" class="default-file-input"/>
+							</div>
+						 
+						</div>
+					</div>
+					
+						<div class="form-group">
+							<label for="">{{ __("Message") }}</label>
+							<textarea name="note" class="form-control"></textarea> 
+						</div> 
+					
+						<button type="submit" class="btn btn-primary upload-button">Submit</button>
+						</form>
+				</div>
 
-    <button type="submit" class="btn btn-primary upload-button">Submit</button>
-    </form>
-    </div>
- 
-</aside>
-<script>
-    var isAdvancedUpload = function() {
-  var div = document.createElement('div');
-  return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
-}();
+			</div><!-- modal-content -->
+		</div><!-- modal-dialog -->
+	</div><!-- modal -->
+	
+	
+</div><!-- container --> 
 
-let draggableFileArea = document.querySelector(".drag-file-area");
-let browseFileText = document.querySelector(".browse-files");
-let uploadIcon = document.querySelector(".upload-icon");
-let dragDropText = document.querySelector(".dynamic-message");
-let fileInput = document.querySelector(".default-file-input");
-let cannotUploadMessage = document.querySelector(".cannot-upload-message");
-let cancelAlertButton = document.querySelector(".cancel-alert-button");
-let uploadedFile = document.querySelector(".file-block");
-let fileName = document.querySelector(".file-name");
-let fileSize = document.querySelector(".file-size");
-let progressBar = document.querySelector(".progress-bar");
-let removeFileButton = document.querySelector(".remove-file-icon");
-let uploadButton = document.querySelector(".upload-button");
-let fileFlag = 0;
-
-fileInput.addEventListener("click", () => {
-	fileInput.value = '';
-	console.log(fileInput.value);
-});
-
-fileInput.addEventListener("change", e => {
-	console.log(" > " + fileInput.value)
-	uploadIcon.innerHTML = 'check_circle';
-	dragDropText.innerHTML = 'File Dropped Successfully!';
-	document.querySelector(".label").innerHTML = `drag & drop or <span class="browse-files"> <input type="file" class="default-file-input" style=""/> <span class="browse-files-text" style="top: 0;"> browse file</span></span>`;
-	uploadButton.innerHTML = `Upload`;
-	fileName.innerHTML = fileInput.files[0].name;
-	fileSize.innerHTML = (fileInput.files[0].size/1024).toFixed(1) + " KB";
-	uploadedFile.style.cssText = "display: flex;";
-	progressBar.style.width = 0;
-	fileFlag = 0;
-});
-
-uploadButton.addEventListener("click", () => {
-	let isFileUploaded = fileInput.value;
-	if(isFileUploaded != '') {
-		if (fileFlag == 0) {
-    		fileFlag = 1;
-    		var width = 0;
-    		var id = setInterval(frame, 50);
-    		function frame() {
-      			if (width >= 390) {
-        			clearInterval(id);
-					uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
-      			} else {
-        			width += 5;
-        			progressBar.style.width = width + "px";
-      			}
-    		}
-  		}
-	} else {
-		cannotUploadMessage.style.cssText = "display: flex; animation: fadeIn linear 1.5s;";
-	}
-});
-
-cancelAlertButton.addEventListener("click", () => {
-	cannotUploadMessage.style.cssText = "display: none;";
-});
-
-if(isAdvancedUpload) {
-	["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach( evt => 
-		draggableFileArea.addEventListener(evt, e => {
-			e.preventDefault();
-			e.stopPropagation();
-		})
-	);
-
-	["dragover", "dragenter"].forEach( evt => {
-		draggableFileArea.addEventListener(evt, e => {
-			e.preventDefault();
-			e.stopPropagation();
-			uploadIcon.innerHTML = 'file_download';
-			dragDropText.innerHTML = 'Drop your file here!';
-		});
-	});
-
-	draggableFileArea.addEventListener("drop", e => {
-		uploadIcon.innerHTML = 'check_circle';
-		dragDropText.innerHTML = 'File Dropped Successfully!';
-		document.querySelector(".label").innerHTML = `drag & drop or <span class="browse-files"> <input type="file" class="default-file-input" style=""/> <span class="browse-files-text" style="top: -23px; left: -20px;"> browse file</span> </span>`;
-		uploadButton.innerHTML = `Upload`;
-		
-		let files = e.dataTransfer.files;
-		fileInput.files = files;
-		console.log(files[0].name + " " + files[0].size);
-		console.log(document.querySelector(".default-file-input").value);
-		fileName.innerHTML = files[0].name;
-		fileSize.innerHTML = (files[0].size/1024).toFixed(1) + " KB";
-		uploadedFile.style.cssText = "display: flex;";
-		progressBar.style.width = 0;
-		fileFlag = 0;
-	});
-}
-
-removeFileButton.addEventListener("click", () => {
-	uploadedFile.style.cssText = "display: none;";
-	fileInput.value = '';
-	uploadIcon.innerHTML = 'file_upload';
-	dragDropText.innerHTML = 'Drag & drop any file here';
-	document.querySelector(".label").innerHTML = `or <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">browse file</span> <span>from device</span> </span>`;
-	uploadButton.innerHTML = `Upload`;
-});
-
-</script>
 @endsection

@@ -24,10 +24,11 @@ class StoreCandidateRequest extends FormRequest
     public function rules()
     {
         return [
+            'name',
             'resume',
             'note',
             'status',
-            'job_id',
+            'dirh_job_id',
             'user_id'
         ];
     }

@@ -15,7 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->notify(new UserEmailNotification());
+      //  $user->notify(new UserEmailNotification());
     }
 
     /**
