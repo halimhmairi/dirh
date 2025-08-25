@@ -11,7 +11,7 @@ use App\Http\Controllers\LeaveCounterController;
 use App\Http\Controllers\LeaveTypeController; 
 use App\Http\Controllers\LeaveRequestController; 
 use App\Http\Controllers\DepartmentController;
-
+use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\user\LeaveRequestUserController;
 
 use App\Models\Role;
@@ -59,6 +59,23 @@ Route::middleware('auth')->controller(CategoryController::class)->prefix("catego
     
 });
 
+
+Route::middleware('auth')->controller(TrainingController::class)->name("training.")->prefix("training")->group(function (){
+
+    Route::get('/', 'index')->name('index');
+    
+    Route::get('/create', 'create')->name('create');
+    
+    Route::post('/store', 'store')->name('store');
+    
+    Route::get('/edit/{id}', 'edit')->name('edit')->where('id','[0-9]+');
+    
+    Route::post('/update', 'update')->name('update')->where('id','[0-9]+');
+    
+    Route::get('/destroy/{id}', 'destroy')->name('destroy')->where('id','[0-9]+');
+    
+});
+
 Route::middleware('auth')->prefix("recruitments")->group(function(){
 
     Route::controller(JobController::class)->name("jobs.")->prefix("jobs")->group(function (){
@@ -102,7 +119,7 @@ Route::middleware('auth')->prefix("accounts")->group(function (){
 
     Route::controller(RoleController::class)->name("role.")->prefix("role")->group(function (){
 
-        Route::get('/', 'index')->middleware('can:viewAny',Role::class)->name('index');
+        Route::get('/', 'index')->name('index');
         
         Route::get('/create', 'create')->name('create');
         

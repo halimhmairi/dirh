@@ -18,7 +18,7 @@ class CategoryController extends Controller
         $this->middleware(function ($request, $next) {
 
             $this->user = Auth::user();
-            $this->authorize('is_user',$this->user);
+            $this->authorize('is_admin',$this->user);
 
             return $next($request);
         });

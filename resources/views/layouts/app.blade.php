@@ -196,7 +196,8 @@
           <img src="{{ asset('avatar/'.Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="/" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/" class="d-block">{{ Auth::user()->name }} -- {{ Auth::user()->position }}</a>
+          
         </div>
       </div>  
       <!-- Sidebar Menu -->
@@ -320,11 +321,31 @@
             </li> 
            </ul>
            @endif  
-            <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                   {{ __('Leave summary') }}
+                    <span class="badge badge-info right">2</span>
+                  </p>
+                </a>
+            </li> 
+
+            <li class="nav-item">
+             <a class="nav-link {{ Request::is('training') ? 'active' : '' }}" href="{{ route('training.index') }}">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <p>
+                  {{ __('Training') }}
+                    <span class="badge badge-danger right">2</span>
+                  </p>
+                </a>
+            </li> 
+
+           <li class="nav-item">
+             <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
+                  <i class="fa-solid fa-address-book"></i>
+                  <p>
+                  {{ __('Historical') }}
                     <span class="badge badge-info right">2</span>
                   </p>
                 </a>
