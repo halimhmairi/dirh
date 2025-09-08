@@ -13,7 +13,7 @@ class StoreTrainingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreTrainingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => ['required', 'string', 'max:255'],
+            "description" => ['required'],
+            "school" => ['required', 'string', 'max:255'],
+            "start_date" => ['required', 'string', 'max:255'],
+            "end_date" => ['required', 'string', 'max:255'],
+            "user_id" => "required",
         ];
     }
 }

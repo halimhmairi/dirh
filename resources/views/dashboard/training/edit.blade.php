@@ -5,22 +5,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Edit ') }} {{ $user->name }}</div>
+            <div class="card card-secondary">
+                <div class="card-header">{{ __('Create training') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('training.store') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Title') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" value="{{ $user->name }}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                
-                                <input name="id" type="hidden" value="{{ $user->id }}">
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
-                                @error('name')
+                                @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -29,91 +27,72 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
+                        <div class="col-md-6">
+                       
+                        <textarea class="form-control @error('description') is-invalid @enderror" name="description"  rows="3">{{ old('description') }}</textarea>
+                               @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}">
-
-                                @error('avatar')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="phone-number" class="col-md-4 col-form-label text-md-end">{{ __('Phone number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ $user->phone_number }}" required>
-
-                                @error('phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="status" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
-
-                            <div class="col-md-6">
-                            <select name="status"  id="status" class="form-control @error('status') is-invalid @enderror">
-                                    <option value="active" @selected("Active" === $user->status )>{{ __('Active') }}</option>
-                                    <option value="blocked" @selected("blocked" === $user->status )>{{ __('Blocked') }}</option>
-                                    <option value="waiting" @selected("waiting" === $user->status )>{{ __('Waiting') }}</option>
-                                </select>
-                                @error('status')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="role_id" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-
-                            <div class="col-md-6"> 
-                                <select name="role_id"  id="role_id" class="form-control @error('role') is-invalid @enderror">
-                                    @foreach($roles as $role)
-                                    <option @selected($role->id == $user->role_id) value="{{ $role->id }}">{{ $role->name }} </option>
-                                    @endforeach
-                                </select>
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+            
                             </div>
                         </div> 
 
                         <div class="row mb-3">
-                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('department') }}</label>
+                            <label for="school" class="col-md-4 col-form-label text-md-end">{{ __('School') }}</label>
 
-                            <div class="col-md-6"> 
-                                <select name="department_id"  id="department_id" class="form-control @error('department_id') is-invalid @enderror">
-                                    @foreach($departments as $department)
-                                    <option value="{{ $department->id }}" @selected($user->department_id == $department->id)>{{ $department->name }} </option>
+                            <div class="col-md-6">
+                                <input id="school" type="text" class="form-control @error('school') is-invalid @enderror" name="school" value="{{ old('school') }}" required autocomplete="school" autofocus>
+
+                                @error('school')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="start_date" class="col-md-4 col-form-label text-md-end">{{ __('Start date') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="start_date" type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date') }}" required autocomplete="start_date" autofocus>
+
+                                @error('start_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="end_date" class="col-md-4 col-form-label text-md-end">{{ __('End date') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="end_date" type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value="{{ old('end_date') }}" required autocomplete="end_date" autofocus>
+
+                                @error('end_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Users') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="user_id"  id="user_id" class="form-control @error('user') is-invalid @enderror">
+                                    @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }} </option>
                                     @endforeach
                                 </select>
-                                @error('department_id')
+                                @error('user')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
