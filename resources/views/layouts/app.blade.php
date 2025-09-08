@@ -256,9 +256,9 @@
           <a class="nav-link {{ Request::is('company/department') ? 'active' : '' }}" href="{{ route('department.index') }}">
               <i class="nav-icon fa-solid fa-building-user"></i>
               <p>
-              {{ __('Department') }}  
+              {{ __('Department') }}
               </p>
-            </a> 
+            </a>
           </li>
         </ul>
 
@@ -275,9 +275,9 @@
             <a class="nav-link {{ Request::is('leaves/types') ? 'active' : '' }}" href="{{ route('types.index') }}">
               <i class="nav-icon far fa-envelope"></i>
               <p>
-              {{ __('Leave Type') }} 
+              {{ __('Leave Type') }}
               </p>
-            </a> 
+            </a>
           </li>
           <li class="nav-item">
            <a class="nav-link {{ Request::is('leaves/request') ? 'active' : '' }}" href="{{ route('request.index') }}">
@@ -285,6 +285,15 @@
               <p>
               {{ __('Leave Request') }} 
               <span class="badge badge-danger right">{{ $global['leavePlanned'] }}</span>
+              </p>
+            </a>  
+          </li>
+                    <li class="nav-item">
+           <a class="nav-link {{ Request::is('leaves/settings') ? 'active' : '' }}" href="{{ route('request.index') }}">
+              <i class="fa-solid fa-sliders"></i>
+              <p>
+              {{ __('Settings') }}
+ 
               </p>
             </a>  
           </li>
