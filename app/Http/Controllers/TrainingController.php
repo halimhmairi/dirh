@@ -12,7 +12,6 @@ class TrainingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,23 +22,24 @@ class TrainingController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
         $users = User::all();
-        return view('dashboard.training.create',compact('users'));
+        return view('dashboard.training.create', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTrainingRequest  $request
-     * @return \Illuminate\Http\Response
+     *
      */
     public function store(StoreTrainingRequest $request)
     {
-        //
+        Training::create($request->validated());
+        toast('Your Training as been sabmited!', 'success');
+        return redirect('/training');
     }
 
     /**
@@ -80,10 +80,11 @@ class TrainingController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Training  $training
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Training $training)
+    public function destroy($id)
     {
-        //
+        Training::destroy($id);
+        toast('deleted with successfully', 'success');
+        return redirect()->back();
     }
 }

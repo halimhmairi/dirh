@@ -106,8 +106,51 @@ class JobController extends Controller
 
     public function jobs()
     {
-      $jobs =  Job::paginate(6); 
-      return view("job.index",compact("jobs"));
+        $query = Job::query();
+
+        // Filtre par recherche (titre ou description)
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('jobsummary', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%")
+                  ->orWhere('tags', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Filtre par statut
+        if (request('status')) {
+            $query->where('status', request('status'));
+        }
+
+        // Filtre par date
+        if (request('date_filter')) {
+            $dateFilter = request('date_filter');
+            
+            switch ($dateFilter) {
+                case 'today':
+                    $query->whereDate('created_at', today());
+                    break;
+                case 'week':
+                    $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                    break;
+                case 'month':
+                    $query->whereMonth('created_at', now()->month)
+                          ->whereYear('created_at', now()->year);
+                    break;
+                case 'year':
+                    $query->whereYear('created_at', now()->year);
+                    break;
+            }
+        }
+
+        // Tri par date de création (plus récent en premier)
+        $query->orderBy('created_at', 'DESC');
+
+        $jobs = $query->paginate(6)->appends(request()->query());
+        
+        return view("job.index", compact("jobs"));
     }
 
     public function jobsShow($job)

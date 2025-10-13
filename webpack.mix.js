@@ -11,12 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
+// Compile Tailwind CSS
+mix.postCss('resources/css/app.css', 'public/css', [
+    require('@tailwindcss/postcss'),
+    require('autoprefixer'),
+]);
+
+// Combine existing CSS files (if needed alongside Tailwind)
 mix.combine([
     "public/css/nucleo-icons.css",
     "public/css/nucleo-svg.css",
     "node_modules/font-awesome/css/font-awesome.css", 
     "public/css/argon-dashboard.css",
-],"public/css/app.css")
+],"public/css/vendor.css")
 
 mix.combine([
     "public/js/jquery.min.js",
