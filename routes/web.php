@@ -14,6 +14,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\user\LeaveRequestUserController;
 use App\Http\Controllers\LeaveSettingController;
+use App\Http\Controllers\EmailConfigController;
 
 use App\Models\Role;
 
@@ -243,6 +244,12 @@ Route::prefix(config("app.name"))->group(function () {
 
         Route::post("/store", "store")->name("store");
     });
+});
+
+// Configuration Email Routes
+Route::middleware('auth')->controller(EmailConfigController::class)->prefix("config")->group(function () {
+    Route::get('/email', 'index')->name('config.email');
+    Route::post('/email/update', 'update')->name('config.email.update');
 });
 
 Auth::routes([

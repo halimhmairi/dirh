@@ -384,6 +384,30 @@
             <span class="px-2 py-0.5 text-xs font-bold bg-cyan-500 text-white rounded-full">2</span>
           </a>
 
+          <!-- Configuration -->
+          <div class="space-y-1">
+            <button onclick="toggleMenu('configMenu')" 
+                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all w-full {{ Request::is('config/*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span class="flex-1 text-left font-medium">{{ __('Configuration') }}</span>
+              <svg id="configMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('config/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <div id="configMenu" class="pl-4 space-y-1 {{ Request::is('config/*') ? '' : 'hidden' }}">
+              <a href="{{ route('config.email') }}" 
+                 class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all {{ Request::is('config/email') ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="font-medium">{{ __('Configuration Email') }}</span>
+              </a>
+            </div>
+          </div>
+
       </nav>
       
       <!-- Footer avec boutons -->
