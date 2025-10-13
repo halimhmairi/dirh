@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   
   <!-- Toastr pour les notifications -->
-  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+ 
   @stack('styles')
 
 </head>
@@ -40,14 +40,17 @@
 
 
                       <!-- Navbar -->
-          <nav class="fixed top-0 left-64 right-0 bg-white shadow-md z-30 border-b border-gray-200">
-            <div class="flex items-center justify-between px-6 py-3">
+          <nav class="fixed top-0 left-0 lg:left-64 right-0 bg-white shadow-md z-30 border-b border-gray-200">
+            <div class="flex items-center justify-between px-4 lg:px-6 py-3">
               
-              <!-- Left section - Menu Toggle (Mobile) -->
+              <!-- Left section - Menu Toggle & Logo (Mobile) -->
               <div class="flex items-center gap-4">
                 <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                  <i class="fas fa-bars text-gray-600"></i>
+                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
                 </button>
+                <span class="lg:hidden text-lg font-semibold text-gray-800">{{ config('app.name') }}</span>
               </div>
 
               <!-- Right section - Notifications -->
@@ -58,7 +61,7 @@
                   <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                   </svg>
-                </button>
+                        </button>
 
                 <!-- Messages Dropdown -->
                 <div class="relative">
@@ -67,10 +70,10 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                     </svg>
                     <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
-                  </button>
+                        </button>
                   
                   <!-- Messages Dropdown Menu -->
-                  <div id="messagesDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                  <div id="messagesDropdown" class="hidden absolute right-0 mt-2 w-80 max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
                     <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
                       <p class="text-sm font-semibold text-gray-700">3 Messages</p>
                     </div>
@@ -117,7 +120,7 @@
                           </p>
                         </div>
                       </a>
-                    </div>
+                      </div>
                     <div class="px-4 py-3 bg-gray-50 text-center border-t border-gray-200">
                       <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Voir tous les messages</a>
                     </div>
@@ -134,7 +137,7 @@
                   </button>
                   
                   <!-- Notifications Dropdown Menu -->
-                  <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                  <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
                     <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
                       <p class="text-sm font-semibold text-gray-700">15 Notifications</p>
                     </div>
@@ -166,7 +169,7 @@
                             <i class="fas fa-file text-purple-600"></i>
                           </div>
                           <span class="text-sm text-gray-700">3 nouveaux rapports</span>
-                        </div>
+                      </div>
                         <span class="text-xs text-gray-400">Il y a 2 jours</span>
                       </a>
                     </div>
@@ -176,11 +179,14 @@
                   </div>
                 </div>
               </div>
-            </div>
+                </div>
           </nav>
 
+          <!-- Overlay pour mobile -->
+          <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-35 lg:hidden" onclick="toggleSidebar()"></div>
+
            <!-- Main Sidebar Container -->
-   <aside class="fixed left-0 top-0 h-screen w-64 bg-gradient-to-b from-gray-800 to-gray-900 shadow-2xl z-40 overflow-y-auto">
+   <aside id="sidebar" class="fixed left-0 top-0 h-screen w-64 bg-gradient-to-b from-gray-800 to-gray-900 shadow-2xl z-40 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
     <!-- Brand Logo -->
       <a href="/" class="flex items-center gap-3 px-6 py-4 border-b border-gray-700 hover:bg-gray-700 transition-colors">
         <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
@@ -405,13 +411,13 @@
   </aside>
                                    
        @endguest  
-                    <main class="ml-64 mt-16"> 
+                    <main class="ml-0 lg:ml-64 mt-16"> 
                         @yield('content')
                     </main>
                 </div> 
 
   <!-- Scripts essentiels -->
-  <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+          <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
   
   <!-- SweetAlert2 pour les alertes -->
   <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}" defer></script>
@@ -458,8 +464,20 @@
 
   // Fonction pour toggle sidebar sur mobile
   function toggleSidebar() {
-    const sidebar = document.querySelector('aside');
-    sidebar.classList.toggle('hidden');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (sidebar.classList.contains('-translate-x-full')) {
+      // Ouvrir le sidebar
+      sidebar.classList.remove('-translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      overlay.classList.remove('hidden');
+    } else {
+      // Fermer le sidebar
+      sidebar.classList.add('-translate-x-full');
+      sidebar.classList.remove('translate-x-0');
+      overlay.classList.add('hidden');
+    }
   }
 
   // Fermer les dropdowns en cliquant à l'extérieur
@@ -472,18 +490,34 @@
       allDropdowns.forEach(d => d.classList.add('hidden'));
     }
   });
+
+  // Fermer le sidebar sur mobile quand on clique sur un lien
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebarLinks = document.querySelectorAll('#sidebar a');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth < 1024) { // lg breakpoint
+          const sidebar = document.getElementById('sidebar');
+          const overlay = document.getElementById('sidebarOverlay');
+          sidebar.classList.add('-translate-x-full');
+          sidebar.classList.remove('translate-x-0');
+          overlay.classList.add('hidden');
+        }
+      });
+    });
+  });
   </script>
 
   <script defer>
-  $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-  }); 
-  </script>
+          $(function() {
+            var Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+          }); 
+         </script>
 
   @stack('scripts')
 
