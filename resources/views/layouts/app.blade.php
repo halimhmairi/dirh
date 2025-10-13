@@ -207,7 +207,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
-        @can('is_admin')  
+        <!-- @can('is_admin')   -->
           <li class="nav-item">
           <a class="nav-link {{ Request::is('category') ? 'active' : '' }}" href="{{ route('category') }}">
               <i class="nav-icon far fa-calendar-alt"></i>
@@ -292,7 +292,7 @@
             </a>  
           </li>
                     <li class="nav-item">
-           <a class="nav-link {{ Request::is('leaves/settings') ? 'active' : '' }}" href="{{ route('request.index') }}">
+           <a class="nav-link {{ Request::is('leaves/settings') ? 'active' : '' }}" href="{{ route('settings.index') }}">
               <i class="fa-solid fa-sliders"></i>
               <p>
               {{ __('Settings') }}
@@ -332,7 +332,7 @@
                 </a>
             </li> 
            </ul>
-           @endif  
+           <!-- @endif   -->
            <li class="nav-item">
             <a class="nav-link {{ Request::is('leaves/counters') ? 'active' : '' }}" href="{{ route('counters.index') }}">
                   <i class="nav-icon far fa-calendar-alt"></i>

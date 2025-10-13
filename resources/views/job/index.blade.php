@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 py-8" style="background-color: rgb(240, 241, 243); min-height: calc(100vh - 80px);">
     <div class="flex justify-center"> 
         <div class="w-full lg:w-2/3">
             
@@ -134,8 +134,8 @@
                     <div>
                         <h3 class="text-lg font-semibold text-yellow-800">Aucune offre trouvée</h3>
                         <p class="text-yellow-700 mt-1">Essayez de modifier vos critères de recherche ou réinitialisez les filtres.</p>
-                    </div>
-                </div>
+    </div>
+        </div>
     </div>
             @endforelse
         </div>

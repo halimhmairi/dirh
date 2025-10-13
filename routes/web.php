@@ -205,6 +205,8 @@ Route::prefix('leaves')->group(function () {
     Route::controller(LeaveSettingController::class)->name('settings.')->prefix("settings")->group(function () {
 
         Route::get('/', 'index')->name('index');
+        
+        Route::post('/update-settings', 'updateSettings')->name('updateSettings');
     });
 });
 
