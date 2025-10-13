@@ -26,14 +26,89 @@
     <div class="wrapper"> 
 
         @guest
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ Route(config('app.name').'.jobs.jobs') }}">{{ __('Jobs') }}</a>
+        <!-- Navbar pour invités -->
+        <nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 border-b border-gray-200">
+          <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+              
+              <!-- Logo -->
+              <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <span class="text-xl font-bold text-gray-800">{{ config('app.name') }}</span>
+              </div>
+
+              <!-- Menu -->
+              <ul class="flex items-center gap-2">
+                <li>
+                  <a href="{{ Route(config('app.name').'.jobs.jobs') }}" 
+                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    {{ __('messages.Jobs') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ Route('login') }}" 
+                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                    </svg>
+                    {{ __('messages.Login') }}
+                  </a>
           </li> 
-          <li class="nav-item">
-            <a class="nav-link" href="{{ Route('login') }}">{{ __('Login') }}</a>
+                
+                <!-- Language Switcher pour invités -->
+                <li class="relative">
+                  <button onclick="toggleDropdown('guestLanguageDropdown')" 
+                          class="inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                    <span class="text-sm">{{ strtoupper(app()->getLocale()) }}</span>
+                  </button>
+                  
+                  <!-- Dropdown langues -->
+                  <div id="guestLanguageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                    <a href="{{ route('lang.switch', 'fr') }}" 
+                       class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors {{ app()->getLocale() == 'fr' ? 'bg-blue-50' : '' }}">
+                      <span class="text-2xl">🇫🇷</span>
+                      <div>
+                        <p class="text-sm font-medium text-gray-900">Français</p>
+                        <p class="text-xs text-gray-500">French</p>
+                      </div>
+                      @if(app()->getLocale() == 'fr')
+                      <svg class="w-5 h-5 text-blue-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      @endif
+                    </a>
+                    <a href="{{ route('lang.switch', 'en') }}" 
+                       class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors {{ app()->getLocale() == 'en' ? 'bg-blue-50' : '' }}">
+                      <span class="text-2xl">🇬🇧</span>
+                      <div>
+                        <p class="text-sm font-medium text-gray-900">English</p>
+                        <p class="text-xs text-gray-500">Anglais</p>
+                      </div>
+                      @if(app()->getLocale() == 'en')
+                      <svg class="w-5 h-5 text-blue-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      @endif
+                    </a>
+                  </div>
           </li> 
         </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Contenu décalé pour la navbar fixe -->
+        <div class="pt-16"></div>
          @else
             <x-InfoModal type="danger" :data="34" />  
              @include('sweetalert::alert')
@@ -56,6 +131,46 @@
               <!-- Right section - Notifications -->
               <div class="flex items-center gap-2">
                 
+                <!-- Language Switcher -->
+                <div class="relative">
+                  <button onclick="toggleDropdown('languageDropdown')" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                    <span class="hidden md:inline text-sm font-medium text-gray-700">{{ strtoupper(app()->getLocale()) }}</span>
+                  </button>
+                  
+                  <!-- Language Dropdown Menu -->
+                  <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                    <a href="{{ route('lang.switch', 'fr') }}" 
+                       class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors {{ app()->getLocale() == 'fr' ? 'bg-blue-50' : '' }}">
+                      <span class="text-2xl">🇫🇷</span>
+                      <div>
+                        <p class="text-sm font-medium text-gray-900">Français</p>
+                        <p class="text-xs text-gray-500">French</p>
+                      </div>
+                      @if(app()->getLocale() == 'fr')
+                      <svg class="w-5 h-5 text-blue-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      @endif
+                    </a>
+                    <a href="{{ route('lang.switch', 'en') }}" 
+                       class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors {{ app()->getLocale() == 'en' ? 'bg-blue-50' : '' }}">
+                      <span class="text-2xl">🇬🇧</span>
+                      <div>
+                        <p class="text-sm font-medium text-gray-900">English</p>
+                        <p class="text-xs text-gray-500">Anglais</p>
+                      </div>
+                      @if(app()->getLocale() == 'en')
+                      <svg class="w-5 h-5 text-blue-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      @endif
+                    </a>
+                  </div>
+                </div>
+
                 <!-- Search Button -->
                 <button onclick="toggleSearch()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
                   <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,7 +335,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
             </svg>
-            <span class="flex-1 font-medium">{{ __('Category Management') }}</span>
+            <span class="flex-1 font-medium">{{ __('messages.Category Management') }}</span>
           </a> 
 
           
@@ -232,7 +347,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span class="flex-1 text-left font-medium">{{__('Account manager')}}</span>
+              <span class="flex-1 text-left font-medium">{{ __('messages.Account manager') }}</span>
               <svg id="accountMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('accounts/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -243,14 +358,14 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
-                <span class="font-medium">{{ __('Role') }}</span>
+                <span class="font-medium">{{ __('messages.Role') }}</span>
               </a>
               <a href="{{ route('user.index') }}" 
                  class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all {{ Request::is('accounts/user') ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                 </svg>
-                <span class="font-medium">{{ __('User') }}</span>
+                <span class="font-medium">{{ __('messages.User') }}</span>
               </a>
             </div>
           </div>
@@ -262,7 +377,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
               </svg>
-              <span class="flex-1 text-left font-medium">{{ __('Company manager') }}</span>
+              <span class="flex-1 text-left font-medium">{{ __('messages.Company manager') }}</span>
               <svg id="companyMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('company/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -273,7 +388,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                 </svg>
-                <span class="font-medium">{{ __('Department') }}</span>
+                <span class="font-medium">{{ __('messages.Department') }}</span>
               </a>
             </div>
           </div>
@@ -285,7 +400,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
-              <span class="flex-1 text-left font-medium">{{ __('Leave manager') }}</span>
+              <span class="flex-1 text-left font-medium">{{ __('messages.Leave manager') }}</span>
               <svg id="leaveMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('leaves/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -296,14 +411,14 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                 </svg>
-                <span class="font-medium">{{ __('Leave Type') }}</span>
+                <span class="font-medium">{{ __('messages.Leave Type') }}</span>
               </a>
               <a href="{{ route('request.index') }}" 
                  class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all {{ Request::is('leaves/request') ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
-                <span class="flex-1 font-medium">{{ __('Leave Request') }}</span>
+                <span class="flex-1 font-medium">{{ __('messages.Leave Request') }}</span>
                 @if($global['leavePlanned'] > 0)
                 <span class="px-2 py-0.5 text-xs font-bold bg-red-500 text-white rounded-full">{{ $global['leavePlanned'] }}</span>
                 @endif
@@ -314,7 +429,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                <span class="font-medium">{{ __('Settings') }}</span>
+                <span class="font-medium">{{ __('messages.Settings') }}</span>
               </a>
             </div>
           </div>
@@ -327,7 +442,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <span class="flex-1 text-left font-medium">{{__('Recruitment')}}</span>
+              <span class="flex-1 text-left font-medium">{{ __('messages.Recruitment') }}</span>
               <svg id="recruitmentMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('recruitments/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -338,7 +453,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <span class="flex-1 font-medium">{{ __('Jobs') }}</span>
+                <span class="flex-1 font-medium">{{ __('messages.Jobs') }}</span>
                 <span class="px-2 py-0.5 text-xs font-bold bg-cyan-500 text-white rounded-full">2</span>
               </a>
               <a href="{{ route('candidates.index') }}" 
@@ -346,7 +461,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                 </svg>
-                <span class="flex-1 font-medium">{{ __('Candidates') }}</span>
+                <span class="flex-1 font-medium">{{ __('messages.Candidates') }}</span>
                 <span class="px-2 py-0.5 text-xs font-bold bg-cyan-500 text-white rounded-full">2</span>
               </a>
             </div>
@@ -360,7 +475,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
-            <span class="flex-1 font-medium">{{ __('Leave summary') }}</span>
+            <span class="flex-1 font-medium">{{ __('messages.Leave summary') }}</span>
             <span class="px-2 py-0.5 text-xs font-bold bg-cyan-500 text-white rounded-full">2</span>
           </a>
 
@@ -370,7 +485,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
-            <span class="flex-1 font-medium">{{ __('Training') }}</span>
+            <span class="flex-1 font-medium">{{ __('messages.Training') }}</span>
             <span class="px-2 py-0.5 text-xs font-bold bg-red-500 text-white rounded-full">2</span>
           </a>
 
@@ -380,7 +495,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
-            <span class="flex-1 font-medium">{{ __('Historical') }}</span>
+            <span class="flex-1 font-medium">{{ __('messages.Historical') }}</span>
             <span class="px-2 py-0.5 text-xs font-bold bg-cyan-500 text-white rounded-full">2</span>
           </a>
 
@@ -392,7 +507,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span class="flex-1 text-left font-medium">{{ __('Configuration') }}</span>
+              <span class="flex-1 text-left font-medium">{{ __('messages.Configuration') }}</span>
               <svg id="configMenuIcon" class="w-5 h-5 transition-transform {{ Request::is('config/*') ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -403,7 +518,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <span class="font-medium">{{ __('Configuration Email') }}</span>
+                <span class="font-medium">{{ __('messages.Configuration Email') }}</span>
               </a>
             </div>
           </div>
@@ -418,7 +533,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
-          Settings
+          {{ __('messages.Settings') }}
                            </a>
                             <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  
@@ -426,7 +541,7 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
           </svg>
-                                          {{ __('Logout') }}
+                                          {{ __('messages.Logout') }}
                                         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                           @csrf

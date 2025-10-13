@@ -15,6 +15,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\user\LeaveRequestUserController;
 use App\Http\Controllers\LeaveSettingController;
 use App\Http\Controllers\EmailConfigController;
+use App\Http\Controllers\LanguageController;
 
 use App\Models\Role;
 
@@ -251,6 +252,9 @@ Route::middleware('auth')->controller(EmailConfigController::class)->prefix("con
     Route::get('/email', 'index')->name('config.email');
     Route::post('/email/update', 'update')->name('config.email.update');
 });
+
+// Language Switcher
+Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 Auth::routes([
     "register" => false
