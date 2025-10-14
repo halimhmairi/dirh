@@ -45,7 +45,7 @@
               <ul class="flex items-center gap-2">
                 <li>
                   <a href="{{ Route(config('app.name').'.jobs.jobs') }}" 
-                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors {{ Request::is('jobs') || Request::is('jobs/*') ? 'text-white bg-blue-600 shadow-md' : 'text-blue-600 bg-blue-50 hover:bg-blue-100' }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
@@ -54,7 +54,7 @@
                 </li>
                 <li>
                   <a href="{{ Route('login') }}" 
-                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors {{ Request::is('login') ? 'text-white bg-blue-600 shadow-md' : 'text-gray-700 hover:bg-gray-100' }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
                     </svg>
@@ -328,6 +328,15 @@
       <!-- Sidebar Menu -->
       <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         
+        <!-- Dashboard -->
+        <a href="{{ route('home') }}" 
+           class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ Request::is('home') ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span class="flex-1 font-medium">{{ __('messages.Dashboard') }}</span>
+        </a>
+
         <!-- @can('is_admin')   -->
           <!-- Category Management -->
           <a href="{{ route('category') }}" 

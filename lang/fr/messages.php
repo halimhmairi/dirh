@@ -81,5 +81,23 @@ return [
     'Location' => 'Localisation',
     'Tags' => 'Étiquettes',
     'Publish date' => 'Date de publication',
+    
+    // Dashboard
+    'Dashboard' => 'Tableau de bord',
+    'Welcome back' => 'Bon retour',
+    'Total Users' => 'Total Utilisateurs',
+    'Pending Leaves' => 'Congés en Attente',
+    'Total Candidates' => 'Total Candidats',
+    'Total Trainings' => 'Total Formations',
+    'Total Departments' => 'Total Départements',
+    'Active Jobs' => 'Offres Actives',
+    'Leaves by Status' => 'Congés par Statut',
+    'Employees by Department' => 'Employés par Département',
+    'Candidates by Month' => 'Candidats par Mois',
+    'Leaves by Type' => 'Congés par Type',
+    'Employees' => 'Employés',
+    'Leaves' => 'Congés',
+    'Approved' => 'Approuvé',
 ];
+
 

@@ -81,5 +81,23 @@ return [
     'Location' => 'Location',
     'Tags' => 'Tags',
     'Publish date' => 'Publish Date',
+    
+    // Dashboard
+    'Dashboard' => 'Dashboard',
+    'Welcome back' => 'Welcome back',
+    'Total Users' => 'Total Users',
+    'Pending Leaves' => 'Pending Leaves',
+    'Total Candidates' => 'Total Candidates',
+    'Total Trainings' => 'Total Trainings',
+    'Total Departments' => 'Total Departments',
+    'Active Jobs' => 'Active Jobs',
+    'Leaves by Status' => 'Leaves by Status',
+    'Employees by Department' => 'Employees by Department',
+    'Candidates by Month' => 'Candidates by Month',
+    'Leaves by Type' => 'Leaves by Type',
+    'Employees' => 'Employees',
+    'Leaves' => 'Leaves',
+    'Approved' => 'Approved',
 ];
+
 
