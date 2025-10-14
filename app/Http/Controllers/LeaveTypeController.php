@@ -38,7 +38,7 @@ class LeaveTypeController extends Controller
     public function store(StoreLeaveTypeRequest $request)
     {
         LeaveType::create($request->all());
-        toast('Your Leave type as been submited!','success');
+        toast(__('messages.Your leave type has been submitted!'),'success');
         return redirect()->back();
     }
 
@@ -74,7 +74,7 @@ class LeaveTypeController extends Controller
     public function update(UpdateLeaveTypeRequest $request)
     {
         leaveType::find($request->id)->update($request->except('id'));
-        toast('Your leave type as been updatedt!','success');
+        toast(__('messages.Your leave type has been updated!'),'success');
         return redirect('/leaves/types');
     }
 
@@ -87,7 +87,7 @@ class LeaveTypeController extends Controller
     public function destroy($leaveType)
     {
         LeaveType::destroy($leaveType);
-        toast('deleted with successfully','success'); 
+        toast(__('messages.Your leave type has been deleted!'),'success'); 
         return redirect()->back();
 
     }

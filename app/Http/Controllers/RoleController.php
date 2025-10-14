@@ -6,11 +6,26 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;  
 use App\Models\Role; 
 use App\Models\User; 
+use App\Repositories\role\RoleRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 { 
+    public $roleRepository; 
+
+    public function __construct(RoleRepository $roleRepository)
+    {
+        $this->roleRepository = $roleRepository; 
+
+        $this->middleware(function ($request, $next) {
+
+            $this->user = Auth::user();
+            $this->authorize('is_admin',$this->user);
+
+            return $next($request);
+        });
+    }
 
     /**
      * Display a listing of the resource.
@@ -49,7 +64,7 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     { 
         $this->roleRepository->create($request->all());
-        toast('Your Role as been submited!','success');
+        toast(__('messages.Your role has been submitted!'),'success');
         return redirect()->back();
     } 
 
@@ -75,8 +90,8 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request)
     {
         $this->roleRepository->updateById($request->id,$request->except('id'));
-        toast('Your Role as been updatedt!','success');
-        return redirect('/role');
+        toast(__('messages.Your role has been updated!'),'success');
+        return redirect('/accounts/role');
     }
 
     /**
@@ -88,6 +103,7 @@ class RoleController extends Controller
     public function destroy($id)
     { 
         $this->roleRepository->deleteById($id);
-        return redirect()->back()->with('success','test dev');
+        toast(__('messages.Your role has been deleted!'),'success');
+        return redirect()->back();
     }
 }

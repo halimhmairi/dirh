@@ -52,7 +52,7 @@ class JobController extends Controller
         $this->jobRepository->create($request->all());
 
         $job = Job::create($request->all()); 
-        toast('Your Job as been submited!','success');
+        toast(__('messages.Your job has been submitted!'),'success');
         return redirect()->back();
     }
 

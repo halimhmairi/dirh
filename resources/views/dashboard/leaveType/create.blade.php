@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                         </svg>
-                        {{ __('Créer un type de congé') }}
+                        {{ __('{{ __('messages.Create') }} un type de congé') }}
                     </h2>
                 </div>
 
@@ -21,14 +21,14 @@
                     <form method="POST" action="{{ Route('types.store') }}" class="space-y-6">
                         @csrf
                         
-                        <!-- Nom du type -->
+                        <!-- {{ __('messages.Name') }} du type -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                     </svg>
-                                    {{ __('Nom du type') }}
+                                    {{ __('{{ __('messages.Name') }} du type') }}
                                 </span>
                             </label>
                             <input type="text" 
@@ -47,20 +47,20 @@
                             @enderror
                         </div>
 
-                        <!-- Description -->
+                        <!-- {{ __('messages.Description') }} -->
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                                     </svg>
-                                    {{ __('Description') }}
+                                    {{ __('{{ __('messages.Description') }}') }}
                                 </span>
                             </label>
                             <textarea name="description" 
                                       id="description" 
                                       rows="4"
-                                      placeholder="Description du type de congé"
+                                      placeholder="{{ __('messages.Description') }} du type de congé"
                                       class="block w-full px-4 py-3 border @error('description') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -79,14 +79,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Créer
+                                {{ __('messages.Create') }}
                             </button>
                         </div>
                     </form>

@@ -21,14 +21,14 @@
                     <form method="POST" action="{{ Route('jobs.store') }}" class="space-y-6">
                         @csrf
                         
-                        <!-- Titre du poste -->
+                        <!-- {{ __('messages.Job title') }} -->
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
-                                    Titre du poste
+                                    {{ __('messages.Job title') }}
                                 </span>
                             </label>
                             <input type="text" 
@@ -73,20 +73,20 @@
                             @enderror
                         </div>
 
-                        <!-- Description détaillée -->
+                        <!-- {{ __('messages.Description') }} détaillée -->
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                                     </svg>
-                                    Description détaillée
+                                    {{ __('messages.Description') }} détaillée
                                 </span>
                             </label>
                             <textarea name="description" 
                                       id="description" 
                                       rows="6"
-                                      placeholder="Description complète du poste, missions, profil recherché..."
+                                      placeholder="{{ __('messages.Description') }} complète du poste, missions, profil recherché..."
                                       class="block w-full px-4 py-3 border @error('description') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -124,14 +124,14 @@
                             @enderror
                         </div>
 
-                        <!-- Statut -->
+                        <!-- {{ __('messages.Status') }} -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-3">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    Statut de publication
+                                    {{ __('messages.Status') }} de publication
                                 </span>
                             </label>
                             <div class="space-y-3">
@@ -144,7 +144,7 @@
                                            checked
                                            class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                     <div class="ml-3">
-                                        <span class="text-sm font-medium text-gray-900">Publié</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ __('messages.Published') }}</span>
                                         <p class="text-xs text-gray-500">L'offre sera visible immédiatement</p>
                                     </div>
                                 </label>
@@ -157,7 +157,7 @@
                                            value="draft"
                                            class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                     <div class="ml-3">
-                                        <span class="text-sm font-medium text-gray-900">Brouillon</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ __('messages.Draft') }}</span>
                                         <p class="text-xs text-gray-500">L'offre sera enregistrée mais pas publiée</p>
                                     </div>
                                 </label>
@@ -196,7 +196,7 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">

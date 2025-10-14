@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        {{ __('Modifier la demande de congé') }}
+                        {{ __('{{ __('messages.Edit') }} la demande de congé') }}
                     </h2>
                 </div>
 
@@ -23,14 +23,14 @@
 
                         <input type="hidden" name="id" value="{{ $leaveRequest->id }}">
 
-                        <!-- Utilisateur -->
+                        <!-- {{ __('messages.User') }} -->
                         <div>
                             <label for="user_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                     </svg>
-                                    {{ __('Utilisateur') }}
+                                    {{ __('{{ __('messages.User') }}') }}
                                 </span>
                             </label>
                             <select name="user_id" 
@@ -50,14 +50,14 @@
                                 @enderror
                       </div>
                       
-                        <!-- Type de congé -->
+                        <!-- {{ __('messages.Leave Type') }} -->
                         <div>
                             <label for="leave_type_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                     </svg>
-                                    {{ __('Type de congé') }}
+                                    {{ __('{{ __('messages.Leave Type') }}') }}
                                 </span>
                             </label>
                             <select name="leave_type_id" 
@@ -79,14 +79,14 @@
 
                         <!-- Dates -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Date de début -->
+                            <!-- {{ __('messages.Start Date') }} -->
                             <div>
                                 <label for="start_date" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
-                                        {{ __('Date de début') }}
+                                        {{ __('{{ __('messages.Start Date') }}') }}
                                     </span>
                                 </label>
                                 <input type="datetime-local" 
@@ -104,14 +104,14 @@
                           @enderror
                       </div>
 
-                            <!-- Date de fin -->
+                            <!-- {{ __('messages.End Date') }} -->
                             <div>
                                 <label for="end_date" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
-                                        {{ __('Date de fin') }}
+                                        {{ __('{{ __('messages.End Date') }}') }}
                                     </span>
                                 </label>
                                 <input type="datetime-local" 
@@ -130,20 +130,20 @@
                             </div>
                         </div>
 
-                        <!-- Raison -->
+                        <!-- {{ __('messages.Reason') }} -->
                         <div>
                             <label for="reason" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                                     </svg>
-                                    {{ __('Raison') }}
+                                    {{ __('{{ __('messages.Reason') }}') }}
                                 </span>
                             </label>
                             <textarea name="reason" 
                                       id="reason" 
                                       rows="4"
-                                      placeholder="Raison de la demande de congé..."
+                                      placeholder="{{ __('messages.Reason') }} de la demande de congé..."
                                       class="block w-full px-4 py-3 border @error('reason') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">{{ $leaveRequest->reason }}</textarea>
                           @error('reason')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -155,23 +155,23 @@
                                 @enderror
                         </div>
 
-                        <!-- Statut -->
+                        <!-- {{ __('messages.Status') }} -->
                         <div>
                             <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    {{ __('Statut') }}
+                                    {{ __('{{ __('messages.Status') }}') }}
                                 </span>
                             </label>
                             <select name="status" 
                                     id="status"
                                     class="block w-full px-4 py-3 border @error('status') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                <option value="Cancelled" {{ $leaveRequest->status == 'Cancelled' ? 'selected' : '' }}>Annulé</option>
-                                <option value="Rejected" {{ $leaveRequest->status == 'Rejected' ? 'selected' : '' }}>Rejeté</option>
-                                <option value="Accepted" {{ $leaveRequest->status == 'Accepted' ? 'selected' : '' }}>Accepté</option>
-                                <option value="Planned" {{ $leaveRequest->status == 'Planned' ? 'selected' : '' }}>Planifié</option>
+                                <option value="Cancelled" {{ $leaveRequest->status == 'Cancelled' ? 'selected' : '' }}>{{ __('messages.Cancelled') }}</option>
+                                <option value="Rejected" {{ $leaveRequest->status == 'Rejected' ? 'selected' : '' }}>{{ __('messages.Rejected') }}</option>
+                                <option value="Accepted" {{ $leaveRequest->status == 'Accepted' ? 'selected' : '' }}>{{ __('messages.Accepted') }}</option>
+                                <option value="Planned" {{ $leaveRequest->status == 'Planned' ? 'selected' : '' }}>{{ __('messages.Planned') }}</option>
                           </select>
                             @error('status')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -190,14 +190,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Mettre à jour
+                                {{ __('messages.Update') }}
                             </button>
                         </div>
                     </form>

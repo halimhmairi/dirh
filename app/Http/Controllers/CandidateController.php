@@ -109,7 +109,7 @@ class CandidateController extends Controller
     public function destroy(Candidate $candidate)
     {
         $this->candidateRepository->deleteById($candidate->id);
-        toast('Candidate as been deleted!','success');
+        toast(__('messages.Your candidate has been deleted!'),'success');
         return redirect()->back();
     }
 }

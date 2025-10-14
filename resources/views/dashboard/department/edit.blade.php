@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        {{ __('Modifier le département') }}
+                        {{ __('{{ __('messages.Edit department') }}') }}
                     </h2>
                 </div>
 
@@ -23,14 +23,14 @@
 
                         <input type="hidden" name="id" value="{{ $department->id }}">
 
-                        <!-- Nom du département -->
+                        <!-- {{ __('messages.Department name') }} -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                     </svg>
-                                    Nom du département
+                                    {{ __('messages.Department name') }}
                                 </span>
                             </label>
                             <input type="text" 
@@ -82,14 +82,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Mettre à jour
+                                {{ __('messages.Update') }}
                             </button>
                         </div>
                     </form>

@@ -83,7 +83,7 @@ class UserController extends Controller
 
         User::create($data); 
 
-        toast('Your User as been submited!','success');
+        toast(__('messages.Your user has been created!'),'success');
         return redirect('accounts/user');
     } 
 

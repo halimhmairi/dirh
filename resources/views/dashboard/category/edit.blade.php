@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        {{ __('Modifier la catégorie') }}
+                        {{ __('messages.Edit category') }}
                     </h2>
                 </div>
 
@@ -45,14 +45,14 @@
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                     </svg>
-                                    Nom de la catégorie
+                                    {{ __('messages.Category name') }}
                                 </span>
                             </label>
                             <input type="text" 
                                    name="name" 
                                    id="name"
                                    value="{{ $category->name }}" 
-                                   placeholder="Ex: Technologie, Marketing, Finance..."
+                                   placeholder="{{ __('messages.Category name') }}"
                                    class="block w-full px-4 py-3 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('name')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -71,13 +71,13 @@
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                                     </svg>
-                                    Description
+                                    {{ __('messages.Description') }}
                                 </span>
                             </label>
                             <textarea name="description" 
                                       id="description" 
                                       rows="4"
-                                      placeholder="Description de la catégorie..."
+                                      placeholder="{{ __('messages.Category description') }}"
                                       class="block w-full px-4 py-3 border @error('description') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">{{ $category->description }}</textarea>
                             @error('description')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -96,14 +96,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Mettre à jour
+                                {{ __('messages.Update') }}
                             </button>
                         </div>
                     </form>

@@ -27,3 +27,12 @@ if(!function_exists('status_color')){
 
 }
 
+if(!function_exists('toast')){
+ 
+    function toast($message, $type = 'success')
+    {
+        session()->flash($type, $message);
+    }
+
+}
+

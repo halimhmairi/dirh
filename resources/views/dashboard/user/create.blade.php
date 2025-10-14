@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                         </svg>
-                        {{ __('Créer un utilisateur') }}
+                        {{ __('messages.Create') }}
                     </h2>
                 </div>
 
@@ -21,14 +21,14 @@
                     <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data" class="space-y-6">
                         @csrf
 
-                        <!-- Nom -->
+                        <!-- {{ __('messages.Name') }} -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                     </svg>
-                                    {{ __('Nom complet') }}
+                                    {{ __('messages.Name') }}
                                 </span>
                             </label>
                             <input type="text" 
@@ -37,7 +37,7 @@
                                    value="{{ old('name') }}" 
                                    required
                                    autocomplete="name"
-                                   placeholder="Ex: Jean Dupont"
+                                   placeholder="Ex: Jean {{ __('messages.From') }}pont"
                                    class="block w-full px-4 py-3 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('name')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -49,7 +49,7 @@
                             @enderror
                         </div>
 
-                        <!-- Email -->
+                        <!-- {{ __('messages.Email') }} -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
@@ -133,22 +133,22 @@
                         <!-- Grid pour Status, Role et Department -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             
-                            <!-- Statut -->
+                            <!-- {{ __('messages.Status') }} -->
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                         </svg>
-                                        {{ __('Statut') }}
+                                        {{ __('messages.Status') }}
                                     </span>
                                 </label>
                                 <select name="status" 
                                         id="status"
                                         class="block w-full px-4 py-3 border @error('status') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                    <option value="active">{{ __('Actif') }}</option>
-                                    <option value="blocked">{{ __('Bloqué') }}</option>
-                                    <option value="waiting">{{ __('En attente') }}</option>
+                                    <option value="active">{{ __('messages.Active') }}</option>
+                                    <option value="blocked">{{ __('messages.Blocked') }}</option>
+                                    <option value="waiting">{{ __('messages.Waiting') }}</option>
                                 </select>
                                 @error('status')
                                     <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -160,14 +160,14 @@
                                 @enderror
                             </div>
 
-                            <!-- Rôle -->
+                            <!-- {{ __('messages.Role') }} -->
                             <div>
                                 <label for="role_id" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                         </svg>
-                                        {{ __('Rôle') }}
+                                        {{ __('messages.Role') }}
                                     </span>
                                 </label>
                                 <select name="role_id" 
@@ -189,14 +189,14 @@
                             </div>
                         </div>
 
-                        <!-- Département -->
+                        <!-- {{ __('messages.Department') }} -->
                         <div>
                             <label for="department_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                     </svg>
-                                    {{ __('Département') }}
+                                    {{  __('messages.Department') }}
                                 </span>
                             </label>
                             <select name="department_id" 
@@ -217,14 +217,14 @@
                             @enderror
                         </div>
 
-                        <!-- Mot de passe -->
+                        <!-- {{ __('messages.Password') }} -->
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                     </svg>
-                                    {{ __('Mot de passe') }}
+                                    {{  __('messages.Password') }}
                                 </span>
                             </label>
                             <input type="password" 
@@ -251,14 +251,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Créer
+                                {{ __('messages.Create') }}
                             </button>
                         </div>
                     </form>

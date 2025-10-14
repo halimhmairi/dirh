@@ -49,11 +49,11 @@
             </div>
         </div>
 
-        <!-- En attente -->
+        <!-- {{ __('messages.Waiting') }} -->
         <div class="bg-white rounded-lg shadow-md p-6 transform transition-all hover:shadow-lg">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600 mb-1">En attente</p>
+                    <p class="text-sm font-medium text-gray-600 mb-1">{{ __('messages.Waiting') }}</p>
                     <p class="text-3xl font-bold text-yellow-600">{{ $pendingRequests }}</p>
                 </div>
                 <div class="bg-yellow-100 p-3 rounded-full">
@@ -64,11 +64,11 @@
             </div>
         </div>
 
-        <!-- Acceptées -->
+        <!-- {{ __('messages.Accepted') }}es -->
         <div class="bg-white rounded-lg shadow-md p-6 transform transition-all hover:shadow-lg">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600 mb-1">Acceptées</p>
+                    <p class="text-sm font-medium text-gray-600 mb-1">{{ __('messages.Accepted') }}es</p>
                     <p class="text-3xl font-bold text-green-600">{{ $acceptedRequests }}</p>
                 </div>
                 <div class="bg-green-100 p-3 rounded-full">
@@ -79,11 +79,11 @@
             </div>
         </div>
 
-        <!-- Rejetées -->
+        <!-- {{ __('messages.Rejected') }}es -->
         <div class="bg-white rounded-lg shadow-md p-6 transform transition-all hover:shadow-lg">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600 mb-1">Rejetées</p>
+                    <p class="text-sm font-medium text-gray-600 mb-1">{{ __('messages.Rejected') }}es</p>
                     <p class="text-3xl font-bold text-red-600">{{ $rejectedRequests }}</p>
                 </div>
                 <div class="bg-red-100 p-3 rounded-full">
@@ -114,31 +114,31 @@
             <!-- Grille de paramètres -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <!-- Jours de congé par mois -->
+                <!-- {{ __('messages.Days') }} de congé par mois -->
                 <div>
                     <label for="monthly_leave_days" class="block text-sm font-medium text-gray-700 mb-2">
                         <span class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
-                            Jours de congé par mois
+                            {{ __('messages.Days') }} de congé par mois
                         </span>
                     </label>
                     <input type="number" name="monthly_leave_days" id="monthly_leave_days" 
                            value="{{ $settings['monthly_leave_days'] }}" 
                            step="0.5" min="0" max="31"
                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <p class="text-xs text-gray-500 mt-1">Nombre de jours de congé acquis chaque mois</p>
+                    <p class="text-xs text-gray-500 mt-1">{{ __('messages.Name') }}bre de jours de congé acquis chaque mois</p>
                 </div>
 
-                <!-- Jours de congé par an -->
+                <!-- {{ __('messages.Days') }} de congé par an -->
                 <div>
                     <label for="yearly_leave_days" class="block text-sm font-medium text-gray-700 mb-2">
                         <span class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
-                            Jours de congé par an
+                            {{ __('messages.Days') }} de congé par an
                         </span>
                     </label>
                     <input type="number" name="yearly_leave_days" id="yearly_leave_days" 
@@ -162,7 +162,7 @@
                            value="{{ $settings['max_carry_forward'] }}" 
                            min="0" max="365"
                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <p class="text-xs text-gray-500 mt-1">Nombre maximum de jours reportables sur l'année suivante</p>
+                    <p class="text-xs text-gray-500 mt-1">{{ __('messages.Name') }}bre maximum de jours reportables sur l'année suivante</p>
                 </div>
 
                 <!-- Délai de demande -->
@@ -194,25 +194,25 @@
                                min="0" 
                                max="90"
                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <p class="text-xs text-gray-500 mt-1">Nombre de jours à l'avance pour faire une demande</p>
+                        <p class="text-xs text-gray-500 mt-1">{{ __('messages.Name') }}bre de jours à l'avance pour faire une demande</p>
                     </div>
                 </div>
 
-                <!-- Jours de congé maladie -->
+                <!-- {{ __('messages.Days') }} de congé maladie -->
                 <div>
                     <label for="sick_leave_days_per_year" class="block text-sm font-medium text-gray-700 mb-2">
                         <span class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                             </svg>
-                            Jours de congé maladie par an
+                            {{ __('messages.Days') }} de congé maladie par an
                         </span>
                     </label>
                     <input type="number" name="sick_leave_days_per_year" id="sick_leave_days_per_year" 
                            value="{{ $settings['sick_leave_days_per_year'] }}" 
                            min="0" max="365"
                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <p class="text-xs text-gray-500 mt-1">Nombre de jours de congé maladie par an</p>
+                    <p class="text-xs text-gray-500 mt-1">{{ __('messages.Name') }}bre de jours de congé maladie par an</p>
                 </div>
             </div>
 
@@ -256,7 +256,7 @@
                 <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                     <div class="flex-1">
                         <label for="allow_negative_balance" class="font-medium text-gray-700 cursor-pointer">
-                            Autoriser le solde négatif
+                            {{ __('messages.To') }}toriser le solde négatif
                         </label>
                         <p class="text-sm text-gray-500">Les employés peuvent prendre des congés même sans solde suffisant</p>
                     </div>
@@ -276,7 +276,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
-                    Enregistrer les paramètres
+                    {{ __('messages.Save') }} les paramètres
                 </button>
             </div>
         </form>

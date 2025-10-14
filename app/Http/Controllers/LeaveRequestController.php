@@ -62,7 +62,7 @@ class LeaveRequestController extends Controller
 
     $this->leaveRequestService->storeLeaveRequest($request,$user);
      
-    toast('Your Request as been sabmited!','success');
+    toast(__('messages.Your leave request has been submitted!'),'success');
 
     } 
     
@@ -82,7 +82,7 @@ class LeaveRequestController extends Controller
   {
     $user = User::find($leaveRequests->user_id);
     $this->leaveRequestService->updateLeaveRequest($leaveRequests,$user); 
-    toast('Your Leave Request as been Updated!','success');
+    toast(__('messages.Your leave request has been updated!'),'success');
     return redirect('leaves/request');
   }
 
@@ -99,7 +99,7 @@ class LeaveRequestController extends Controller
   public function destroy($leaveRequests)
   {
     Leave::destroy($leaveRequest);
-    toast('Your Request as been deleted!','success');
+    toast(__('messages.Your leave request has been deleted!'),'success');
     return redirect()->back();
   }
 

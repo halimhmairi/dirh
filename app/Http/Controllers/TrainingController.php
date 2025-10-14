@@ -38,7 +38,7 @@ class TrainingController extends Controller
     public function store(StoreTrainingRequest $request)
     {
         Training::create($request->validated());
-        toast('Your Training as been sabmited!', 'success');
+        toast(__('messages.Your training has been submitted!'), 'success');
         return redirect('/training');
     }
 
@@ -84,7 +84,7 @@ class TrainingController extends Controller
     public function destroy($id)
     {
         Training::destroy($id);
-        toast('deleted with successfully', 'success');
+        toast(__('messages.Your training has been deleted!'), 'success');
         return redirect()->back();
     }
 }

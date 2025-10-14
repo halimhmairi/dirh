@@ -12,14 +12,14 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                         </svg>
-                        {{ __('Utilisateurs') }}
+                        {{ __('messages.Users') }}
                     </h2>
                     <a href="{{ Route('user.create') }}" 
                        class="inline-flex items-center gap-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                         </svg>
-                        Nouvel utilisateur
+                        {{ __('messages.New user') }}
                     </a>
                 </div>
 
@@ -34,19 +34,19 @@
                                         #
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Utilisateur
+                                        {{ __('messages.User') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Email
+                                        {{ __('messages.Email') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Rôle
+                                        {{ __('messages.Role') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Statut
+                                        {{ __('messages.Status') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Action
+                                        {{ __('messages.Action') }}
                                     </th>
                                 </tr>
                             </thead>
@@ -90,15 +90,15 @@
                                         <div class="flex items-center gap-2">
                                             <a href="{{ Route('user.edit',$user->id) }}" 
                                                class="inline-flex items-center justify-center w-8 h-8 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                                               title="Modifier">
+                                               title="{{ __('messages.Edit') }}">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                                 </svg>
                                             </a>
                                             <a href="{{ Route('user.destroy',$user->id) }}" 
                                                class="inline-flex items-center justify-center w-8 h-8 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                                               onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')"
-                                               title="Supprimer">
+                                               onclick="return confirm('{{ __('messages.Are you sure you want to delete this user?') }}')"
+                                               title="{{ __('messages.Delete') }}">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                                 </svg>
@@ -113,14 +113,14 @@
                                             <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                                             </svg>
-                                            <p class="text-gray-600 text-lg font-medium">Aucun utilisateur</p>
-                                            <p class="text-gray-500 text-sm mt-1">Créez votre premier utilisateur</p>
+                                            <p class="text-gray-600 text-lg font-medium">{{ __('messages.No users') }}</p>
+                                            <p class="text-gray-500 text-sm mt-1">{{ __('messages.Create your first user') }}</p>
                                             <a href="{{ Route('user.create') }}" 
                                                class="mt-4 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                                                 </svg>
-                                                Nouvel utilisateur
+                                                {{ __('messages.New user') }}
                                             </a>
                                         </div>
                                     </td>

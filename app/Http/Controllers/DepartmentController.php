@@ -38,7 +38,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
-        toast('Your Department as been submited!','success');
+        toast(__('messages.Your department has been submitted!'),'success');
         return redirect()->back();
     }
 

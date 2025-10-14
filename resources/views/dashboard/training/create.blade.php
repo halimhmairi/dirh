@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
-                        {{ __('Créer une formation') }}
+                        {{ __('{{ __('messages.Create training') }}') }}
                     </h2>
                 </div>
 
@@ -21,14 +21,14 @@
                     <form method="POST" action="{{ route('training.store') }}" class="space-y-6">
                         @csrf
 
-                        <!-- Titre -->
+                        <!-- {{ __('messages.Title') }} -->
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                     </svg>
-                                    {{ __('Titre de la formation') }}
+                                    {{ __('{{ __('messages.Training title') }}') }}
                                 </span>
                             </label>
                             <input type="text" 
@@ -36,7 +36,7 @@
                                    id="title"
                                    value="{{ old('title') }}" 
                                    required
-                                   placeholder="Ex: Formation PHP avancé, Leadership..."
+                                   placeholder="Ex: {{ __('messages.Training') }} PHP avancé, Leadership..."
                                    class="block w-full px-4 py-3 border @error('title') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('title')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -48,20 +48,20 @@
                             @enderror
                         </div>
 
-                        <!-- Description -->
+                        <!-- {{ __('messages.Description') }} -->
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                                     </svg>
-                                    {{ __('Description') }}
+                                    {{ __('{{ __('messages.Description') }}') }}
                                 </span>
                             </label>
                             <textarea name="description" 
                                       id="description" 
                                       rows="4"
-                                      placeholder="Description de la formation..."
+                                      placeholder="{{ __('messages.Description') }} de la formation..."
                                       class="block w-full px-4 py-3 border @error('description') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -88,7 +88,7 @@
                                    id="school"
                                    value="{{ old('school') }}" 
                                    required
-                                   placeholder="Nom de l'école ou de l'organisme de formation"
+                                   placeholder="{{ __('messages.Name') }} de l'école ou de l'organisme de formation"
                                    class="block w-full px-4 py-3 border @error('school') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('school')
                                 <p class="mt-2 text-sm text-red-600 flex items-center">
@@ -102,14 +102,14 @@
 
                         <!-- Dates -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Date de début -->
+                            <!-- {{ __('messages.Start Date') }} -->
                             <div>
                                 <label for="start_date" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
-                                        {{ __('Date de début') }}
+                                        {{ __('{{ __('messages.Start Date') }}') }}
                                     </span>
                                 </label>
                                 <input type="datetime-local" 
@@ -128,14 +128,14 @@
                                 @enderror
                             </div>
 
-                            <!-- Date de fin -->
+                            <!-- {{ __('messages.End Date') }} -->
                             <div>
                                 <label for="end_date" class="block text-sm font-medium text-gray-700 mb-2">
                                     <span class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
-                                        {{ __('Date de fin') }}
+                                        {{ __('{{ __('messages.End Date') }}') }}
                                     </span>
                                 </label>
                                 <input type="datetime-local" 
@@ -155,7 +155,7 @@
                             </div>
                         </div>
 
-                        <!-- Utilisateur -->
+                        <!-- {{ __('messages.User') }} -->
                         <div>
                             <label for="user_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 <span class="flex items-center gap-2">
@@ -190,14 +190,14 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
-                                Annuler
+                                {{ __('messages.Cancel') }}
                             </a>
                             <button type="submit" 
                                     class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                Créer
+                                {{ __('messages.Create') }}
                             </button>
                         </div>
                     </form>

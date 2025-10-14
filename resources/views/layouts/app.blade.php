@@ -109,9 +109,12 @@
 
         <!-- Contenu décalé pour la navbar fixe -->
         <div class="pt-16"></div>
+        
+        <x-toast />
          @else
             <x-InfoModal type="danger" :data="34" />  
              @include('sweetalert::alert')
+             <x-toast />
 
 
                       <!-- Navbar -->

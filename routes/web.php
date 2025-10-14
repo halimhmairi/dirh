@@ -256,6 +256,11 @@ Route::middleware('auth')->controller(EmailConfigController::class)->prefix("con
 // Language Switcher
 Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
+// Test Toast (Route temporaire pour démo)
+Route::get('/test-toast', function () {
+    return view('test-toast');
+})->middleware('auth')->name('test.toast');
+
 Auth::routes([
     "register" => false
 ]);
