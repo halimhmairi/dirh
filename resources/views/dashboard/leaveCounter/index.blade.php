@@ -40,7 +40,7 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('{{ __('messages.Leave Type') }}') }}
+                                        {{ __('messages.Leave Type') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <div class="flex items-center justify-center gap-1">
@@ -71,7 +71,7 @@
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                             </svg>
-                                            {{ __('{{ __('messages.Waiting') }}') }}
+                                            {{ __('messages.Waiting') }}
                                         </div>
                                     </th>
                                 </tr>
