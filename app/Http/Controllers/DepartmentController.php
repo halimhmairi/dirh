@@ -5,9 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Department\StoreDepartmentRequest;
 use App\Http\Requests\Department\UpdateDepartmentRequest;
 use App\Models\Department;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!Auth::user() || Auth::user()->role->name !== 'admin') {
+                abort(403, 'Accès non autorisé. Seuls les administrateurs peuvent accéder à cette section.');
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
