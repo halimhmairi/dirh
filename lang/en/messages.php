@@ -254,6 +254,10 @@ return [
     'Information' => 'Information',
     'Created at' => 'Created at',
     'Updated at' => 'Updated at',
+    
+    // Access Control
+    'Access Restricted' => 'Access Restricted',
+    'Statistics are only available to administrators' => 'Statistics are only available to administrators',
 ];
 
 

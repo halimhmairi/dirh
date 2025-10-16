@@ -16,10 +16,9 @@ class CategoryController extends Controller
         $this->categoryRepository =  $categoryRepository; 
 
         $this->middleware(function ($request, $next) {
-
-            $this->user = Auth::user();
-            $this->authorize('is_admin',$this->user);
-
+            if (!Auth::user() || Auth::user()->role->name !== 'admin') {
+                abort(403, 'Accès non autorisé. Seuls les administrateurs peuvent accéder à cette section.');
+            }
             return $next($request);
         });
     }

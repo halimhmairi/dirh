@@ -111,13 +111,12 @@
         <div class="pt-16"></div>
         
         <x-toast />
-         @else
+        @else
             <x-InfoModal type="danger" :data="34" />  
-             @include('sweetalert::alert')
-             <x-toast />
+            @include('sweetalert::alert')
+            <x-toast />
 
-
-                      <!-- Navbar -->
+            <!-- Navbar -->
           <nav class="fixed top-0 left-0 lg:left-64 right-0 bg-white shadow-md z-30 border-b border-gray-200">
             <div class="flex items-center justify-between px-4 lg:px-6 py-3">
               
@@ -299,7 +298,9 @@
               </div>
                 </div>
           </nav>
+        @endguest
 
+        @auth
           <!-- Overlay pour mobile -->
           <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-35 lg:hidden" onclick="toggleSidebar()"></div>
 
@@ -340,7 +341,7 @@
           <span class="flex-1 font-medium">{{ __('messages.Dashboard') }}</span>
         </a>
 
-        <!-- @can('is_admin')   -->
+        @if(auth()->user()->role->name === 'admin')
           <!-- Category Management -->
           <a href="{{ route('category') }}" 
              class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ Request::is('category') ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
@@ -348,7 +349,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
             </svg>
             <span class="flex-1 font-medium">{{ __('messages.Category Management') }}</span>
-          </a> 
+          </a>
+        @endif 
 
           
           <!-- Account Manager -->
@@ -478,8 +480,6 @@
               </a>
             </div>
           </div>
-
-          <!-- @endif   -->
           
           <!-- Leave Summary -->
           <a href="{{ route('counters.index') }}" 
@@ -537,31 +537,30 @@
 
       </nav>
       
-      <!-- Footer avec boutons -->
-      <div class="border-t border-gray-700 p-4 space-y-2 bg-gray-900">
-        <a href="{{ Route('profile/edit') }}" 
-           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-all shadow-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-          {{ __('messages.Settings') }}
-                           </a>
-                            <a href="{{ route('logout') }}"
-           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  
-           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all shadow-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-          </svg>
-                                          {{ __('messages.Logout') }}
-                                        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                          @csrf
-                                      </form>
-    </div>
-  </aside>
-                                   
-       @endguest  
+        <!-- Footer avec boutons -->
+        <div class="border-t border-gray-700 p-4 space-y-2 bg-gray-900">
+          <a href="{{ Route('profile/edit') }}" 
+            class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-all shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            {{ __('messages.Settings') }}
+                            </a>
+                              <a href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  
+            class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+                                            {{ __('messages.Logout') }}
+                                          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                            @csrf
+                                        </form>
+        </div>
+    </aside>
+        @endauth
                     <main class="ml-0 lg:ml-64 mt-16"> 
                         @yield('content')
                     </main>
